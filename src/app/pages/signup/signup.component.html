@@ -116,7 +116,7 @@
                         <h4>Shop Address <strong class="star">*</strong> :</h4>
                     </div>
                     <div class="sign-up2 textarea-large">
-                        <textarea class="tf-lenos" nam="address" name="address" required="true" (change)="form.validate($event)"></textarea>
+                        <textarea class="tf-lenos" nam="address" name="address" required="true" (keyup)="form.validate($event)"></textarea>
                     </div>
                 </div>
             </div>
@@ -128,7 +128,7 @@
                         <h4>Password <strong class="star">*</strong> :</h4>
                     </div>
                     <div class="sign-up2">
-                        <input type="password" class="tf-lenos" name="password" required="true" (change)="form.validate($event)">
+                        <input type="password" class="tf-lenos" name="password" required="true" (keyup)="form.validate($event)">
                     </div>
                     <div class="clearfix"> </div>
                 </div>
@@ -137,7 +137,7 @@
                         <h4>Confirm Password <strong class="star">*</strong> :</h4>
                     </div>
                     <div class="sign-up2">
-                        <input type="password" class="tf-lenos" name="confirmPassword" required="true" (change)="form.validate($event)">
+                        <input type="password" class="tf-lenos" name="confirmPassword" required="true" (keyup)="form.validate($event)">
                     </div>
                 </div>
 

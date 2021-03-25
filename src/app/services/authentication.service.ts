@@ -1,8 +1,12 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { JwtHelperService } from '@auth0/angular-jwt';
 import { throwError } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
+import { environment } from 'src/environments/environment';
+import { AccountType } from '../enum/account-type.enum';
 import { Store } from '../enum/store.enum';
+import { UserRole } from '../enum/user-role.enum';
 import { ApiResponse } from '../models/api-response.model';
 import { UserRequest } from '../models/user-request.model';
 import { UserVerificationRequest } from '../models/user-verification-request.model';
@@ -18,6 +22,7 @@ export class AuthenticationService {
   constructor(
     private app: AppService,
     private http: HttpClient,
+    public jwtHelper: JwtHelperService,
     private store: StorageService,
     private progressDialog: ProgressDialogService
   ) {}
@@ -30,12 +35,16 @@ export class AuthenticationService {
   }
 
   get isAuthenticated() {
-    return !!this.store.get(Store.TOKEN);
+    return !this.jwtHelper.isTokenExpired(this.store.get(Store.TOKEN));
   }
   
   get getBearerToken() {
     var bearer = this.store.get(Store.TOKEN);
     return bearer;
+  }
+  logout(){
+     this.store.remove(Store.TOKEN)
+     location.href='/business/login'
   }
 
   public signUp(user:User) {
@@ -99,6 +108,29 @@ export class AuthenticationService {
         console.log(errorMessage)
         return throwError("Something Went Wrong");
 
+      }))
+  }
+
+  public getUsersByAccountType(page:number,type:AccountType) {
+    return this.http.get(this.app.endPoint+ '/api/get_users_by_account_type?type='+type+'&size='+environment.pageSize+'&page='+page, this.app.httpAutherizedHeader).pipe(
+      map((response: ApiResponse) => {
+        return response;
+      }),
+      catchError((error) => {
+        let errorMessage = error.message !== undefined ? error.message : error.statusText;
+        console.log(errorMessage);
+        return throwError("Something Went Wrong");
+      }))
+  }
+  public getUsersByRole(page:number,role:UserRole) {
+    return this.http.get(this.app.endPoint+ '/api/get_users_by_role?role='+role+'&size='+environment.pageSize+'&page='+page, this.app.httpAutherizedHeader).pipe(
+      map((response: ApiResponse) => {
+        return response;
+      }),
+      catchError((error) => {
+        let errorMessage = error.message !== undefined ? error.message : error.statusText;
+        console.log(errorMessage);
+        return throwError("Something Went Wrong");
       }))
   }
 

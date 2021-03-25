@@ -1,9 +1,11 @@
 import { OnInit } from '@angular/core';
 import { Component } from '@angular/core';
+import { environment } from 'src/environments/environment';
 import { AppCluster } from './app.shared.cluster';
 import { CategoryType } from './enum/category-type.enum';
 import { Store } from './enum/store.enum';
 import { ApiResponse } from './models/api-response.model';
+import { AuthenticationService } from './services/authentication.service';
 import { CategoryService } from './services/category.service';
 import { ProductService } from './services/product.service';
 import { StorageService } from './services/storage.service';
@@ -19,12 +21,13 @@ export class AppComponent implements OnInit {
   constructor(
     private app: AppCluster,
     private storage: StorageService,
-    private productService:ProductService,
+    private authService: AuthenticationService,
+    private productService: ProductService,
     private categoryService: CategoryService
   ) {}
 
   async getProductCategories() {
-     this.categoryService.getCategoriesByType(CategoryType.PRODUCT).subscribe(
+    this.categoryService.getCategoriesByType(CategoryType.PRODUCT).subscribe(
       (response: ApiResponse) => {
         if (response.success) {
           if (response.payload != null)
@@ -42,11 +45,14 @@ export class AppComponent implements OnInit {
 
   ngOnInit(): void {
     this.app.loadJsFile('assets/js/main.js');
-    var categories = this.storage.getSession(Store.CATEGORY);
-    if (categories == null)  this.getProductCategories();
+      var categories = this.storage.getSession(Store.CATEGORY);
+      if (categories == null) this.getProductCategories();
 
-    this.productService.getAllProducts(0).subscribe((response:ApiResponse)=>{
-        console.log(response);
-    });
-  }
+      this.productService
+        .getAllProducts(0)
+        .subscribe((response: ApiResponse) => {
+          console.log(response);
+        });
+        console.log(this.authService.isAuthenticated);
+      }
 }

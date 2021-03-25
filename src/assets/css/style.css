@@ -39,6 +39,7 @@ body a:hover{
 }
 .link{
     color:#d83737;
+    cursor: pointer;
 }
 .fill{
     width: 100%  !important;
@@ -54,9 +55,10 @@ body a:hover{
 	padding:10px 10px;
     min-height: 45px;
 	width:100%;
-	margin:1em 0;
     border-radius: 2px;
     color: #333;
+    margin-top: 1em;
+    margin-bottom: 0;
 }
 .tf-lenos:focus{
     border-color: #d83737;
@@ -73,6 +75,10 @@ body a:hover{
     font-size: 1em;
     margin: 0.5em 0 0 11em;
     border-radius: 2px;
+}
+.btn-dynamic{
+    width: auto !important;
+    padding: .2em 1.5em;
 }
 .btn-lenos:hover {
     background-color: #d83737;
@@ -1598,7 +1604,7 @@ select {
     outline: none;
     border: 1px solid #D3D3D3;
     background: #FFFFFF;
-    margin: 0em 0em 1.5em 0em;
+    margin-top: 1.5em;
 }
 .login-page input.user {
     background: url(../images/user.png)no-repeat 8px 10px #fff;
@@ -1650,6 +1656,7 @@ select {
     padding: .5em 1em;
     font-size: 1em;
     margin: 0.5em 0 0;
+    margin-top: 2em;
 }
 .login-page.btn-lenos:hover{
     background: #333333;
@@ -3488,9 +3495,6 @@ h3.title1 {
 }
 .login-body {
     padding: 1.5em;
-}
-.login-page input[type="text"], .login-page input[type="password"] {
-    margin: 0 0 1em 0;
 }
 .login-page label.checkbox {
     font-size: 0.9em;

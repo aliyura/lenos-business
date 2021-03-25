@@ -49,7 +49,18 @@ import { VerifyAccountComponent } from './pages/verify-account/verify-account.co
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { TopComponent } from './components/top/top.component';
+import { JwtHelperService, JwtModule } from '@auth0/angular-jwt';
+import { StorageService } from './services/storage.service';
+import { Store } from './enum/store.enum';
+import { BuyersComponent } from './pages/buyers/buyers.component';
+import { BusinessesComponent } from './pages/businesses/businesses.component';
+import { CategoriesComponent } from './pages/categories/categories.component';
+import { SubCategoiesComponent } from './pages/sub-categoies/sub-categoies.component';
 
+
+export function tokenGetter() {
+  return new StorageService().get(Store.TOKEN);
+}
 @NgModule({
   declarations: [
     AppComponent,
@@ -60,7 +71,11 @@ import { TopComponent } from './components/top/top.component';
     VerifyAccountComponent,
     DashboardComponent,
     SidebarComponent,
-    TopComponent
+    TopComponent,
+    BuyersComponent,
+    BusinessesComponent,
+    CategoriesComponent,
+    SubCategoiesComponent
   ],
   imports: [
     TagInputModule,
@@ -95,10 +110,17 @@ import { TopComponent } from './components/top/top.component';
     ServiceWorkerModule.register('ngsw-worker.js', {
       enabled: environment.production,
     }),
+    JwtModule.forRoot({
+      config: {
+        tokenGetter: tokenGetter,
+        allowedDomains: ["/business/login","/business/signup","/business/verify-account"],
+      },
+   }),
   ],
   providers: [
     AsyncPipe,
     AppCluster,
+    JwtHelperService,
     {
       provide: MAT_DIALOG_DEFAULT_OPTIONS,
       useValue: { hasBackdrop: true },

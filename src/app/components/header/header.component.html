@@ -101,10 +101,14 @@
                 <li class="dropdown profile_details_drop">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
                         <div class="profile_img">
-                            <span class="prfil-img"><img src="assets/images/a.png" alt=""> </span>
-                            <div class="user-name">
-                                <p>Wikolia</p>
-                                <span>Administrator</span>
+                            <span class="prfil-img"><img src="assets/images/avatar.png" class="avatar" alt=""> </span>
+                            <div class="user-name" *ngIf="isAuthenticated">
+                                <p>{{authenticatedUser.name}}</p>
+                                <span>{{authenticatedUser.city}},{{authenticatedUser.country}}</span>
+                            </div>
+                            <div class="user-name" *ngIf="!isAuthenticated">
+                                <p>Untitled User</p>
+                                <span>Unknown</span>
                             </div>
                             <i class="fa fa-angle-down lnr"></i>
                             <i class="fa fa-angle-up lnr"></i>
@@ -114,7 +118,7 @@
                     <ul class="dropdown-menu drp-mnu">
                         <!-- <li> <a href="#"><i class="fa fa-cog"></i> Settings</a> </li>
                         <li> <a href="#"><i class="fa fa-user"></i> Profile</a> </li> -->
-                        <li> <a href="#" [routerLink]="['/business/login']"><i class="fa fa-sign-out"></i> Logout</a> </li>
+                        <li> <a (click)="logout();" ><i class="fa fa-sign-out"></i> Logout</a> </li>
                     </ul>
                 </li>
             </ul>

@@ -4,14 +4,22 @@
         <h3 class="title1">SignIn</h3>
         <div class="widget-shadow">
             <div class="login-top">
-                <h4>Welcome back to Lenos AdminPanel ! <br> Not a Member? <a href="/business/signup"> Sign Up »</a> </h4>
+                <h4>Welcome back to Lenos AdminPanel ! <br> Not a Member? <a href="/business/signup"> Sign Up »</a>
+                </h4>
             </div>
             <div class="login-body">
-                <input type="text" class="user tf-lenos"  name="username" placeholder="Business Email or Mobile" required="" (keyup)="form.validate($event)">
-                <input type="password" class="lock tf-lenos" name="password" placeholder="password" (keyup)="form.validate($event)">
-                <button type="button" class="btn btn-lenos"  (click)="signIn()">Sign In</button>
+                <div class="input">
+                    <input type="text" class="user tf-lenos" name="username" placeholder="Business Email or Mobile"
+                        required="true" (keyup)="form.validate($event)">
+                </div>
+                <div class="input">
+                    <input type="password" class="lock tf-lenos" name="password" placeholder="password" required="true"
+                        (keyup)="form.validate($event)">
+                </div>
+                <button type="button" class="btn btn-lenos" (click)="signIn()">Sign In</button>
                 <div class="forgot-grid">
-                    <label class="checkbox"><input type="checkbox" name="rememberMe" checked=""><i></i>Remember me</label>
+                    <label class="checkbox"><input type="checkbox" name="rememberMe" checked=""><i></i>Remember
+                        me</label>
                     <div class="clearfix"> </div>
                 </div>
 

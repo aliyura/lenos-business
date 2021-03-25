@@ -42,28 +42,25 @@ export class LoginComponent implements OnInit {
     let response = this.form.response;
     this.userRequest = this.form.data;
 
-    console.log(response);
-    console.log(this.userRequest);
-
-    // if (response['username'].ok && response['password'].ok) {
-    //   this.authService.signIn(this.userRequest).subscribe(
-    //     (response: ApiResponse) => {
-    //       if (response.success) {
-    //         console.log( response.payload)
-    //         this.storage.save(Store.TOKEN, response.payload);
-    //         this.router.navigate(['/']);
-    //         console.log(this.authService.isAuthenticated)
-    //       } else {
-    //         this.notification.notifyError(response.message);
-    //       }
-    //     },
-    //     (err) => {
-    //       this.notification.notifyError(err);
-    //     }
-    //   );
-    // } else {
-    //   this.notification.notifyWarning('Oops! form not filled correctly');
-    // }
+    if (response['username'].ok && response['password'].ok) {
+      this.authService.signIn(this.userRequest).subscribe(
+        (response: ApiResponse) => {
+          if (response.success) {
+            console.log( response.payload)
+            this.storage.save(Store.TOKEN, response.payload);
+            console.log(this.authService.isAuthenticated)
+            location.href='/';
+          } else {
+            this.notification.notifyError(response.message);
+          }
+        },
+        (err) => {
+          this.notification.notifyError(err);
+        }
+      );
+    } else {
+      this.notification.notifyWarning('Oops! form not filled correctly');
+    }
   }
 
   ngOnInit(): void {
