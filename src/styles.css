@@ -1,0 +1,65 @@
+body {
+  font-family: "Rubik", sans-serif;
+  font-size: 14px;
+  line-height: 26px;
+  color: #4c4c4c;
+  font-weight: normal;
+  overflow-x: hidden;
+}
+.cdk-overlay-container {
+  right: 20px;
+  top: 40px;
+  position: fixed;
+  overflow: hidden;
+  z-index: 100000;
+}
+.green-snackbar {
+  color: #155724;
+  background-color: #7ac58c;
+  border-color: #c3e6cb;
+}
+.green-snackbar button {
+  background-color: #5bb971;
+  color: white;
+  border: none;
+}
+.red-snackbar {
+  color: #721c24;
+  background-color: #e27b83;
+  border-color: #e27b83;
+}
+.red-snackbar button {
+  background-color: #df7981;
+  color: white !important;
+  border: none;
+}
+.yellow-snackbar {
+  color: #856404;
+  background-color: #e6b516;
+  border-color: #ffeeba;
+}
+.yellow-snackbar button {
+  background-color: #dbad16;
+  color: white !important;
+  border: none;
+}
+
+@media(max-width:768px){
+    .cdk-overlay-container {
+        right: -25px;
+        top: 47px;
+        position: fixed;
+        overflow: hidden;
+    }
+}
+@media(max-width:600px){
+    .cdk-overlay-container {
+        right: -1px;
+        top: 57px;
+        position: fixed;
+        overflow: hidden;
+    }
+    .sign-conatiner {
+        width: 100%;
+    }
+}

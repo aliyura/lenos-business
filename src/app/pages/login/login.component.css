@@ -1,0 +1,9 @@
+.login-page {
+  padding: 10em;
+}
+@media (max-width: 800px) {
+  .login-page {
+    padding: 0;
+    margin-top: 8em;
+  }
+}

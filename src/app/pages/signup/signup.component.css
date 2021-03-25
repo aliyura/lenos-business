@@ -1,0 +1,19 @@
+.login-page {
+  padding: 10em;
+}
+.login-top{
+  margin-top: 6em;
+}
+.textarea-large{
+  width: 89.3%;
+}
+@media (max-width: 800px) {
+  .login-page {
+    padding: 0;
+    margin-top: 8em;
+  }
+  .sign-up2{
+    width: 100%;
+  }
+
+}
