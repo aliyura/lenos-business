@@ -1,0 +1,18 @@
+<nav aria-label="..." *ngIf="totalPages">
+    <ul class="pagination">
+        <li class="page-item">
+            <a class="page-link" (click)="prev(self)">Previous</a>
+        </li>
+        <ng-container *ngFor="let item of app.arrayOf(totalPages)">
+            <li class="page-item {{item==this.currentPage?'active':''}}">
+                <a class="page-link" (click)="change(self,item)">{{item}}
+                    <span class="sr-only" *ngIf="item==currentPage">(current)</span>
+                </a>
+            </li>
+        </ng-container>
+
+        <li class="page-item">
+            <a class="page-link" (click)="next(self)">Next</a>
+        </li>
+    </ul>
+</nav>

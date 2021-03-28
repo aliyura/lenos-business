@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { SubCategoiesComponent } from './sub-categoies.component';
+import { AddSubCategoryModalDialog } from './add-sub-category.component';
 
-describe('SubCategoiesComponent', () => {
-  let component: SubCategoiesComponent;
-  let fixture: ComponentFixture<SubCategoiesComponent>;
+describe('AddSubCategoryComponent', () => {
+  let component: AddSubCategoryModalDialog;
+  let fixture: ComponentFixture<AddSubCategoryModalDialog>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ SubCategoiesComponent ]
+      declarations: [ AddSubCategoryModalDialog ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(SubCategoiesComponent);
+    fixture = TestBed.createComponent(AddSubCategoryModalDialog);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

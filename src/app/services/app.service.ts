@@ -24,7 +24,16 @@ export class AppService {
     }
     return httpOptions;
   } 
-  
+  get httpAutherizedMediaHeader(){
+    var httpOptions = {
+     headers: new HttpHeaders({
+      // 'Content-Type': "multipart/form-data",
+       'Authorization': this.store.get(Store.TOKEN),
+     })
+   }
+   return httpOptions;
+ } 
+ 
   get httpHeader(){
     var httpOptions = {
      headers: new HttpHeaders({

@@ -26,7 +26,8 @@
                                     <td>{{user!.email}}</td>
                                     <td>{{user!.createdDate}}</td>
                                     <td>
-                                        <button type="button" class="btn btn-lenos btn-dynamic">
+                                        <button type="button" class="btn btn-lenos btn-dynamic btn-round"
+                                            (click)="deleteUser(user)">
                                             <i class="fa fa-times" style="font-size: 20px;"></i>
                                         </button>
                                         &nbsp;
@@ -42,6 +43,9 @@
                                 </tr>
                             </tbody>
                         </table>
+                        <app-pagination [self]="this" [next]="nextPage" [prev]="previousPage" [change]="changePage"
+                            [currentPage]="this.currentPage" [totalPages]="this.totalPages">
+                        </app-pagination>
                     </ng-container>
                     <ng-container *ngIf="users==null">
                         <div class="errorWrapper">

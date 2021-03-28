@@ -37,6 +37,14 @@ body a:hover{
 .main-content {
     position: relative;
 }
+.native{
+    background-color: #d83737 !important;
+}
+.native:hover,
+.native:focus{
+    background-color: #d83737 !important;
+    opacity: 0.8;
+}
 .link{
     color:#d83737;
     cursor: pointer;
@@ -79,6 +87,11 @@ body a:hover{
 .btn-dynamic{
     width: auto !important;
     padding: .2em 1.5em;
+}
+.btn-round{
+    min-height: 35px;
+    border-radius: 50px;
+    margin-bottom: 10px;
 }
 .btn-lenos:hover {
     background-color: #d83737;

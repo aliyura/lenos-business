@@ -1,13 +1,12 @@
 import { TestBed } from '@angular/core/testing';
+import { DialogHandlerService } from './dialog-handler.service';
 
-import { ErrorHandlerService } from './error-handler.service';
-
-describe('ErrorHandlerService', () => {
-  let service: ErrorHandlerService;
+describe('DialogHandlerService', () => {
+  let service: DialogHandlerService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    service = TestBed.inject(ErrorHandlerService);
+    service = TestBed.inject(DialogHandlerService);
   });
 
   it('should be created', () => {

@@ -6,7 +6,7 @@ import { Store } from 'src/app/enum/store.enum';
 import { ApiResponse } from 'src/app/models/api-response.model';
 import { User } from 'src/app/models/user.model';
 import { AuthenticationService } from 'src/app/services/authentication.service';
-import { ErrorHandlerService } from 'src/app/services/error-handler.service';
+import { DialogHandlerService } from 'src/app/services/dialog-handler.service';
 import { NotificationService } from 'src/app/services/notification.service';
 import { StorageService } from 'src/app/services/storage.service';
 import { FormValidator } from 'src/app/validators/form-custom.validator';

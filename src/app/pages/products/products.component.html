@@ -1,0 +1,83 @@
+<app-sidebar></app-sidebar>
+<app-header></app-header>
+<div class="main-content">
+    <div id="page-wrapper">
+        <div class="main-page">
+            <button type="button" [routerLink]="['/product/add']" class="btn btn-lenos btn-dynamic btn-round">
+                <i class="fa fa-plus" style="font-size: 20px;"></i> Add New Product
+            </button>
+            <div class="tables">
+                <div class="bs-example widget-shadow" data-example-id="hoverable-table">
+                    <h4>Categories</h4>
+                    <ng-container *ngIf="products!=null">
+                        <table class="table table-hover">
+                            <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>Thumbnail</th>
+                                    <th>Name</th>
+                                    <th>Category Name</th>
+                                    <th>subCategoryName</th>
+                                    <th>Payment Option</th>
+                                    <th>brand</th>
+                                    <th>Price</th>
+                                    <th>Created Date</th>
+                                    <th>#</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let product of products">
+                                    <ng-container>
+                                        <th scope="row">1</th>
+                                        <td [routerLink]="['/product/preview',product!.id]"><img class="img img-responsive product-image" (error)="error($event);" [src]="product!.thumbnail"/></td>
+                                        <td [routerLink]="['/product/preview',product!.id]">
+                                            {{product!.name}}</td>
+                                        <td>{{product!.categoryName}}</td>
+                                        <td>{{product!.subCategoryName}}</td>
+                                        <td>{{product!.paymentOption}}</td>
+                                        <td>{{product!.brand}}</td>
+                                        <td>{{product!.price}}</td>
+                                        <td>{{product!.createdDate}}</td>
+                                        <td>
+                                            <div class="controls row">
+                                                <div class="col-md-4">
+                                              
+                                                <label class="switch" *ngIf="product!.status=='AC'">
+                                                    <input type="checkbox" checked="true" (change)="activate($event,product)">
+                                                    <span class="slider round"></span>
+                                                </label>
+                                                <label class="switch" *ngIf="product!.status!='AC'">
+                                                    <input type="checkbox" (change)="activate($event,product)">
+                                                    <span class="slider round"></span>
+                                                </label>
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <button type="button" class="btn btn-round"
+                                                        (click)="deleteProduct(product)">
+                                                        <i class="fa fa-times" style="font-size: 20px;"></i>
+                                                    </button>
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <button type="button" [routerLink]="['product/edit',product.id]"
+                                                        class="btn btn-round">
+                                                        <i class="fa fa-pencil" style="font-size: 20px;"></i>
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </ng-container>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </ng-container>
+                    <ng-container *ngIf="products==null">
+                        <div class="errorWrapper">
+                            No Product Available
+                        </div>
+                    </ng-container>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<app-footer></app-footer>

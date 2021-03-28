@@ -55,7 +55,15 @@ import { Store } from './enum/store.enum';
 import { BuyersComponent } from './pages/buyers/buyers.component';
 import { BusinessesComponent } from './pages/businesses/businesses.component';
 import { CategoriesComponent } from './pages/categories/categories.component';
-import { SubCategoiesComponent } from './pages/sub-categoies/sub-categoies.component';
+import { PaginationComponent } from './views/pagination/pagination.component';
+import { SubCategoriesComponent } from './pages/sub-categories/sub-categories.component';
+import { CreateProductComponent } from './pages/create-product/create-product.component';
+import { AddCategoryModalDialog } from './components/dialogs/add-category/add-category.component';
+import { ToastrModule } from 'ngx-toastr';
+import { AddSubCategoryModalDialog } from './components/dialogs/add-sub-category/add-sub-category.component';
+import { ProfileComponent } from './pages/profile/profile.component';
+import { ProductsComponent } from './pages/products/products.component';
+import { MyProductsComponent } from './pages/my-products/my-products.component';
 
 
 export function tokenGetter() {
@@ -75,13 +83,19 @@ export function tokenGetter() {
     BuyersComponent,
     BusinessesComponent,
     CategoriesComponent,
-    SubCategoiesComponent
+    PaginationComponent,
+    SubCategoriesComponent,
+    CreateProductComponent,
+    AddCategoryModalDialog,
+    AddSubCategoryModalDialog,
+    ProfileComponent,
+    ProductsComponent,
+    MyProductsComponent
   ],
   imports: [
     TagInputModule,
     BrowserModule,
     AppRoutingModule,
-    BrowserAnimationsModule,
     FormsModule,
     HttpClientModule,
     ReactiveFormsModule,
@@ -107,6 +121,13 @@ export function tokenGetter() {
     MatRadioModule,
     MatGridListModule,
     MatCardModule,
+    BrowserAnimationsModule, // required animations module
+    ToastrModule.forRoot({
+      timeOut: 10000,
+      positionClass: "toast-top-right",
+      preventDuplicates: true,
+      closeButton: true,
+    }),
     ServiceWorkerModule.register('ngsw-worker.js', {
       enabled: environment.production,
     }),

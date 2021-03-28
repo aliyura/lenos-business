@@ -1,0 +1,13 @@
+.profile-btm{
+    height: 100px;
+}
+.btn-profile-right{
+    margin-left: 4%;
+}
+@media(max-width:800px){
+    .btn-profile-right .btn-lenos{
+        width: 100% ;
+        margin: 0;
+        display: block;
+    }
+}

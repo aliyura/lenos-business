@@ -4,6 +4,9 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { throwError } from 'rxjs/internal/observable/throwError';
 import { AppService } from './app.service';
+import { Category } from '../models/category.model';
+import { ProgressDialogService } from './progress-dialog.service';
+import { SubCategory } from '../models/sub-category.model';
 
 
 @Injectable({
@@ -14,12 +17,56 @@ export class CategoryService {
 
   constructor(
     private app:AppService,
-    private http: HttpClient
+    private http: HttpClient,
+    private progressDialog: ProgressDialogService
   ) {}
   
+  public addCategory(category:Category){ 
+    var form = new FormData();
+    if(category.image!=null)
+      form.append('image',category.image[0]);
+
+    delete category.image;
+    form.append("category",JSON.stringify(category));
+
+    console.log(category)
+    
+    if(this.app.httpAutherizedMediaHeader.headers.get)
+    this.progressDialog.show("Please Wait..");
+    return this.http.post(this.app.endPoint+ '/api/category/add', form, this.app.httpAutherizedMediaHeader).pipe(
+      map((response: ApiResponse) => {
+        this.progressDialog.hide()
+        return response;
+      }),
+      catchError((error) => {
+        this.progressDialog.hide();
+        let errorMessage = error.message !== undefined ? error.message : error.statusText;
+        console.log(errorMessage)
+        return throwError("Something Went Wrong");
+      }))
+        
+  }
+
+  public addSubCategory(subCategory:SubCategory){
+    console.log(subCategory);
+    this.progressDialog.show("Please Wait..");
+    return this.http.post(this.app.endPoint+ '/api/subcategory/add', subCategory, this.app.httpAutherizedHeader).pipe(
+      map((response: ApiResponse) => {
+        this.progressDialog.hide()
+        return response;
+      }),
+      catchError((error) => {
+        this.progressDialog.hide();
+        let errorMessage = error.message !== undefined ? error.message : error.statusText;
+        console.log(errorMessage)
+        return throwError("Something Went Wrong");
+      }))
+  }
+
+
 
   public getAllCategories() {
-    return this.http.get(this.app.endPoint+ '/category/get_all', this.app.httpHeader).pipe(
+    return this.http.get(this.app.endPoint+ '/api/category/get_all', this.app.httpHeader).pipe(
       map((response: ApiResponse) => {
         return response;
       }),
@@ -43,7 +90,7 @@ export class CategoryService {
   }
 
   public getCategoryById(id:number) {
-    return this.http.get(this.app.endPoint+ '/category/get_by_id/' + id, this.app.httpHeader).pipe(
+    return this.http.get(this.app.endPoint+ '/api/category/get_by_id/' + id, this.app.httpHeader).pipe(
       map((response: ApiResponse) => {
         return response;
       }),
@@ -55,7 +102,7 @@ export class CategoryService {
   }
 
   public getCategoryByName(name:string) {
-    return this.http.get(this.app.endPoint+ '/category/get_by_name/' + name, this.app.httpHeader).pipe(
+    return this.http.get(this.app.endPoint+ '/api/category/get_by_name/' + name, this.app.httpHeader).pipe(
       map((response: ApiResponse) => {
         return response;
       }),
@@ -67,7 +114,7 @@ export class CategoryService {
   }
 
   public getAllSubCategories() {
-    return this.http.get(this.app.endPoint+ '/sub_category/get_all', this.app.httpHeader).pipe(
+    return this.http.get(this.app.endPoint+ '/api/subcategory/get_all', this.app.httpHeader).pipe(
       map((response: ApiResponse) => {
         return response;
       }),
@@ -79,7 +126,7 @@ export class CategoryService {
   }
 
   public getSubCategoriesByCategoryId(categoryId:number) {
-    return this.http.get(this.app.endPoint+ '/sub_category/get_by_category_id/' + categoryId, this.app.httpHeader).pipe(
+    return this.http.get(this.app.endPoint+ '/api/subcategory/get_by_category_id/' + categoryId, this.app.httpHeader).pipe(
       map((response: ApiResponse) => {
         return response;
       }),
@@ -91,7 +138,7 @@ export class CategoryService {
   }
 
   public getSubCategoryById(id:number) {
-    return this.http.get(this.app.endPoint+ '/sub_category/get_by_id/' + id, this.app.httpHeader).pipe(
+    return this.http.get(this.app.endPoint+ '/api/subcategory/get_by_id/' + id, this.app.httpHeader).pipe(
       map((response: ApiResponse) => {
         return response;
       }),
@@ -103,13 +150,36 @@ export class CategoryService {
   }
 
   public getSubCategoryByName(name:string) {
-    return this.http.get(this.app.endPoint+ '/sub_category/get_by_name/' + name, this.app.httpHeader).pipe(
+    return this.http.get(this.app.endPoint+ '/api/subcategory/get_by_name/' + name, this.app.httpHeader).pipe(
       map((response: ApiResponse) => {
         return response;
       }),
       catchError((error) => {
         let errorMessage = error.message !== undefined ? error.message : error.statusText;
         console.log(errorMessage);
+        return throwError("Something Went Wrong");
+      }))
+  }
+
+  public deleteCategoryById(id){
+    return this.http.post(this.app.endPoint+ '/api/category/delete/'+id, {}, this.app.httpAutherizedHeader).pipe(
+      map((response: ApiResponse) => {
+        return response;
+      }),
+      catchError((error) => {
+        let errorMessage = error.message !== undefined ? error.message : error.statusText;
+        console.log(errorMessage)
+        return throwError("Something Went Wrong");
+      }))
+  }
+  public deleteSubCategoryById(id){
+    return this.http.post(this.app.endPoint+ '/api/subcategory/delete/'+id, {}, this.app.httpAutherizedHeader).pipe(
+      map((response: ApiResponse) => {
+        return response;
+      }),
+      catchError((error) => {
+        let errorMessage = error.message !== undefined ? error.message : error.statusText;
+        console.log(errorMessage)
         return throwError("Something Went Wrong");
       }))
   }

@@ -5,6 +5,7 @@ import { throwError } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
 import { AccountType } from '../enum/account-type.enum';
+import { Status } from '../enum/status.enum';
 import { Store } from '../enum/store.enum';
 import { UserRole } from '../enum/user-role.enum';
 import { ApiResponse } from '../models/api-response.model';
@@ -62,6 +63,22 @@ export class AuthenticationService {
 
       }))
   }
+  public updateProfile(user:User) {
+    this.progressDialog.show("Please Wait..");
+    return this.http.put(this.app.endPoint+ '/api/user/profile/update/'+this.authenticatedUser.id, user, this.app.httpAutherizedHeader).pipe(
+      map((response: ApiResponse) => {
+        this.progressDialog.hide()
+        return response;
+      }),
+      catchError((error) => {
+        this.progressDialog.hide();
+        let errorMessage = error.message !== undefined ? error.message : error.statusText;
+        console.log(errorMessage)
+        return throwError("Something Went Wrong");
+
+      }))
+  }
+
   public signIn(userRequest:UserRequest) {
     this.progressDialog.show("Please Wait..");
     return this.http.post(this.app.endPoint+ '/api/user/signin', userRequest, this.app.httpHeader).pipe(
@@ -93,7 +110,28 @@ export class AuthenticationService {
 
       }))
   }
-
+  public updateUserStatus(status:Status, userId:number) {
+    return this.http.put(this.app.endPoint+ '/api/user/status/update/'+userId+'?status='+status, {}, this.app.httpAutherizedHeader).pipe(
+      map((response: ApiResponse) => {
+        return response;
+      }),
+      catchError((error) => {
+        let errorMessage = error.message !== undefined ? error.message : error.statusText;
+        console.log(errorMessage)
+        return throwError("Something Went Wrong");
+      }))
+  }
+  public deleteUserById(userId:number){
+    return this.http.post(this.app.endPoint+ '/api/user/delete/'+userId, {}, this.app.httpAutherizedHeader).pipe(
+      map((response: ApiResponse) => {
+        return response;
+      }),
+      catchError((error) => {
+        let errorMessage = error.message !== undefined ? error.message : error.statusText;
+        console.log(errorMessage)
+        return throwError("Something Went Wrong");
+      }))
+  }
 
   public sendOTP(request:UserRequest) {
     this.progressDialog.show("Please Wait..");
