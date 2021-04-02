@@ -1,3 +1,5 @@
+import { AccountType } from './../../enum/account-type.enum';
+import { LoginResponse } from './../../models/login-response.model';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AppCluster } from 'src/app/app.shared.cluster';
@@ -46,10 +48,16 @@ export class LoginComponent implements OnInit {
       this.authService.signIn(this.userRequest).subscribe(
         (response: ApiResponse) => {
           if (response.success) {
-            console.log( response.payload)
-            this.storage.save(Store.TOKEN, response.payload);
-            console.log(this.authService.isAuthenticated)
-            location.href='/';
+            console.log(response.payload);
+            var loginResponse = response.payload as LoginResponse;
+            console.log(loginResponse.user.accountType);
+            if (loginResponse.user.accountType != AccountType.INDIVIDUAL) {
+              this.storage.save(Store.TOKEN, loginResponse.bearer);
+              this.storage.save(Store.USER, JSON.stringify(loginResponse.user));
+              location.href = '/';
+            } else {
+              this.notification.notifyWarning("Oops. This is not a Business account!");
+            }
           } else {
             this.notification.notifyError(response.message);
           }

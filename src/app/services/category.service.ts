@@ -14,7 +14,6 @@ import { SubCategory } from '../models/sub-category.model';
 })
 export class CategoryService {
 
-
   constructor(
     private app:AppService,
     private http: HttpClient,

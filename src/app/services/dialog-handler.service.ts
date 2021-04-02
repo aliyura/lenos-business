@@ -1,3 +1,4 @@
+import { AddLocationModalDialog } from './../components/dialogs/add-location/add-location.component';
 import { Injectable } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatDialog } from '@angular/material/dialog';
@@ -6,6 +7,7 @@ import { ConfirmationModalAlert } from '../components/dialogs/confirmation-modal
 import { AddCategoryModalDialog } from '../components/dialogs/add-category/add-category.component';
 import { AddSubCategoryModalDialog } from '../components/dialogs/add-sub-category/add-sub-category.component';
 import { EditProfileModalDialog } from '../components/dialogs/edit-profile/edit-profile.component';
+import { Location } from '../models/location.model';
 
 @Injectable({
   providedIn: 'root',
@@ -68,18 +70,23 @@ export class DialogHandlerService {
       width: this.modalSize + 'px',
       data: {
         categoryId: categoryId,
-        existingSubCategory:null,
+        existingSubCategory: null,
         title: title,
         callback: callback,
       },
     });
   }
-  requestEditSubCategoryDialog(categoryId, existingSubCategory, title, callback) {
+  requestEditSubCategoryDialog(
+    categoryId,
+    existingSubCategory,
+    title,
+    callback
+  ) {
     this.dialog.open(AddSubCategoryModalDialog, {
       width: this.modalSize + 'px',
       data: {
         categoryId: categoryId,
-        existingSubCategory:existingSubCategory,
+        existingSubCategory: existingSubCategory,
         title: title,
         callback: callback,
       },
@@ -90,6 +97,16 @@ export class DialogHandlerService {
     this.dialog.open(EditProfileModalDialog, {
       width: this.modalSize + 'px',
       data: {
+        title: title,
+        callback: callback,
+      },
+    });
+  }
+  requestEditLocationDialog(existingLocation:Location, title, callback) {
+    this.dialog.open(AddLocationModalDialog, {
+      width: this.modalSize + 'px',
+      data: {
+        existingLocation: existingLocation,
         title: title,
         callback: callback,
       },

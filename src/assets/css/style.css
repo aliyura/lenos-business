@@ -91,7 +91,6 @@ body a:hover{
 .btn-round{
     min-height: 35px;
     border-radius: 50px;
-    margin-bottom: 10px;
 }
 .btn-lenos:hover {
     background-color: #d83737;

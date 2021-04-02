@@ -64,6 +64,10 @@ import { AddSubCategoryModalDialog } from './components/dialogs/add-sub-category
 import { ProfileComponent } from './pages/profile/profile.component';
 import { ProductsComponent } from './pages/products/products.component';
 import { MyProductsComponent } from './pages/my-products/my-products.component';
+import { LocationsComponent } from './pages/locations/locations.component';
+import { VoucherCardsComponent } from './pages/voucher-cards/voucher-cards.component';
+import { OrdersComponent } from './pages/orders/orders.component';
+import { OrderDetailsComponent } from './pages/order-details/order-details.component';
 
 
 export function tokenGetter() {
@@ -90,7 +94,11 @@ export function tokenGetter() {
     AddSubCategoryModalDialog,
     ProfileComponent,
     ProductsComponent,
-    MyProductsComponent
+    MyProductsComponent,
+    LocationsComponent,
+    VoucherCardsComponent,
+    OrdersComponent,
+    OrderDetailsComponent
   ],
   imports: [
     TagInputModule,

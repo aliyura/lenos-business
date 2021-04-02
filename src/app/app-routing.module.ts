@@ -1,3 +1,6 @@
+import { OrdersComponent } from './pages/orders/orders.component';
+import { VoucherCardsComponent } from './pages/voucher-cards/voucher-cards.component';
+import { LocationsComponent } from './pages/locations/locations.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { LoginComponent } from './pages/login/login.component';
@@ -67,6 +70,16 @@ const routes: Routes = [
     canActivate: [AuthGuard],
   },
   {
+    path: 'voucher/cards',
+    component: VoucherCardsComponent,
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'product/orders',
+    component: OrdersComponent,
+    canActivate: [AuthGuard],
+  },
+  {
     path: 'businesses',
     component: BusinessesComponent,
     canActivate: [AuthGuard],
@@ -74,6 +87,11 @@ const routes: Routes = [
   {
     path: 'buyers',
     component: BuyersComponent,
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'locations',
+    component: LocationsComponent,
     canActivate: [AuthGuard],
   },
 ];

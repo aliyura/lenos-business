@@ -114,7 +114,7 @@ body {
     width: 100%;
     height: 100%;
     position: fixed;
-    background: #3333335e;
+    background: #d0d0d05e;
     top: 0;
     left: 0;
     z-index: 1000;
@@ -148,6 +148,12 @@ body {
   display: block;
   border-bottom: 1px solid rgb(156, 156, 156);
   padding-bottom: 18px;
+}
+.mat-snack-bar-container {
+    transform-origin: center;
+    position: fixed;
+    right: 0;
+    top: 63px;
 }
 .dialog-buttons{
   margin: 5px !important;

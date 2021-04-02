@@ -6,6 +6,6 @@ export const environment = {
   production: false,
   endPoint:"http://localhost:8081", //https://lenos.azurewebsites.net
   allowedRoutes:['/business/login','/business/signup','/business/verify-account'],
-  pageSize:1,
+  pageSize:5,
   appURL:""
 };

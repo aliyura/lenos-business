@@ -1,13 +1,12 @@
+import { LocationService } from './services/location.service';
 import { OnInit } from '@angular/core';
 import { Component } from '@angular/core';
-import { environment } from 'src/environments/environment';
 import { AppCluster } from './app.shared.cluster';
 import { CategoryType } from './enum/category-type.enum';
 import { Store } from './enum/store.enum';
 import { ApiResponse } from './models/api-response.model';
-import { AuthenticationService } from './services/authentication.service';
 import { CategoryService } from './services/category.service';
-import { ProductService } from './services/product.service';
+import { CounterService } from './services/counter.service';
 import { StorageService } from './services/storage.service';
 
 @Component({
@@ -21,9 +20,9 @@ export class AppComponent implements OnInit {
   constructor(
     private app: AppCluster,
     private storage: StorageService,
-    private authService: AuthenticationService,
-    private productService: ProductService,
-    private categoryService: CategoryService
+    private categoryService: CategoryService,
+    private counterService: CounterService,
+    private locationService: LocationService
   ) {}
 
   async getProductCategories() {
@@ -42,19 +41,54 @@ export class AppComponent implements OnInit {
       }
     );
   }
+  async getLocations() {
+    this.locationService.getLocations().subscribe(
+      (response: ApiResponse) => {
+        if (response.success) {
+          if (response.payload != null)
+            this.storage.saveSession(
+              Store.LOCATIONS,
+              JSON.stringify(response.payload)
+            );
+        }
+      },
+      (err) => {
+        console.log(err);
+      }
+    );
+  }
+
+  async getCounts() {
+    this.counterService.getCounts().subscribe(
+      (response: ApiResponse) => {
+        if (response.success) {
+          if (response.payload != null)
+            this.storage.saveSession(
+              Store.COUNTS,
+              JSON.stringify(response.payload)
+            );
+        }
+      },
+      (err) => {
+        console.log(err);
+      }
+    );
+  }
 
   ngOnInit(): void {
-    
     this.app.loadJsFile('assets/js/main.js');
     this.app.loadJsFile('assets/js/scripts.js');
-      var categories = this.storage.getSession(Store.CATEGORY);
-      if (categories == null) this.getProductCategories();
 
-      this.productService
-        .getAllProducts(0)
-        .subscribe((response: ApiResponse) => {
-          console.log(response);
-        });
-        console.log(this.authService.isAuthenticated);
-      }
+    //get product categories
+    var categories = this.storage.getSession(Store.CATEGORY);
+    if (categories == null) this.getProductCategories();
+
+    //get all locations
+    var locations = this.storage.getSession(Store.LOCATIONS);
+    if (locations == null) this.getLocations();
+
+    //get all counts
+    var counts = this.storage.getSession(Store.COUNTS);
+    if (counts == null) this.getCounts();
+  }
 }

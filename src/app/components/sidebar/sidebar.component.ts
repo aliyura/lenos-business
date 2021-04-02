@@ -1,8 +1,12 @@
+import { CounterResponse } from './../../models/counter-response.model';
+import { StorageService } from './../../services/storage.service';
+import { CounterService } from './../../services/counter.service';
 import { Component, OnInit } from '@angular/core';
 import { User } from 'src/app/models/user.model';
 import { AuthenticationService } from 'src/app/services/authentication.service';
 import { DialogHandlerService } from 'src/app/services/dialog-handler.service';
 import { NotificationService } from 'src/app/services/notification.service';
+import { Store } from 'src/app/enum/store.enum';
 
 @Component({
   selector: 'app-sidebar',
@@ -10,23 +14,41 @@ import { NotificationService } from 'src/app/services/notification.service';
   styleUrls: ['./sidebar.component.css'],
 })
 export class SidebarComponent implements OnInit {
+  counts: CounterResponse;
+
   constructor(
-    private authService:AuthenticationService,
+    private authService: AuthenticationService,
     private dialogHandler: DialogHandlerService,
-    private notification: NotificationService
+    private notification: NotificationService,
+    private storage: StorageService
   ) {}
 
-
-  get isAuthenticated(){
+  get isAuthenticated() {
     return this.authService.isAuthenticated;
   }
-  get authenticatedUser(){
+  get authenticatedUser() {
     return this.authService.authenticatedUser as User;
   }
-  logout(){
-    this.authService.logout(); 
+  logout() {
+    this.authService.logout();
   }
-  
+
+  public loadCounts() {
+    try {
+      var counts = this.storage.getSession(Store.COUNTS);
+      if (counts != null) {
+        this.counts = JSON.parse(counts) as CounterResponse;
+      } else {
+        this.storage.recheck(() => {
+          this.loadCounts();
+        }, 100);
+      }
+    } catch (ex) {
+      console.log(ex);
+      console.log('Unable to convert counts to JSON');
+    }
+  }
+
   addCategory() {
     this.dialogHandler.requestAddCategoryDialog('Add Category', (response) => {
       if (response) {
@@ -37,5 +59,7 @@ export class SidebarComponent implements OnInit {
     });
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.loadCounts();
+  }
 }
