@@ -27,7 +27,10 @@ export class BusinessesComponent implements OnInit {
       .getUsersByAccountType(page, AccountType.BUSINESS)
       .subscribe(
         (response: ApiResponse) => {
-          if (response.success) this.users = response.payload;
+          if (response.success) {
+            this.users = response.payload['content'];
+            this.totalPages = response.payload['totalPages'];
+          }
           console.log(this.users);
         },
         (err) => {

@@ -1,6 +1,6 @@
 export class CounterResponse {
    users:number;
-   messages:number;
+   reviews:number;
    products:number;
    buyers:number;
    sellers:number;

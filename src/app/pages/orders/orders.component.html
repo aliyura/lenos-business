@@ -19,13 +19,13 @@
                                     <th>Contact</th>
                                     <th>Alternative</th>
                                     <th>Created Date</th>
-                                    <th>#</th>
+                                    <th *ngIf="authenticatedUser.accountType==appAccountType.ADMIN">#</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr *ngFor="let order of orders">
                                     <th scope="row">{{order!.id}}</th>
-                                    <td>{{order!.transactionId}}</td>
+                                    <td><a [routerLink]="['/product/order/details',order!.id]" class="link">{{order!.transactionId}}</a></td>
                                     <td>{{order!.paymentReferenceId!=null?order!.paymentReferenceId:'No Payment'}}</td>
                                     <td>{{order!.paymentOption}}</td>
                                     <td>{{order!.totalAmount}}</td>
@@ -33,7 +33,7 @@
                                     <td>{{order!.buyerMobileNumber}}</td>
                                     <td>{{order!.alternativeNumber}}</td>
                                     <td>{{order!.createdDate}}</td>
-                                    <td>
+                                    <td *ngIf="authenticatedUser.accountType==appAccountType.ADMIN">
                                         <select class="btn btn-lenos btn-dynamic btn-round {{order.status}}"
                                             (change)="changeOrderStatus($event,order)">
                                             <ng-container *ngFor="let status of statusActions">
@@ -81,9 +81,7 @@
                                 </tr>
                             </tbody>
                         </table>
-                        <app-pagination [self]="this" [next]="nextPage" [prev]="previousPage" [change]="changePage"
-                            [currentPage]="this.currentPage" [totalPages]="this.totalPages">
-                        </app-pagination>
+                       
                     </ng-container>
                     <ng-container *ngIf="orders==null">
                         <div class="errorWrapper">
@@ -92,6 +90,9 @@
                     </ng-container>
                 </div>
             </div>
+            <app-pagination *ngIf="authenticatedUser.accountType==appAccountType.ADMIN" [self]="this" [next]="nextPage"
+                [prev]="previousPage" [change]="changePage" [currentPage]="this.currentPage" [totalPages]="this.totalPages">
+            </app-pagination>
         </div>
     </div>
 </div>

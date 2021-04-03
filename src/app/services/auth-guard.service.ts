@@ -1,3 +1,4 @@
+import { AccountType } from './../enum/account-type.enum';
 import { Injectable } from '@angular/core';
 import { Router, CanActivate } from '@angular/router';
 import { AuthenticationService } from './authentication.service';
@@ -11,10 +12,14 @@ export class AuthGuardService implements CanActivate {
     public router: Router
   ) {}
   canActivate(): boolean {
+    var accounType = this.authService.authenticatedUser.accountType;
     if (!this.authService.isAuthenticated) {
-      this.router.navigate(['business/login']);
+      this.router.navigate(['login']);
       return false;
     }
-    return true;
+    if (accounType == AccountType.ADMIN || accounType == AccountType.BUSINESS) 
+      return true;
+    else
+      return false;
   }
 }

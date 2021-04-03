@@ -1,3 +1,5 @@
+import { ReviewsComponent } from './pages/reviews/reviews.component';
+import { OrderDetailsComponent } from './pages/order-details/order-details.component';
 import { OrdersComponent } from './pages/orders/orders.component';
 import { VoucherCardsComponent } from './pages/voucher-cards/voucher-cards.component';
 import { LocationsComponent } from './pages/locations/locations.component';
@@ -14,7 +16,6 @@ import { SubCategoriesComponent } from './pages/sub-categories/sub-categories.co
 import { CreateProductComponent } from './pages/create-product/create-product.component';
 import { ProfileComponent } from './pages/profile/profile.component';
 import { ProductsComponent } from './pages/products/products.component';
-import { MyProductsComponent } from './pages/my-products/my-products.component';
 
 const routes: Routes = [
   {
@@ -28,15 +29,15 @@ const routes: Routes = [
     canActivate: [AuthGuard],
   },
   {
-    path: 'business/login',
+    path: 'login',
     component: LoginComponent,
   },
   {
-    path: 'business/signup',
+    path: 'signup',
     component: SignupComponent,
   },
   {
-    path: 'business/profile',
+    path: 'profile',
     component: ProfileComponent,
   },
   {
@@ -65,11 +66,6 @@ const routes: Routes = [
     canActivate: [AuthGuard],
   },
   {
-    path: 'product/my-products',
-    component: MyProductsComponent,
-    canActivate: [AuthGuard],
-  },
-  {
     path: 'voucher/cards',
     component: VoucherCardsComponent,
     canActivate: [AuthGuard],
@@ -77,6 +73,16 @@ const routes: Routes = [
   {
     path: 'product/orders',
     component: OrdersComponent,
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'reviews',
+    component: ReviewsComponent,
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'product/order/details/:id',
+    component: OrderDetailsComponent,
     canActivate: [AuthGuard],
   },
   {
@@ -97,7 +103,12 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [
+    RouterModule.forRoot(routes, {
+      scrollPositionRestoration: 'enabled',
+      onSameUrlNavigation: 'reload',
+    }),
+  ],
   exports: [RouterModule],
 })
 export class AppRoutingModule {}

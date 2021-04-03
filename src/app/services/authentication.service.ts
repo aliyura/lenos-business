@@ -44,8 +44,9 @@ export class AuthenticationService {
     return bearer;
   }
   logout(){
-     this.store.remove(Store.TOKEN)
-     location.href='/business/login'
+    this.store.remove(Store.TOKEN)
+    this.store.remove(Store.USER)
+     location.href='/login'
   }
 
   public signUp(user:User) {
@@ -65,7 +66,7 @@ export class AuthenticationService {
   }
   public updateProfile(user:User) {
     this.progressDialog.show("Please Wait..");
-    return this.http.put(this.app.endPoint+ '/api/user/profile/update/'+this.authenticatedUser.id, user, this.app.httpAutherizedHeader).pipe(
+    return this.http.put(this.app.endPoint+ '/api/user/profile/update', user, this.app.httpAutherizedHeader).pipe(
       map((response: ApiResponse) => {
         this.progressDialog.hide()
         return response;

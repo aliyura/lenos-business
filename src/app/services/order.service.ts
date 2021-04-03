@@ -41,8 +41,46 @@ export class OrderService {
       );
   }
 
+  public getOrdersBySellerId(sellerId:number) {
+    return this.http.get(this.app.endPoint +'/api/orders/get_by_seller/'+sellerId,
+        this.app.httpAutherizedHeader
+      )
+      .pipe(
+        map((response: ApiResponse) => {
+          return response;
+        }),
+        catchError((error) => {
+          let errorMessage =
+            error.message !== undefined ? error.message : error.statusText;
+          console.log(errorMessage);
+          return throwError('Something Went Wrong');
+        })
+      );
+  }
+
   public getOrderDetailsByOrderId(orderId: number) {
-    return this.http.get(this.app.endPoint +'/api/order/details?orderId='+orderId,
+    return this.http
+      .get(
+        this.app.endPoint + '/api/order/details/get_by_order/' + orderId,
+        this.app.httpAutherizedHeader
+      )
+      .pipe(
+        map((response: ApiResponse) => {
+          return response;
+        }),
+        catchError((error) => {
+          let errorMessage =
+            error.message !== undefined ? error.message : error.statusText;
+          console.log(errorMessage);
+          return throwError('Something Went Wrong');
+        })
+      );
+  }
+
+  public getOrderByOrderId(orderId: number) {
+    return this.http
+      .get(
+        this.app.endPoint + '/api/order/get_by_id/' + orderId,
         this.app.httpAutherizedHeader
       )
       .pipe(

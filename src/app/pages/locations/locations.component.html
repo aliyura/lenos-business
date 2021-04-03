@@ -15,7 +15,7 @@
                                     <th>Description</th>
                                     <th>Delivery Fee</th>
                                     <th>Created Date</th>
-                                    <th>#</th>
+                                    <th *ngIf="authenticatedUser.accountType==appAccountType.ADMIN">#</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -26,7 +26,7 @@
                                     <td>{{location!.description}}</td>
                                     <td>{{location!.deliveryFee}}</td>
                                     <td>{{location!.createdDate}}</td>
-                                    <td>
+                                    <td *ngIf="authenticatedUser.accountType==appAccountType.ADMIN">
                                         <div class="controls row">
                                             <div class="col-md-6">
                                                 <button type="button" class="btn btn-dynamic btn-round" (click)="deleteLocation(location)">

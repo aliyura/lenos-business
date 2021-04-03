@@ -26,7 +26,6 @@ export class EditProfileModalDialog implements OnInit {
     private app: AppCluster,
     private storage:StorageService,
     private notification: NotificationService,
-    private categoryService: CategoryService,
     private authService:AuthenticationService,
     @Inject(MAT_DIALOG_DATA) public data: any,
     public dialogRef: MatDialogRef<EditProfileModalDialog>

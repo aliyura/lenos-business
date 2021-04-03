@@ -63,11 +63,11 @@ import { ToastrModule } from 'ngx-toastr';
 import { AddSubCategoryModalDialog } from './components/dialogs/add-sub-category/add-sub-category.component';
 import { ProfileComponent } from './pages/profile/profile.component';
 import { ProductsComponent } from './pages/products/products.component';
-import { MyProductsComponent } from './pages/my-products/my-products.component';
 import { LocationsComponent } from './pages/locations/locations.component';
 import { VoucherCardsComponent } from './pages/voucher-cards/voucher-cards.component';
 import { OrdersComponent } from './pages/orders/orders.component';
 import { OrderDetailsComponent } from './pages/order-details/order-details.component';
+import { ReviewsComponent } from './pages/reviews/reviews.component';
 
 
 export function tokenGetter() {
@@ -94,11 +94,11 @@ export function tokenGetter() {
     AddSubCategoryModalDialog,
     ProfileComponent,
     ProductsComponent,
-    MyProductsComponent,
     LocationsComponent,
     VoucherCardsComponent,
     OrdersComponent,
-    OrderDetailsComponent
+    OrderDetailsComponent,
+    ReviewsComponent
   ],
   imports: [
     TagInputModule,

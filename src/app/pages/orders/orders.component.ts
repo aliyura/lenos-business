@@ -1,3 +1,5 @@
+import { AccountType } from './../../enum/account-type.enum';
+import { AuthenticationService } from 'src/app/services/authentication.service';
 import { Status } from 'src/app/enum/status.enum';
 import { OrderService } from './../../services/order.service';
 import { Order } from './../../models/order.model';
@@ -5,6 +7,7 @@ import { Component, OnInit } from '@angular/core';
 import { List } from 'src/app/types/list.type';
 import { DialogHandlerService } from 'src/app/services/dialog-handler.service';
 import { ApiResponse } from 'src/app/models/api-response.model';
+import { User } from 'src/app/models/user.model';
 
 @Component({
   selector: 'app-orders',
@@ -15,9 +18,11 @@ export class OrdersComponent implements OnInit {
   orders: List<Order>;
   currentPage: number = 0;
   totalPages: number = 0;
+  appAccountType = AccountType;
   statusActions: Array<string> = ['IA', 'PV', 'PC', 'DP', 'PP', 'DV'];
 
   constructor(
+    private authService: AuthenticationService,
     private dialogHandler: DialogHandlerService,
     private orderService: OrderService
   ) {}
@@ -29,6 +34,20 @@ export class OrdersComponent implements OnInit {
         if (response.success) {
           this.orders = response.payload['content'];
           this.totalPages = response.payload['totalPages'];
+        }
+      },
+      (err) => {
+        console.log(err);
+      }
+    );
+  }
+  private getOrdersBySeller(selerId: number) {
+    console.log(selerId);
+    this.orderService.getOrdersBySellerId(selerId).subscribe(
+      (response: ApiResponse) => {
+        console.log(response);
+        if (response.success) {
+          this.orders = response.payload;
         }
       },
       (err) => {
@@ -82,8 +101,20 @@ export class OrdersComponent implements OnInit {
       self.getOrders(self.currentPage);
     }
   }
+  get isAuthenticated() {
+    return this.authService.isAuthenticated;
+  }
+  get authenticatedUser() {
+    return this.authService.authenticatedUser as User;
+  }
 
   ngOnInit(): void {
-    this.getOrders(0);
+    if (this.authenticatedUser.accountType == AccountType.ADMIN) {
+      this.getOrders(0);
+      console.log('no');
+    } else {
+      console.log('yes');
+      this.getOrdersBySeller(this.authenticatedUser.id);
+    }
   }
 }

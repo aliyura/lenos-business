@@ -1,3 +1,5 @@
+import { AccountType } from './enum/account-type.enum';
+import { AuthenticationService } from 'src/app/services/authentication.service';
 import { LocationService } from './services/location.service';
 import { OnInit } from '@angular/core';
 import { Component } from '@angular/core';
@@ -8,6 +10,7 @@ import { ApiResponse } from './models/api-response.model';
 import { CategoryService } from './services/category.service';
 import { CounterService } from './services/counter.service';
 import { StorageService } from './services/storage.service';
+import { User } from './models/user.model';
 
 @Component({
   selector: 'app-root',
@@ -20,6 +23,7 @@ export class AppComponent implements OnInit {
   constructor(
     private app: AppCluster,
     private storage: StorageService,
+    private authService: AuthenticationService,
     private categoryService: CategoryService,
     private counterService: CounterService,
     private locationService: LocationService
@@ -74,10 +78,32 @@ export class AppComponent implements OnInit {
       }
     );
   }
+  async getSellerCounts() {
+    this.counterService.getSellerCounts().subscribe(
+      (response: ApiResponse) => {
+        if (response.success) {
+          if (response.payload != null)
+            this.storage.saveSession(
+              Store.COUNTS,
+              JSON.stringify(response.payload)
+            );
+        }
+      },
+      (err) => {
+        console.log(err);
+      }
+    );
+  }
+
+  get isAuthenticated() {
+    return this.authService.isAuthenticated;
+  }
+  get authenticatedUser() {
+    return this.authService.authenticatedUser as User;
+  }
 
   ngOnInit(): void {
     this.app.loadJsFile('assets/js/main.js');
-    this.app.loadJsFile('assets/js/scripts.js');
 
     //get product categories
     var categories = this.storage.getSession(Store.CATEGORY);
@@ -89,6 +115,11 @@ export class AppComponent implements OnInit {
 
     //get all counts
     var counts = this.storage.getSession(Store.COUNTS);
-    if (counts == null) this.getCounts();
+    if (counts == null) {
+      if (this.isAuthenticated)
+        if (this!.authenticatedUser!.accountType == AccountType.ADMIN)
+          this.getCounts();
+        else this.getSellerCounts();
+    }
   }
 }

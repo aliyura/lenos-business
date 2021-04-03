@@ -21,7 +21,7 @@ export class CounterService {
   public getCounts() {
     return this.http
       .get(
-        this.app.endPoint + '/api/get/counts',
+        this.app.endPoint + '/api/counter/get_counts',
         this.app.httpAutherizedHeader
       )
       .pipe(
@@ -36,5 +36,22 @@ export class CounterService {
         })
       );
   }
-  
+  public getSellerCounts() {
+    return this.http
+      .get(
+        this.app.endPoint + '/api/counter/get_seller_counts',
+        this.app.httpAutherizedHeader
+      )
+      .pipe(
+        map((response: ApiResponse) => {
+          return response;
+        }),
+        catchError((error) => {
+          let errorMessage =
+            error.message !== undefined ? error.message : error.statusText;
+          console.log(errorMessage);
+          return throwError('Something Went Wrong');
+        })
+      );
+  }
 }

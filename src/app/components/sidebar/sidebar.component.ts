@@ -1,3 +1,4 @@
+import { AccountType } from './../../enum/account-type.enum';
 import { CounterResponse } from './../../models/counter-response.model';
 import { StorageService } from './../../services/storage.service';
 import { CounterService } from './../../services/counter.service';
@@ -15,6 +16,7 @@ import { Store } from 'src/app/enum/store.enum';
 })
 export class SidebarComponent implements OnInit {
   counts: CounterResponse;
+  appAccountType = AccountType;
 
   constructor(
     private authService: AuthenticationService,
@@ -60,6 +62,6 @@ export class SidebarComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.loadCounts();
+      this.loadCounts();
   }
 }

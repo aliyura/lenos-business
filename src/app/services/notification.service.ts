@@ -17,7 +17,7 @@ export class NotificationService {
 
     public showNotification(message: NotificationMessage) {
       this.snackBar.open(message.message, 'x', {
-        duration: 300000,
+        duration: 3000,
         horizontalPosition: this.horizontalPosition,
         verticalPosition: this.verticalPosition,
         panelClass: [
