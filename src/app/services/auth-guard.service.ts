@@ -12,14 +12,21 @@ export class AuthGuardService implements CanActivate {
     public router: Router
   ) {}
   canActivate(): boolean {
-    var accounType = this.authService.authenticatedUser.accountType;
-    if (!this.authService.isAuthenticated) {
-      this.router.navigate(['login']);
+    var currentUser = this.authService.authenticatedUser;
+    if (currentUser != null) {
+      var accountType = currentUser.accountType;
+      if (!this.authService.isAuthenticated) {
+        this.router.navigate(['login']);
+        return false;
+      }
+      if (
+        accountType == AccountType.ADMIN ||
+        accountType == AccountType.BUSINESS
+      )
+        return true;
+      else return false;
+    } else {
       return false;
     }
-    if (accounType == AccountType.ADMIN || accounType == AccountType.BUSINESS) 
-      return true;
-    else
-      return false;
   }
 }

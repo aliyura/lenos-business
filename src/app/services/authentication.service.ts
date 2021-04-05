@@ -66,18 +66,25 @@ export class AuthenticationService {
   }
   public updateProfile(user:User) {
     this.progressDialog.show("Please Wait..");
-    return this.http.put(this.app.endPoint+ '/api/user/profile/update', user, this.app.httpAutherizedHeader).pipe(
-      map((response: ApiResponse) => {
-        this.progressDialog.hide()
-        return response;
-      }),
-      catchError((error) => {
-        this.progressDialog.hide();
-        let errorMessage = error.message !== undefined ? error.message : error.statusText;
-        console.log(errorMessage)
-        return throwError("Something Went Wrong");
-
-      }))
+    return this.http
+      .put(
+        this.app.endPoint + '/api/user/profile/update',
+        user,
+        this.app.httpAutherizedHeader
+      )
+      .pipe(
+        map((response: ApiResponse) => {
+          this.progressDialog.hide();
+          return response;
+        }),
+        catchError((error) => {
+          this.progressDialog.hide();
+          let errorMessage =
+            error.message !== undefined ? error.message : error.statusText;
+          console.log(errorMessage);
+          return throwError('Something Went Wrong');
+        })
+      );
   }
 
   public signIn(userRequest:UserRequest) {
