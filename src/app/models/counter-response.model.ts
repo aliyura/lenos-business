@@ -3,5 +3,6 @@ export class CounterResponse {
    reviews:number;
    products:number;
    buyers:number;
-   sellers:number;
+   sellers: number;
+   orders: number;
 }

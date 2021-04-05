@@ -18,17 +18,19 @@ import { List } from 'src/app/types/list.type';
 export class HeaderComponent implements OnInit {
   categories: any;
 
-  constructor(private storage: StorageService,
-    private authService:AuthenticationService) {}
+  constructor(
+    private storage: StorageService,
+    private authService: AuthenticationService
+  ) {}
   public loadCategories() {
     try {
       var categories = this.storage.getSession(Store.CATEGORY);
       if (categories != null) {
         this.categories = JSON.parse(categories);
       } else {
-        this.storage.recheck(()=>{
+        this.storage.recheck(() => {
           this.loadCategories();
-        },100);
+        }, 100);
       }
     } catch (ex) {
       console.log(ex);
@@ -36,16 +38,15 @@ export class HeaderComponent implements OnInit {
     }
   }
 
-  get isAuthenticated(){
+  get isAuthenticated() {
     return this.authService.isAuthenticated;
   }
-  get authenticatedUser(){
+  get authenticatedUser() {
     return this.authService.authenticatedUser as User;
   }
-  logout(){
-    this.authService.logout(); 
+  logout() {
+    this.authService.logout();
   }
-
   ngOnInit(): void {
     this.loadCategories();
   }
