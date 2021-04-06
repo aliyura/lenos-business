@@ -1,0 +1,18 @@
+.errorWrapper{
+    margin-top: 30%;
+    margin-left: 12%;
+}
+.errorWrapper .material-icons.error{
+    color: red;
+    font-size: 100px;
+    padding: 10px;
+}
+.errorWrapper .material-icons.success{
+    color: #8BC34A;
+    font-size: 100px;
+    padding: 10px;
+}
+.errorWrapper .btn-lenos{
+    margin: 0;
+    margin-top: 20px;
+}

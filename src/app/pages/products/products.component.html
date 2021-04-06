@@ -6,9 +6,11 @@
             <button type="button" [routerLink]="['/product/add']" class="btn btn-lenos btn-dynamic btn-round">
                 <i class="fa fa-plus" style="font-size: 20px;"></i> Add New Product
             </button>
+            <div class="login-top left">
+                <h3>Products »</h3>
+            </div>
             <div class="tables">
                 <div class="bs-example widget-shadow" data-example-id="hoverable-table">
-                    <h4>Categories</h4>
                     <ng-container *ngIf="products!=null">
                         <table class="table table-hover">
                             <thead>

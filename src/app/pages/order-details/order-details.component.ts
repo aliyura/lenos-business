@@ -1,3 +1,4 @@
+import { AppCluster } from 'src/app/app.shared.cluster';
 import { ActivatedRoute } from '@angular/router';
 import { Order } from './../../models/order.model';
 import { OrderDetails } from './../../models/order-details.model';
@@ -20,6 +21,7 @@ export class OrderDetailsComponent implements OnInit {
   statusActions: Array<string> = ['IA', 'PV', 'PC', 'DP', 'PP', 'DV'];
 
   constructor(
+    public app:AppCluster,
     private route: ActivatedRoute,
     private dialogHandler: DialogHandlerService,
     private orderService: OrderService
@@ -42,6 +44,7 @@ export class OrderDetailsComponent implements OnInit {
       (response: ApiResponse) => {
         if (response.success) {
           this.orderDetails = response.payload;
+          console.log(this.orderDetails);
         }
       },
       (err) => {
@@ -88,6 +91,7 @@ export class OrderDetailsComponent implements OnInit {
   ngOnInit(): void {
     var id = this.route.snapshot.paramMap.get('id');
     this.getOrder(parseInt(id));
+    this.getOrderDetails(parseInt(id));
   }
 }
 

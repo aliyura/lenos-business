@@ -34,32 +34,43 @@ export class CreateProductComponent implements OnInit {
     this.form = new FormValidator(Product, 'form');
   }
 
+
   public uploadProduct() {
     this.form.revalidate();
     let response = this.form.response;
     this.product = this.form.data;
+    delete this.product['null'];
 
      console.log(this.product);
-    if (response['name'].ok && response['category'].ok && response['subCategory'].ok
-    && response['deliveryDays'].ok && response['paymentOption'].ok && response['price'].ok){
-        if(!parseInt(this.product.price.toString())){
-           this.notification.notifyWarning('Only numbers allowed for Price input');
-        }
-        else if(this.product.thumbnail==null){
-          this.notification.notifyWarning('Product thumbnail required');
-        }
-        else if(this.product.images==null){
-          this.notification.notifyWarning('Product images required');
-        }
-        else{
-            this.productService.uploadProduct(this.product).subscribe((response:ApiResponse)=>{
-              if(response.success)
-              this.notification.notifySuccess("Uploaded Successfully");
-            },
-            (err)=>{
-              this.notification.notifyError("Unable to upload the Product");
-            });
-        }
+    if (
+      response['name'].ok &&
+      response['categoryId'].ok &&
+      response['subCategoryId'].ok &&
+      response['deliveryDays'].ok &&
+      response['paymentOption'].ok &&
+      response['price'].ok
+    ) {
+      if (!parseInt(this.product.price.toString())) {
+        this.notification.notifyWarning('Only numbers allowed for Price input');
+      } else if (this.product.thumbnail == null) {
+        this.notification.notifyWarning('Product thumbnail required');
+      } else if (this.product.images == null) {
+        this.notification.notifyWarning('Product images required');
+      } else {
+        this.productService.uploadProduct(this.product).subscribe(
+          (response: ApiResponse) => {
+            if (response.success) {
+              this.notification.notifySuccess('Uploaded Successfully');
+              this.notification.showSuccess("Uploaded Successfully", "product.add", "Upload Another");
+            }
+            else
+               this.notification.notifyError(response.message);
+          },
+          (err) => {
+            this.notification.notifyError('Unable to upload the Product');
+          }
+        );
+      }
     }
   }
   

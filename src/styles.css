@@ -174,7 +174,12 @@ body {
 .controls{
   margin-top: -8px;
 }
-
+.login-top h3 {
+   color: indianred !important;
+}
+.login-top.left{
+  text-align: left;
+}
 @media(max-width:1024px){
   .main-content{
       margin-left: 0 !important;

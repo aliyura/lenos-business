@@ -68,6 +68,7 @@ import { VoucherCardsComponent } from './pages/voucher-cards/voucher-cards.compo
 import { OrdersComponent } from './pages/orders/orders.component';
 import { OrderDetailsComponent } from './pages/order-details/order-details.component';
 import { ReviewsComponent } from './pages/reviews/reviews.component';
+import { StatusComponent } from './pages/status/status.component';
 
 
 export function tokenGetter() {
@@ -98,7 +99,8 @@ export function tokenGetter() {
     VoucherCardsComponent,
     OrdersComponent,
     OrderDetailsComponent,
-    ReviewsComponent
+    ReviewsComponent,
+    StatusComponent
   ],
   imports: [
     TagInputModule,

@@ -11,6 +11,9 @@ export class OrderDetails {
     size: string
     status: Status
     price: number;
+    sellerName:string;
+    sellerContact:string
+    sellerAddress:string
     amount: number;
     lastModifiedDate: Date
     createdDate: Date

@@ -104,7 +104,7 @@ export class AppComponent implements OnInit {
 
   ngOnInit(): void {
     this.app.loadJsFile('assets/js/main.js');
-
+    console.log('I am called');
     //get product categories
     var categories = this.storage.getSession(Store.CATEGORY);
     if (categories == null) this.getProductCategories();

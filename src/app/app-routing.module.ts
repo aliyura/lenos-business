@@ -1,3 +1,4 @@
+import { StatusComponent } from './pages/status/status.component';
 import { ReviewsComponent } from './pages/reviews/reviews.component';
 import { OrderDetailsComponent } from './pages/order-details/order-details.component';
 import { OrdersComponent } from './pages/orders/orders.component';
@@ -88,6 +89,11 @@ const routes: Routes = [
   {
     path: 'businesses',
     component: BusinessesComponent,
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'transaction/status/:id',
+    component: StatusComponent,
     canActivate: [AuthGuard],
   },
   {

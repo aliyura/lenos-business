@@ -36,7 +36,7 @@
                                 <h4>Category <strong class="star">*</strong> :</h4>
                             </div>
                             <div class="sign-up2">
-                                <select class="tf-lenos" name="category" required="true"
+                                <select class="tf-lenos" name="categoryId" required="true"
                                     (change)="form.validate($event);onCategorySelected($event);">
                                     <option readonly="" selected="" disabled="" value="">Select Category</option>
                                     <option *ngFor="let categoryData of categories"
@@ -50,12 +50,12 @@
                                 <h4>Sub Category<strong class="star">*</strong> :</h4>
                             </div>
                             <div class="sign-up2">
-                                <select class="tf-lenos" name="subCategory" required="true"
+                                <select class="tf-lenos" name="subCategoryId" required="true"
                                     (change)="form.validate($event)">
                                     <option readonly="" selected="" disabled="" value="">Select SubCategory</option>
                                     <option *ngFor="let category of subCategories" [value]="category!.id">
                                         {{category.name}}</option>
-                                        
+
                                 </select>
                             </div>
                             <div class="clearfix"> </div>
@@ -68,7 +68,7 @@
                                 <h4>Unit Size :</h4>
                             </div>
                             <div class="sign-up2">
-                                <select class="tf-lenos" name="size"  (change)="form.validate($event)">
+                                <select class="tf-lenos" name="size" (change)="form.validate($event)">
                                     <option readonly="" selected="" disabled="" value="">Select a Unit</option>
                                     <option value="piece">Piece</option>
                                     <option value="packet">Packet</option>
@@ -88,7 +88,7 @@
                                 <h4>Color:</h4>
                             </div>
                             <div class="sign-up2">
-                                <select class="tf-lenos" name="color"  (change)="form.validate($event)">
+                                <select class="tf-lenos" name="color" (change)="form.validate($event)">
                                     <option readonly="" selected="" disabled="" value="">Select a Color</option>
                                     <option value="AliceBlue">AliceBlue</option>
                                     <option value="AntiqueWhite">AntiqueWhite</option>
@@ -254,7 +254,7 @@
                                 <select class="tf-lenos" name="deliveryDays" required="true"
                                     (change)="form.validate($event)">
                                     <option readonly="" selected="" disabled="" value="">Select Delivery Time </option>
-                            
+
                                     <option value="1">1 Day</option>
                                     <option value="3">3 Days</option>
                                     <option value="6">6 Days</option>
@@ -306,8 +306,10 @@
                                 <h4>Product Location <strong class="star">*</strong> :</h4>
                             </div>
                             <div class="sign-up2">
-                                <select class="tf-lenos" name="location" required="true" (change)="form.validate($event)">
-                                    <option readonly="" selected="" disabled="" value="">Select Current Product Location</option>
+                                <select class="tf-lenos" name="location" required="true"
+                                    (change)="form.validate($event)">
+                                    <option readonly="" selected="" disabled="" value="">Select Current Product Location
+                                    </option>
                                     <option value="Kano">Kano</option>
                                     <option value="Abuja">Abuja</option>
                                     <option value="Rivers">Rivers</option>
@@ -357,10 +359,34 @@
                     <div class="row">
                         <div class="sign-u col-md-12">
                             <div class="sign-up1">
+                                <h4>How Many Available?<strong class="star">*</strong> :</h4>
+                            </div>
+                            <div class="sign-up2 textarea-large">
+                                <select class="tf-lenos" name="stock" required="true" (change)="form.validate($event)">
+                                    <option readonly="" selected="" disabled="" value="">Select Quantity Availble Now
+                                    </option>
+                                    <option value="1">1 Piece</option>
+                                    <option value="2">2 Pieces</option>
+                                    <option value="2">3 Pieces</option>
+                                    <option value="2">4 Pieces</option>
+                                    <option value="2">5 Pieces</option>
+                                    <option value="2">6 Pieces</option>
+                                    <option value="2">7 Pieces</option>
+                                    <option value="2">8 Pieces</option>
+                                    <option value="2">9 Pieces</option>
+
+                                </select>
+                            </div>
+                            <div class="clearfix"> </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="sign-u col-md-12">
+                            <div class="sign-up1">
                                 <h4>Feature :</h4>
                             </div>
                             <div class="sign-up2 textarea-large">
-                                <textarea class="tf-lenos" nam="feature" name="feature"
+                                <textarea class="tf-lenos" nam="features" name="features"
                                     (keyup)="form.validate($event)"></textarea>
                             </div>
                         </div>
@@ -394,8 +420,9 @@
                                 <h4>Thumbnail <strong class="star">*</strong> :</h4>
                             </div>
                             <div class="sign-up2 textarea-large">
-                                <input type="file" class="tf-lenos"  accept="image/x-png,image/gif,image/jpeg" name="thumbnail" required="true" (change)="form.validate($event)">
-                              </div>
+                                <input type="file" class="tf-lenos" accept="image/x-png,image/gif,image/jpeg"
+                                    name="thumbnail" required="true" (change)="form.validate($event)">
+                            </div>
                         </div>
                     </div>
                     <div class="row">
@@ -404,7 +431,8 @@
                                 <h4>Product Images <strong class="star">*</strong> :</h4>
                             </div>
                             <div class="sign-up2 textarea-large">
-                                <input type="file" class="tf-lenos"  accept="image/x-png,image/gif,image/jpeg" name="images[]" multiple="true" required="true" (change)="form.validate($event)">
+                                <input type="file" class="tf-lenos" accept="image/x-png,image/gif,image/jpeg"
+                                    name="images[]" multiple="true" required="true" (change)="form.validate($event)">
                             </div>
                         </div>
                     </div>
