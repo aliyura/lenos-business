@@ -20,6 +20,7 @@ export class OrdersComponent implements OnInit {
   totalPages: number = 0;
   appAccountType = AccountType;
   statusActions: Array<string> = ['IA', 'PV', 'PC', 'DP', 'PP', 'DV'];
+  isLoading: boolean = true;
 
   constructor(
     private authService: AuthenticationService,
@@ -28,15 +29,18 @@ export class OrdersComponent implements OnInit {
   ) {}
 
   private getOrders(page: number) {
+    this.isLoading = true;
     this.currentPage = page;
     this.orderService.getOrders(page).subscribe(
       (response: ApiResponse) => {
+        this.isLoading = false;
         if (response.success) {
           this.orders = response.payload['content'];
           this.totalPages = response.payload['totalPages'];
         }
       },
       (err) => {
+        this.isLoading = false;
         console.log(err);
       }
     );

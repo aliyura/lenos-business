@@ -12,6 +12,9 @@
             <div class="tables">
                 <div class="bs-example widget-shadow" data-example-id="hoverable-table">
                     <h4>Categories</h4>
+                    <ng-container *ngIf="isLoading">
+                        <app-loader></app-loader>
+                    </ng-container>
                     <ng-container *ngIf="categories!=null">
                         <table class="table table-hover">
                             <thead>
@@ -57,7 +60,7 @@
                             </tbody>
                         </table>
                     </ng-container>
-                    <ng-container *ngIf="categories==null">
+                    <ng-container *ngIf="categories==null !isLoading">
                         <div class="errorWrapper">
                             No Category Available
                         </div>

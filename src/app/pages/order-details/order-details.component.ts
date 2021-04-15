@@ -19,6 +19,8 @@ export class OrderDetailsComponent implements OnInit {
   currentPage: number = 0;
   totalPages: number = 0;
   statusActions: Array<string> = ['IA', 'PV', 'PC', 'DP', 'PP', 'DV'];
+  isOderLoading: boolean = true;
+  isOrderDetailsLoading: boolean = true;
 
   constructor(
     public app:AppCluster,
@@ -28,26 +30,32 @@ export class OrderDetailsComponent implements OnInit {
   ) {}
 
   private getOrder(orderId: number) {
+    this.isOderLoading=true
     this.orderService.getOrderByOrderId(orderId).subscribe(
       (response: ApiResponse) => {
+        this.isOderLoading = false;
         if (response.success) {
           this.order = response.payload;
         }
       },
       (err) => {
+        this.isOderLoading = false;
         console.log(err);
       }
     );
   }
   private getOrderDetails(orderId: number) {
+    this.isOrderDetailsLoading = true;
     this.orderService.getOrderDetailsByOrderId(orderId).subscribe(
       (response: ApiResponse) => {
+        this.isOrderDetailsLoading = false;
         if (response.success) {
           this.orderDetails = response.payload;
           console.log(this.orderDetails);
         }
       },
       (err) => {
+        this.isOrderDetailsLoading = false;
         console.log(err);
       }
     );

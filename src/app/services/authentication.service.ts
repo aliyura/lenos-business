@@ -88,7 +88,7 @@ export class AuthenticationService {
   }
 
   public signIn(userRequest:UserRequest) {
-    this.progressDialog.show("Please Wait..");
+    this.progressDialog.show();
     return this.http.post(this.app.endPoint+ '/api/user/signin', userRequest, this.app.httpHeader).pipe(
       map((response: ApiResponse) => {
         this.progressDialog.hide()

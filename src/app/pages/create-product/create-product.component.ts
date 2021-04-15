@@ -1,3 +1,4 @@
+import { List } from './../../types/list.type';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AppCluster } from 'src/app/app.shared.cluster';
@@ -10,8 +11,9 @@ import { CategoryService } from 'src/app/services/category.service';
 import { NotificationService } from 'src/app/services/notification.service';
 import { ProductService } from 'src/app/services/product.service';
 import { StorageService } from 'src/app/services/storage.service';
-import { List } from 'src/app/types/list.type';
 import { FormValidator } from 'src/app/validators/form-custom.validator';
+import { Location } from 'src/app/models/location.model';
+import { Store } from 'src/app/enum/store.enum';
 
 @Component({
   selector: 'app-create-product',
@@ -23,17 +25,34 @@ export class CreateProductComponent implements OnInit {
   subCategories: List<SubCategory>;
   form: FormValidator;
   product: Product;
+  locations:List<Location>
 
   constructor(
     private app: AppCluster,
     private router: Router,
-    private productService:ProductService,
+    private storage:StorageService,
+    private productService: ProductService,
     private categoryService: CategoryService,
     private notification: NotificationService
   ) {
     this.form = new FormValidator(Product, 'form');
   }
 
+  public loadLocations() {
+    try {
+      var locations = this.storage.getSession(Store.LOCATIONS);
+      if (locations != null) {
+        this.locations = JSON.parse(locations);
+      } else {
+        this.app.monitor(() => {
+          this.loadLocations();
+        }, 1000);
+      }
+    } catch (ex) {
+      console.log(ex);
+      console.log('Unable to convert locations to JSON');
+    }
+  }
 
   public uploadProduct() {
     this.form.revalidate();
@@ -41,7 +60,7 @@ export class CreateProductComponent implements OnInit {
     this.product = this.form.data;
     delete this.product['null'];
 
-     console.log(this.product);
+    console.log(this.product);
     if (
       response['name'].ok &&
       response['categoryId'].ok &&
@@ -61,10 +80,12 @@ export class CreateProductComponent implements OnInit {
           (response: ApiResponse) => {
             if (response.success) {
               this.notification.notifySuccess('Uploaded Successfully');
-              this.notification.showSuccess("Uploaded Successfully", "product.add", "Upload Another");
-            }
-            else
-               this.notification.notifyError(response.message);
+              this.notification.showSuccess(
+                'Uploaded Successfully',
+                'product.add',
+                'Upload Another'
+              );
+            } else this.notification.notifyError(response.message);
           },
           (err) => {
             this.notification.notifyError('Unable to upload the Product');
@@ -73,7 +94,7 @@ export class CreateProductComponent implements OnInit {
       }
     }
   }
-  
+
   public onCategorySelected(e) {
     this.getSubCategoriesByCategoryId(e.target.value);
   }
@@ -101,6 +122,7 @@ export class CreateProductComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.loadLocations();
     this.getAllCategories();
   }
 }

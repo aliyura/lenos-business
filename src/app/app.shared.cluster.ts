@@ -1,15 +1,26 @@
 import { throwError } from 'rxjs';
 
 export class AppCluster {
-
   validEmail(email) {
-    var regexp = new RegExp(/^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/);
+    var regexp = new RegExp(
+      /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+    );
     return regexp.test(email);
   }
 
   validMobile(number) {
     var regexp = new RegExp(/^[+]*[(]{0,1}[0-9]{1,3}[)]{0,1}[-\s\./0-9]*$/g);
     return regexp.test(number);
+  }
+
+  disableScrolling() {
+    document.querySelector('html').style.overflowY = 'hidden';
+    document.body.style.overflowY = 'hidden';
+  }
+
+  enableScrolling() {
+    document.querySelector('html').style.overflowY = 'auto';
+    document.body.style.overflowY = 'auto';
   }
 
   errorHandle(error) {

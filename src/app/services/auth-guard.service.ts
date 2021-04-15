@@ -24,8 +24,12 @@ export class AuthGuardService implements CanActivate {
         accountType == AccountType.BUSINESS
       )
         return true;
-      else return false;
+      else {
+        this.router.navigate(['login']);
+        return false;
+      }
     } else {
+      this.router.navigate(['login']);
       return false;
     }
   }

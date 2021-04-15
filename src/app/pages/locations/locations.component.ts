@@ -20,6 +20,7 @@ import { User } from 'src/app/models/user.model';
 export class LocationsComponent implements OnInit {
   locations: List<Location>;
   appAccountType = AccountType;
+  isLoading: boolean = true;
   
   constructor(
     private authService: AuthenticationService,
@@ -30,11 +31,11 @@ export class LocationsComponent implements OnInit {
   ) {}
 
   public loadLocations() {
+    this.isLoading = true;
     try {
       var locations = this.storage.getSession(Store.LOCATIONS);
       if (locations != null) {
         this.locations = JSON.parse(locations);
-
         console.log(this.locations);
       } else {
         this.storage.recheck(() => {
@@ -45,6 +46,7 @@ export class LocationsComponent implements OnInit {
       console.log(ex);
       console.log('Unable to convert locations to JSON');
     }
+    this.isLoading = false;
   }
 
   editLocation(location: Location) {

@@ -8,6 +8,9 @@
             </div>
             <div class="tables">
                 <div class="bs-example widget-shadow" data-example-id="hoverable-table">
+                    <ng-container *ngIf="isLoading">
+                        <app-loader></app-loader>
+                    </ng-container>
                     <ng-container *ngIf="locations!=null">
                         <table class="table table-hover">
                             <thead>
@@ -47,7 +50,7 @@
                             </tbody>
                         </table>
                     </ng-container>
-                    <ng-container *ngIf="locations==null">
+                    <ng-container *ngIf="locations==null !isLoading">
                         <div class="errorWrapper">
                             No Location Available
                         </div>

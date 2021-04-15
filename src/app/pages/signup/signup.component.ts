@@ -1,14 +1,16 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AppCluster } from 'src/app/app.shared.cluster';
-import { NotificationType } from 'src/app/enum/notification-type.enum';
+import { AccountType } from 'src/app/enum/account-type.enum';
 import { Store } from 'src/app/enum/store.enum';
+import { UserRole } from 'src/app/enum/user-role.enum';
 import { ApiResponse } from 'src/app/models/api-response.model';
+import { Location } from 'src/app/models/location.model';
 import { User } from 'src/app/models/user.model';
 import { AuthenticationService } from 'src/app/services/authentication.service';
-import { DialogHandlerService } from 'src/app/services/dialog-handler.service';
 import { NotificationService } from 'src/app/services/notification.service';
 import { StorageService } from 'src/app/services/storage.service';
+import { List } from 'src/app/types/list.type';
 import { FormValidator } from 'src/app/validators/form-custom.validator';
 
 @Component({
@@ -19,6 +21,7 @@ import { FormValidator } from 'src/app/validators/form-custom.validator';
 export class SignupComponent implements OnInit {
   form: FormValidator;
   user: User;
+  locations: List<Location>;
 
   constructor(
     private app: AppCluster,
@@ -28,6 +31,23 @@ export class SignupComponent implements OnInit {
     private notification: NotificationService
   ) {
     this.form = new FormValidator(User, 'form');
+  }
+
+  public loadLocations() {
+    try {
+      var locations = this.storage.getSession(Store.LOCATIONS);
+      console.log(locations);
+      if (locations != null) {
+        this.locations = JSON.parse(locations);
+      } else {
+        this.app.monitor(() => {
+          this.loadLocations();
+         },1000)
+      }
+    } catch (ex) {
+      console.log(ex);
+      console.log('Unable to convert locations to JSON');
+    }
   }
 
   async signUp() {
@@ -41,7 +61,6 @@ export class SignupComponent implements OnInit {
       response['mobile'].ok &&
       response['country'].ok &&
       response['city'].ok &&
-      response['gender'].ok &&
       response['password'].ok &&
       response['confirmPassword'].ok
     ) {
@@ -60,7 +79,9 @@ export class SignupComponent implements OnInit {
           else this.user.mobile = '+234' + this.user.mobile;
         }
 
-        console.log(this.user)
+        this.user.accountType == AccountType.BUSINESS;
+        this.user.role = UserRole.SELLER;
+        console.log(this.user);
 
         this.authService.signUp(this.user).subscribe(
           (response: ApiResponse) => {
@@ -76,12 +97,13 @@ export class SignupComponent implements OnInit {
             this.notification.notifyError('Unable to create your Account!');
           }
         );
-
       }
     } else {
       this.notification.notifyWarning('Oops! Form not filled correctly');
     }
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.loadLocations();
+  }
 }

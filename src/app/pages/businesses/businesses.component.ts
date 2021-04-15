@@ -16,17 +16,21 @@ export class BusinessesComponent implements OnInit {
   users: List<User>;
   currentPage: number = 0;
   totalPages: number = 0;
+  isLoading: boolean = true;
+
   constructor(
     private dialogHandler: DialogHandlerService,
     private authService: AuthenticationService
   ) {}
 
   private getUsers(page: number) {
+    this.isLoading = true;
     this.currentPage = page;
     this.authService
       .getUsersByAccountType(page, AccountType.BUSINESS)
       .subscribe(
         (response: ApiResponse) => {
+          this.isLoading = false;
           if (response.success) {
             this.users = response.payload['content'];
             this.totalPages = response.payload['totalPages'];
@@ -34,6 +38,7 @@ export class BusinessesComponent implements OnInit {
           console.log(this.users);
         },
         (err) => {
+          this.isLoading = false;
           console.log(err);
         }
       );

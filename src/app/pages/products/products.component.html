@@ -11,7 +11,10 @@
             </div>
             <div class="tables">
                 <div class="bs-example widget-shadow" data-example-id="hoverable-table">
-                    <ng-container *ngIf="products!=null">
+                    <ng-container *ngIf="isLoading">
+                        <app-loader></app-loader>
+                    </ng-container>
+                    <ng-container *ngIf="products!=null && !isLoading">
                         <table class="table table-hover">
                             <thead>
                                 <tr>
@@ -43,7 +46,6 @@
                                         <td>
                                             <div class="controls row">
                                                 <div class="col-md-4">
-                                              
                                                 <label class="switch" *ngIf="product!.status=='AC'">
                                                     <input type="checkbox" checked="true" (change)="activate($event,product)">
                                                     <span class="slider round"></span>
@@ -72,7 +74,7 @@
                             </tbody>
                         </table>
                     </ng-container>
-                    <ng-container *ngIf="products==null">
+                    <ng-container *ngIf="products==null && !isLoading">
                         <div class="errorWrapper">
                             No Product Available
                         </div>

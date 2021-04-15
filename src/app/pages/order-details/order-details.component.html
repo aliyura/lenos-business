@@ -6,7 +6,10 @@
             <div class="login-top left">
                 <h3>Order Details»</h3>
             </div>
-            <ng-container class="container" *ngIf="order!=null">
+            <ng-container *ngIf="isOderLoading">
+                <app-loader></app-loader>
+            </ng-container>
+            <ng-container class="container" *ngIf="order!=null && !isOderLoading">
                 <div class="content row">
                     <div class="col-md-8 main-information">
                         <div class="order-information">
@@ -93,7 +96,10 @@
                     <div class="login-top left">
                         <h3>Products »</h3>
                     </div>
-                    <ng-container *ngIf="orderDetails!=null">
+                    <ng-container *ngIf="isOrderDetailsLoading">
+                        <app-loader></app-loader>
+                    </ng-container>
+                    <ng-container *ngIf="orderDetails!=null && !isOrderDetailsLoading">
 
                         <div class="card row" *ngFor="let ordeDetail of orderDetails">
                             <div class="product-image">
@@ -121,14 +127,14 @@
                             </div>
                         </div>
                     </ng-container>
-                    <ng-container *ngIf="orderDetails==null">
+                    <ng-container *ngIf="orderDetails==null && !isOrderDetailsLoading">
                         <div class="errorWrapper card">
                            No Product Found
                         </div>
                     </ng-container>
                 </div>
             </ng-container>
-            <ng-container *ngIf="order==null">
+            <ng-container *ngIf="order==null && !isOderLoading">
                 <div class="errorWrapper widget card">
                     Order not Found
                 </div>

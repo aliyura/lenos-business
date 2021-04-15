@@ -15,6 +15,8 @@ export class VoucherCardsComponent implements OnInit {
   cards: List<Card>;
   currentPage: number = 0;
   totalPages: number = 0;
+  isLoading: boolean = true;
+
   constructor(
     private dialogHandler: DialogHandlerService,
     private cardService: CardService
@@ -22,14 +24,17 @@ export class VoucherCardsComponent implements OnInit {
 
   private getVouchers(page: number) {
     this.currentPage = page;
+    this.isLoading = true;
     this.cardService.getVouchers(page).subscribe(
       (response: ApiResponse) => {
+        this.isLoading = false;
         if (response.success) {
           this.cards = response.payload['content'];
           this.totalPages = response.payload['totalPages'];
         }
       },
       (err) => {
+        this.isLoading = false;
         console.log(err);
       }
     );

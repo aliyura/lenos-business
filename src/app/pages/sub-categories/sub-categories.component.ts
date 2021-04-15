@@ -15,7 +15,9 @@ import { List } from 'src/app/types/list.type';
 export class SubCategoriesComponent implements OnInit {
 
   categories: List<SubCategory>;
-  categoryId:string='0';
+  categoryId: string = '0';
+  isLoading: boolean = true;
+
   constructor(
     private route:ActivatedRoute,
     private notification:NotificationService,
@@ -24,13 +26,16 @@ export class SubCategoriesComponent implements OnInit {
   ) {}
 
   private getSubCategoriesById(id) {
+    this.isLoading = true;
     this.categoryService.getSubCategoriesByCategoryId(id).subscribe(
-        (response: ApiResponse) => {
+      (response: ApiResponse) => {
+        this.isLoading = false;
           if (response.success){
             this.categories = response.payload;
           }
         },
-        (err) => {
+      (err) => {
+        this.isLoading = false;
           console.log(err);
         }
       );

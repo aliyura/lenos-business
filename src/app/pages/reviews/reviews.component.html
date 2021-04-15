@@ -9,7 +9,10 @@
             <div class="tables">
                 <div class="bs-example widget-shadow" data-example-id="hoverable-table">
                     <div class="inbox-page">
-                        <ng-container *ngIf="reviews!=null">
+                        <ng-container *ngIf="isLoading">
+                            <app-loader></app-loader>
+                        </ng-container>
+                        <ng-container *ngIf="reviews!=null  && !isLoading">
                             <div *ngFor="let reviewData of reviews" class="inbox-row" role="tablist"
                                 aria-multiselectable="true">
                                 <div class="mail"><img src="assets/images/avatar.png" class="img avatar" alt="" /></div>
@@ -68,7 +71,7 @@
                             </div>
 
                         </ng-container>
-                        <ng-container *ngIf="reviews==null">
+                        <ng-container *ngIf="reviews==null && !isLoading">
                             <div class="errorWrapper">
                                 No Review Available
                             </div>

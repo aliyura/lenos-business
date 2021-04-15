@@ -8,7 +8,10 @@
             </div>
             <div class="tables">
                 <div class="bs-example widget-shadow" data-example-id="hoverable-table">
-                    <ng-container *ngIf="orders!=null">
+                    <ng-container *ngIf="isLoading">
+                        <app-loader></app-loader>
+                    </ng-container>
+                    <ng-container *ngIf="orders!=null && !isLoading">
                         <table class="table table-hover">
                             <thead>
                                 <tr>
@@ -85,7 +88,7 @@
                         </table>
                        
                     </ng-container>
-                    <ng-container *ngIf="orders==null">
+                    <ng-container *ngIf="orders==null && !isLoading">
                         <div class="errorWrapper">
                             No Order Available
                         </div>

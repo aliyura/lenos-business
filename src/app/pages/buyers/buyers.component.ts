@@ -16,6 +16,8 @@ export class BuyersComponent implements OnInit {
   users: List<User>;
   currentPage: number = 0;
   totalPages: number = 0;
+  isLoading: boolean = true;
+
   constructor(
     private dialogHandler: DialogHandlerService,
     private authService: AuthenticationService
@@ -23,10 +25,13 @@ export class BuyersComponent implements OnInit {
 
   private getUsers(page: number) {
     this.currentPage = page;
+    this.isLoading = true;
+
     this.authService
       .getUsersByAccountType(page, AccountType.INDIVIDUAL)
       .subscribe(
         (response: ApiResponse) => {
+          this.isLoading = false;
           if (response.success) {
             this.users = response.payload['content'];
             this.totalPages = response.payload['totalPages'];
@@ -34,6 +39,7 @@ export class BuyersComponent implements OnInit {
           }
         },
         (err) => {
+          this.isLoading = false;
           console.log(err);
         }
       );

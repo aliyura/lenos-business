@@ -1,0 +1,14 @@
+.loader {
+  width: 100%;
+  height: auto;
+  margin: 10% auto;
+  text-align: center;
+  vertical-align: middle;
+  padding: 20px;
+}
+@media(max-width:800px){
+  .loader {
+    margin:  40% auto;
+  }
+}
+

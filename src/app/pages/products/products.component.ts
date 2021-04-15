@@ -19,6 +19,7 @@ export class ProductsComponent implements OnInit {
   currentPage: number = 0;
   totalPages: number = 0;
   appAccountType = AccountType;
+  isLoading:boolean =true
 
   constructor(
     private authService: AuthenticationService,
@@ -27,14 +28,17 @@ export class ProductsComponent implements OnInit {
   ) {}
 
   private getProducts(page: number) {
+    this.isLoading=true
     this.productService.getAllProducts(page).subscribe(
       (response: ApiResponse) => {
+        this.isLoading = false;
         if (response.success) {
           this.products = response.payload['content'];
           this.totalPages = response.payload['totalPages'];
         }
       },
       (err) => {
+         this.isLoading = false;
         console.log(err);
       }
     );

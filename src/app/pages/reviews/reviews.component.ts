@@ -20,6 +20,7 @@ export class ReviewsComponent implements OnInit {
   currentPage: number = 0;
   totalPages: number = 0;
   appAccountType = AccountType;
+  isLoading: boolean = true;
 
   constructor(
     private dialogHandler: DialogHandlerService,
@@ -30,14 +31,17 @@ export class ReviewsComponent implements OnInit {
   ) {}
 
   private getReviews(page: number) {
+    this.isLoading = true;
     this.reviewService.getReviews(page).subscribe(
       (response: ApiResponse) => {
+        this.isLoading = false;
         if (response.success) {
           this.reviews = response.payload['content'];
           this.totalPages = response.payload['totalPages'];
         }
       },
       (err) => {
+           this.isLoading = false;
         console.log(err);
       }
     );

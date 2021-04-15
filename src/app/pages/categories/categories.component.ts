@@ -14,6 +14,8 @@ import { List } from 'src/app/types/list.type';
 })
 export class CategoriesComponent implements OnInit {
   categories: List<Category>;
+  isLoading: boolean = true;
+
   constructor(
     private notification: NotificationService,
     private dialogHandler: DialogHandlerService,
@@ -21,13 +23,16 @@ export class CategoriesComponent implements OnInit {
   ) {}
 
   private getCategories() {
+    this.isLoading = true;
     this.categoryService.getAllCategories().subscribe(
       (response: ApiResponse) => {
+        this.isLoading = false;
         if (response.success) {
           this.categories = response.payload;
         }
       },
       (err) => {
+        this.isLoading = false;
         console.log(err);
       }
     );

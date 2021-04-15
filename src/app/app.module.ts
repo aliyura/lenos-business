@@ -1,3 +1,4 @@
+import { LoaderComponent } from './views/loader/loader.component';
 import { AppCluster } from './app.shared.cluster';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
@@ -35,7 +36,6 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatTreeModule } from '@angular/material/tree';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { MatListModule } from '@angular/material/list';
-import { LoaderModelAlert } from './components/dialogs/loader-model.alert';
 import { ShortNamePipe } from './pipes/short-name.pipe';
 import { MatNativeDateModule } from '@angular/material/core';
 import { GroupByPipe } from './pipes/group-by.pipe';
@@ -100,7 +100,8 @@ export function tokenGetter() {
     OrdersComponent,
     OrderDetailsComponent,
     ReviewsComponent,
-    StatusComponent
+    StatusComponent,
+    LoaderComponent,
   ],
   imports: [
     TagInputModule,

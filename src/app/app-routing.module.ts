@@ -1,3 +1,4 @@
+import { VerifyAccountComponent } from './pages/verify-account/verify-account.component';
 import { StatusComponent } from './pages/status/status.component';
 import { ReviewsComponent } from './pages/reviews/reviews.component';
 import { OrderDetailsComponent } from './pages/order-details/order-details.component';
@@ -36,6 +37,10 @@ const routes: Routes = [
   {
     path: 'signup',
     component: SignupComponent,
+  },
+  {
+    path: 'verify-account',
+    component: VerifyAccountComponent,
   },
   {
     path: 'profile',

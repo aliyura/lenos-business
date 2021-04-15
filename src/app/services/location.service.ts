@@ -38,7 +38,7 @@ export class LocationService {
 
   public getLocations() {
     return this.http
-      .get(this.app.endPoint + '/api/locations', this.app.httpAutherizedHeader)
+      .get(this.app.endPoint + '/api/locations', this.app.httpHeader)
       .pipe(
         map((response: ApiResponse) => {
           return response;

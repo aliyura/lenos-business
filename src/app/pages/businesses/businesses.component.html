@@ -9,6 +9,9 @@
             <div class="tables">
                 <div class="bs-example widget-shadow" data-example-id="hoverable-table">
                     <h4></h4>
+                    <ng-container *ngIf="isLoading">
+                        <app-loader></app-loader>
+                    </ng-container>
                     <ng-container *ngIf="users!=null">
                         <table class="table table-hover">
                             <thead>
@@ -51,7 +54,7 @@
                             [currentPage]="this.currentPage" [totalPages]="this.totalPages">
                         </app-pagination>
                     </ng-container>
-                    <ng-container *ngIf="users==null">
+                    <ng-container *ngIf="users==null && !isLoading">
                         <div class="errorWrapper">
                             No Business Available
                         </div>
