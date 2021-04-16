@@ -46,15 +46,16 @@ export class OrdersComponent implements OnInit {
     );
   }
   private getOrdersBySeller(selerId: number) {
-    console.log(selerId);
+    this.isLoading = true;
     this.orderService.getOrdersBySellerId(selerId).subscribe(
       (response: ApiResponse) => {
-        console.log(response);
+         this.isLoading = false;
         if (response.success) {
           this.orders = response.payload;
         }
       },
       (err) => {
+         this.isLoading = false;
         console.log(err);
       }
     );

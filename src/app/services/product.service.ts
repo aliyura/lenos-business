@@ -64,7 +64,7 @@ export class ProductService {
           page +
           '&size=' +
           environment.pageSize,
-        this.app.httpHeader
+        this.app.httpAutherizedHeader
       )
       .pipe(
         map((response: ApiResponse) => {
@@ -88,7 +88,7 @@ export class ProductService {
           page +
           '&size=' +
           environment.pageSize,
-        this.app.httpHeader
+        this.app.httpAutherizedHeader
       )
       .pipe(
         map((response: ApiResponse) => {

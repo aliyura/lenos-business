@@ -47,8 +47,10 @@ export class ReviewsComponent implements OnInit {
     );
   }
   private getReviewsBySeller(sellerId: number, page: number) {
+     this.isLoading = true;
     this.reviewService.getReviewsBySellerId(sellerId, page).subscribe(
       (response: ApiResponse) => {
+         this.isLoading = false;
         if (response.success) {
           this.reviews = response.payload['content'];
           this.totalPages = response.payload['totalPages'];
@@ -56,6 +58,7 @@ export class ReviewsComponent implements OnInit {
         console.log(response);
       },
       (err) => {
+         this.isLoading = false;
         console.log(err);
       }
     );

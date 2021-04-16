@@ -30,7 +30,7 @@
                             </thead>
                             <tbody>
                                 <tr *ngFor="let categoryData of categories">
-                                    <ng-container *ngIf="categoryData.category!=null">
+                                    <ng-container *ngIf="categoryData.category!=null && !isLoading">
                                         <th scope="row">1</th>
                                         <td [routerLink]="['/product/sub-categories',categoryData.category!.id]">
                                             {{categoryData.category!.name}}</td>
@@ -60,7 +60,7 @@
                             </tbody>
                         </table>
                     </ng-container>
-                    <ng-container *ngIf="categories==null !isLoading">
+                    <ng-container *ngIf="categories==null && !isLoading">
                         <div class="errorWrapper">
                             No Category Available
                         </div>

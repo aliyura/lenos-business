@@ -34,7 +34,10 @@
                                 <tr *ngFor="let product of products">
                                     <ng-container>
                                         <th scope="row">1</th>
-                                        <td [routerLink]="['/product/preview',product!.id]"><img class="img img-responsive product-image" (error)="error($event);" [src]="product!.thumbnail"/></td>
+                                        <td [routerLink]="['/product/preview',product!.id]">
+                                            <img class="img img-responsive product-image" (error)="error($event);"
+                                                src="https://lenosfilestorage.blob.core.windows.net/lenos-storage-container/{{product.thumbnail}}" />
+                                        </td>
                                         <td [routerLink]="['/product/preview',product!.id]">
                                             {{product!.name}}</td>
                                         <td>{{product!.categoryName}}</td>
@@ -46,14 +49,17 @@
                                         <td>
                                             <div class="controls row">
                                                 <div class="col-md-4">
-                                                <label class="switch" *ngIf="product!.status=='AC'">
-                                                    <input type="checkbox" checked="true" (change)="activate($event,product)">
-                                                    <span class="slider round"></span>
-                                                </label>
-                                                <label class="switch" *ngIf="product!.status!='AC'">
-                                                    <input type="checkbox" (change)="activate($event,product)">
-                                                    <span class="slider round"></span>
-                                                </label>
+                                                    <ng-container *ngIf="product.vendorId!=authenticatedUser.id">
+                                                        <label class="switch" *ngIf="product!.status=='AC'">
+                                                            <input type="checkbox" checked="true"
+                                                                (change)="activate($event,product)">
+                                                            <span class="slider round"></span>
+                                                        </label>
+                                                        <label class="switch" *ngIf="product!.status!='AC'">
+                                                            <input type="checkbox" (change)="activate($event,product)">
+                                                            <span class="slider round"></span>
+                                                        </label>
+                                                    </ng-container>
                                                 </div>
                                                 <div class="col-md-4">
                                                     <button type="button" class="btn btn-round"
@@ -81,8 +87,8 @@
                     </ng-container>
                 </div>
             </div>
-            <app-pagination *ngIf="products!=null" [self]="this" [next]="nextPage" [prev]="previousPage" [change]="changePage"
-                [currentPage]="this.currentPage" [totalPages]="this.totalPages">
+            <app-pagination *ngIf="products!=null" [self]="this" [next]="nextPage" [prev]="previousPage"
+                [change]="changePage" [currentPage]="this.currentPage" [totalPages]="this.totalPages">
             </app-pagination>
         </div>
     </div>

@@ -1,10 +1,13 @@
 .loader {
   width: 100%;
   height: auto;
-  margin: 10% auto;
+  margin: 0 auto;
   text-align: center;
   vertical-align: middle;
-  padding: 20px;
+}
+.loader img{
+  width: 150px;
+  margin-top: -2em;
 }
 @media(max-width:800px){
   .loader {

@@ -48,7 +48,9 @@ export class AddCategoryModalDialog implements OnInit {
 
       //if editing not new...
       if(this.existingCategory!=null)
-        this.category.id=this.existingCategory.id;
+        this.category.id = this.existingCategory.id;
+      if (this.category.image == null)
+        this.category.image = this.existingCategory.image;
 
       this.categoryService.addCategory(this.category).subscribe(
         (response: ApiResponse) => {

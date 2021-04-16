@@ -79,10 +79,9 @@ export class SignupComponent implements OnInit {
           else this.user.mobile = '+234' + this.user.mobile;
         }
 
-        this.user.accountType == AccountType.BUSINESS;
+        this.user.accountType = AccountType.BUSINESS;
         this.user.role = UserRole.SELLER;
-        console.log(this.user);
-
+     
         this.authService.signUp(this.user).subscribe(
           (response: ApiResponse) => {
             if (response.success) {

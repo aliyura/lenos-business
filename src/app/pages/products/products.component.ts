@@ -44,14 +44,17 @@ export class ProductsComponent implements OnInit {
     );
   }
   private getProductsBySeller(sellerId: number, page: number) {
+     this.isLoading = true;
     this.productService.getAllProductsBySeller(sellerId, page).subscribe(
       (response: ApiResponse) => {
+        this.isLoading = false;
         if (response.success) {
           this.products = response.payload['content'];
           this.totalPages = response.payload['totalPages'];
         }
       },
       (err) => {
+        this.isLoading = false;
         console.log(err);
       }
     );
