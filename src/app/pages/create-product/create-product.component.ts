@@ -85,9 +85,13 @@ export class CreateProductComponent implements OnInit {
                 'product.add',
                 'Upload Another'
               );
-            } else this.notification.notifyError(response.message);
+            } else {
+              console.log(response.message);
+              this.notification.notifyError(response.message);
+            }
           },
           (err) => {
+            console.log(err)
             this.notification.notifyError('Unable to upload the Product');
           }
         );
