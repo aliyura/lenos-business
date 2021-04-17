@@ -10,6 +10,6 @@ export const environment = {
     '/business/signup',
     '/business/verify-account',
   ],
-  pageSize: 5,
+  pageSize: 12,
   appURL: '',
 };
