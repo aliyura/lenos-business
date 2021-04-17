@@ -1,3 +1,4 @@
+import { Title } from '@angular/platform-browser';
 import { AccountType } from './../../enum/account-type.enum';
 import { LoginResponse } from './../../models/login-response.model';
 import { Component, OnInit } from '@angular/core';
@@ -23,6 +24,7 @@ export class LoginComponent implements OnInit {
   userRequest = new UserRequest();
 
   constructor(
+    private titleService: Title,
     private router: Router,
     private storage: StorageService,
     private authService: AuthenticationService,
@@ -56,7 +58,9 @@ export class LoginComponent implements OnInit {
               this.storage.save(Store.USER, JSON.stringify(loginResponse.user));
               location.href = '/';
             } else {
-              this.notification.notifyWarning("Oops. This is not a Business account!");
+              this.notification.notifyWarning(
+                'Oops. This is not a Business account!'
+              );
             }
           } else {
             this.notification.notifyError(response.message);
@@ -72,6 +76,9 @@ export class LoginComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.titleService.setTitle(
+      'Login to your Business account on -Lenos Nigeria'
+    );
     this.getUser();
   }
 }

@@ -67,24 +67,6 @@ new Chart(document.getElementById("line").getContext("2d")).Line(lineChartData);
 new Chart(document.getElementById("bar").getContext("2d")).Bar(barChartData);
 new Chart(document.getElementById("pie").getContext("2d")).Pie(pieData);
 
-
-var menuLeft = document.getElementById("cbp-spmenu-s1"),
-  showLeftPush = document.getElementById("showLeftPush"),
-  body = document.body;
-
-showLeftPush.onclick = function () {
-  classie.toggle(this, "active");
-  classie.toggle(body, "cbp-spmenu-push-toright");
-  classie.toggle(menuLeft, "cbp-spmenu-open");
-  disableOther("showLeftPush");
-};
-
-function disableOther(button) {
-  if (button !== "showLeftPush") {
-    classie.toggle(showLeftPush, "disabled");
-  }
-}
-
 $(function () {
   jQuery("#vmap").vectorMap({
     map: "world_en",

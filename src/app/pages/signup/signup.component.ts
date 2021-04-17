@@ -1,3 +1,4 @@
+import { Title } from '@angular/platform-browser';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AppCluster } from 'src/app/app.shared.cluster';
@@ -24,6 +25,7 @@ export class SignupComponent implements OnInit {
   locations: List<Location>;
 
   constructor(
+    private titleService:Title,
     private app: AppCluster,
     private router: Router,
     private storage: StorageService,
@@ -103,6 +105,7 @@ export class SignupComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.titleService.setTitle('Create Business on Lenos Nigeria, Start Selling & Building Customers for your Business Around Nigeria');
     this.loadLocations();
   }
 }

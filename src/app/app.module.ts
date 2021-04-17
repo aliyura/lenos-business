@@ -1,6 +1,6 @@
 import { LoaderComponent } from './views/loader/loader.component';
 import { AppCluster } from './app.shared.cluster';
-import { BrowserModule } from '@angular/platform-browser';
+import { BrowserModule, Title } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -135,7 +135,7 @@ export function tokenGetter() {
     BrowserAnimationsModule, // required animations module
     ToastrModule.forRoot({
       timeOut: 10000,
-      positionClass: "toast-top-right",
+      positionClass: 'toast-top-right',
       preventDuplicates: true,
       closeButton: true,
     }),
@@ -145,11 +145,16 @@ export function tokenGetter() {
     JwtModule.forRoot({
       config: {
         tokenGetter: tokenGetter,
-        allowedDomains: ["/business/login","/business/signup","/business/verify-account"],
+        allowedDomains: [
+          '/business/login',
+          '/business/signup',
+          '/business/verify-account',
+        ],
       },
-   }),
+    }),
   ],
   providers: [
+    Title,
     AsyncPipe,
     AppCluster,
     JwtHelperService,

@@ -47,7 +47,26 @@ export class HeaderComponent implements OnInit {
   logout() {
     this.authService.logout();
   }
+  toggleDrawer() {
+    var display = document.getElementById('sidebar').style.display;
+    console.log(display);
+    if (display.toLowerCase() == 'block') {
+      console.log('yes');
+      document.getElementById('sidebar').style.display = 'none';
+      if (window.innerWidth > 800)
+        document.getElementById('page-wrapper').style.marginLeft = '0';
+    } else {
+      document.getElementById('sidebar').style.display = 'block';
+      if (window.innerWidth > 800)
+        document.getElementById('page-wrapper').style.marginLeft = '300px';
+    }
+  }
   ngOnInit(): void {
     this.loadCategories();
+  }
+  ngAfterViewInit() {
+      if (window.innerWidth < 800)
+        document.getElementById('sidebar').style.display = 'none';
+
   }
 }

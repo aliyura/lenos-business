@@ -1,7 +1,7 @@
 <ng-container *ngIf="authenticatedUser.accountType==appAccountType.ADMIN">
-	<div class="sidebar" id="sidebar" role="navigation">
+	<div class="sidebar" id="sidebar">
 		<div class="navbar-collapse">
-			<nav class="cbp-spmenu cbp-spmenu-vertical cbp-spmenu-left" id="cbp-spmenu-s1">
+			<nav class="drawer">
 				<ul class="nav" id="side-menu">
 					<li>
 						<a href="/" class="active"><i class="fa fa-home nav_icon"></i>Dashboard</a>
@@ -69,10 +69,10 @@
 								class="fa arrow"></span></a>
 						<ul class="nav nav-second-level collapse">
 							<li>
-								<a [routerLink]="['product/add']">Add new Product</a>
+								<a [routerLink]="['/product/add']">Add new Product</a>
 							</li>
 							<li>
-								<a [routerLink]="['product/products']">My Products</a>
+								<a [routerLink]="['/product/products']">My Products</a>
 							</li>
 						</ul>
 						<!-- //nav-second-level -->
@@ -96,15 +96,15 @@
 								class="fa arrow"></span></a>
 						<ul class="nav nav-second-level collapse" *ngIf="!isAuthenticated">
 							<li>
-								<a [routerLink]="['login']">Logout</a>
+								<a [routerLink]="['/login']">Logout</a>
 							</li>
 							<li>
-								<a [routerLink]="['signup']">SignUp</a>
+								<a [routerLink]="['/signup']">SignUp</a>
 							</li>
 						</ul>
 						<ul class="nav nav-second-level collapse" *ngIf="isAuthenticated">
 							<li>
-								<a [routerLink]="['profile']">Profile</a>
+								<a [routerLink]="['/profile']">Profile</a>
 								<a [routerLink]="['#']" (click)="logout();">Logout</a>
 							</li>
 						</ul>
@@ -117,9 +117,9 @@
 	</div>
 </ng-container>
 <ng-container *ngIf="authenticatedUser.accountType==appAccountType.BUSINESS">
-	<div class="sidebar" id="sidebar" role="navigation">
+	<div class="sidebar" id="sidebar">
 		<div class="navbar-collapse">
-			<nav class="cbp-spmenu cbp-spmenu-vertical cbp-spmenu-left" id="cbp-spmenu-s1">
+			<nav class="drawer">
 				<ul class="nav" id="side-menu">
 					<li>
 						<a href="/" class="active"><i class="fa fa-home nav_icon"></i>Dashboard</a>
@@ -158,10 +158,10 @@
 								class="fa arrow"></span></a>
 						<ul class="nav nav-second-level collapse">
 							<li>
-								<a [routerLink]="['product/add']">Add new Product</a>
+								<a [routerLink]="['/product/add']">Add new Product</a>
 							</li>
 							<li>
-								<a [routerLink]="['product/products']">My Products</a>
+								<a [routerLink]="['/product/products']">My Products</a>
 							</li>
 						</ul>
 						<!-- //nav-second-level -->
@@ -182,15 +182,15 @@
 								class="fa arrow"></span></a>
 						<ul class="nav nav-second-level collapse" *ngIf="!isAuthenticated">
 							<li>
-								<a [routerLink]="['login']">Login</a>
+								<a [routerLink]="['/login']">Login</a>
 							</li>
 							<li>
-								<a [routerLink]="['signup']">SignUp</a>
+								<a [routerLink]="['/signup']">SignUp</a>
 							</li>
 						</ul>
 						<ul class="nav nav-second-level collapse" *ngIf="isAuthenticated">
 							<li>
-								<a [routerLink]="['profile']">Profile</a>
+								<a [routerLink]="['/profile']">Profile</a>
 								<a [routerLink]="['#']" (click)="logout();">Logout</a>
 							</li>
 						</ul>

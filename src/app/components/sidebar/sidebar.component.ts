@@ -63,6 +63,26 @@ export class SidebarComponent implements OnInit {
   }
 
   ngOnInit(): void {
-      this.loadCounts();
+    this.loadCounts();
+  }
+  ngAfterViewInit(): void {
+    document.querySelectorAll('#side-menu li').forEach((el) => {
+      el.addEventListener('click', (e) => {
+        if (el.querySelector('ul') != null) {
+          if (el.querySelector('ul').classList.contains('collapse'))
+            el.querySelector('ul').classList.remove('collapse');
+          else el.querySelector('ul').classList.add('collapse');
+
+          el.querySelector('ul li').addEventListener('click', (e) => {
+            if(window.innerWidth<800)
+              document.getElementById('sidebar').style.display = 'none';
+          })
+        } else {
+            if (window.innerWidth <800)
+               document.getElementById('sidebar').style.display = 'none';
+            
+        }
+      });
+    });
   }
 }
