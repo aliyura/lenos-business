@@ -71,7 +71,7 @@
                         <div class="profile_img">
                             <span class="prfil-img"><img src="assets/images/avatar.png" class="avatar" alt=""> </span>
                             <div class="user-name" *ngIf="isAuthenticated">
-                                <p>{{authenticatedUser.name}}</p>
+                                <p>{{authenticatedUser.name| titlecase | slice:0:13 }}..</p>
                                 <span>{{authenticatedUser.city}},{{authenticatedUser.country}}</span>
                             </div>
                             <div class="user-name" *ngIf="!isAuthenticated">
@@ -87,6 +87,7 @@
                         <!-- <li> <a href="#"><i class="fa fa-cog"></i> Settings</a> </li>
                         <li> <a href="#"><i class="fa fa-user"></i> Profile</a> </li> -->
                         <li> <a (click)="logout();" ><i class="fa fa-sign-out"></i> Logout</a> </li>
+                        <li> <a [routerLink]="['/profile']"><i class="fa fa-user"></i> My Profile</a> </li>
                     </ul>
                 </li>
             </ul>

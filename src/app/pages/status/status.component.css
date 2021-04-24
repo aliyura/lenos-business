@@ -1,14 +1,12 @@
 .errorWrapper{
-    margin-top: 30%;
-    margin-left: 12%;
+    margin-top: 33%;
+    margin: 50% auto;
 }
 .errorWrapper .material-icons.error{
-    color: red;
     font-size: 100px;
     padding: 10px;
 }
 .errorWrapper .material-icons.success{
-    color: #8BC34A;
     font-size: 100px;
     padding: 10px;
 }

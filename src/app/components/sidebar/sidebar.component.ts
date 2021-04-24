@@ -1,9 +1,9 @@
-import { AppCluster } from 'src/app/app.shared.cluster';
+import { AppCluster } from './../../app.shared.cluster';
 import { AccountType } from './../../enum/account-type.enum';
 import { CounterResponse } from './../../models/counter-response.model';
 import { StorageService } from './../../services/storage.service';
 import { CounterService } from './../../services/counter.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { User } from 'src/app/models/user.model';
 import { AuthenticationService } from 'src/app/services/authentication.service';
 import { DialogHandlerService } from 'src/app/services/dialog-handler.service';
@@ -20,6 +20,7 @@ export class SidebarComponent implements OnInit {
   appAccountType = AccountType;
 
   constructor(
+    private app:AppCluster,
     private authService: AuthenticationService,
     private dialogHandler: DialogHandlerService,
     private notification: NotificationService,
@@ -61,26 +62,39 @@ export class SidebarComponent implements OnInit {
       }
     });
   }
-
+  closeDrawer() {
+    if (window.innerWidth < 800) {
+      document.getElementById('sidebar').style.display = 'none';
+      document.getElementById('overlay').style.display = 'none';
+      this.app.enableScrolling();
+    }
+  }
   ngOnInit(): void {
     this.loadCounts();
   }
+
   ngAfterViewInit(): void {
     document.querySelectorAll('#side-menu li').forEach((el) => {
       el.addEventListener('click', (e) => {
+
         if (el.querySelector('ul') != null) {
           if (el.querySelector('ul').classList.contains('collapse'))
             el.querySelector('ul').classList.remove('collapse');
           else el.querySelector('ul').classList.add('collapse');
 
           el.querySelector('ul li').addEventListener('click', (e) => {
-            if(window.innerWidth<800)
+            if (window.innerWidth < 800) {
               document.getElementById('sidebar').style.display = 'none';
-          })
+              document.getElementById('overlay').style.display = 'none';
+              this.app.enableScrolling();
+            }
+          });
         } else {
-            if (window.innerWidth <800)
-               document.getElementById('sidebar').style.display = 'none';
-            
+          if (window.innerWidth < 800) {
+            document.getElementById('sidebar').style.display = 'none';
+            document.getElementById('overlay').style.display = 'none';
+            this.app.enableScrolling();
+          }
         }
       });
     });

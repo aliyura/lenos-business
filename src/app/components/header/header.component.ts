@@ -1,3 +1,4 @@
+import { AppCluster } from './../../app.shared.cluster';
 import { Component, OnInit } from '@angular/core';
 import { CategoryType } from 'src/app/enum/category-type.enum';
 import { NotificationType } from 'src/app/enum/notification-type.enum';
@@ -19,6 +20,7 @@ export class HeaderComponent implements OnInit {
   categories: any;
 
   constructor(
+    private app: AppCluster,
     private storage: StorageService,
     private authService: AuthenticationService
   ) {}
@@ -49,24 +51,28 @@ export class HeaderComponent implements OnInit {
   }
   toggleDrawer() {
     var display = document.getElementById('sidebar').style.display;
-    console.log(display);
     if (display.toLowerCase() == 'block') {
-      console.log('yes');
       document.getElementById('sidebar').style.display = 'none';
-      if (window.innerWidth > 800)
-        document.getElementById('page-wrapper').style.marginLeft = '0';
+      document.getElementById('overlay').style.display = 'none';
+      this.app.enableScrolling();
     } else {
       document.getElementById('sidebar').style.display = 'block';
-      if (window.innerWidth > 800)
-        document.getElementById('page-wrapper').style.marginLeft = '300px';
+      document.getElementById('overlay').style.display = 'block';
+      this.app.disableScrolling();
     }
+     if (window.innerWidth < 800)
+       document.getElementById('page-wrapper').style.marginLeft = '0';
+     else
+       document.getElementById('page-wrapper').style.marginLeft = '300px';
   }
   ngOnInit(): void {
     this.loadCategories();
   }
   ngAfterViewInit() {
-      if (window.innerWidth < 800)
-        document.getElementById('sidebar').style.display = 'none';
-
+    if (window.innerWidth < 800) {
+      document.getElementById('sidebar').style.display = 'none';
+      document.getElementById('overlay').style.display = 'none';
+      this.app.enableScrolling();
+    }
   }
 }

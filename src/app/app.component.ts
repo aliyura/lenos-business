@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { AccountType } from './enum/account-type.enum';
 import { AuthenticationService } from 'src/app/services/authentication.service';
 import { LocationService } from './services/location.service';
@@ -22,6 +23,7 @@ export class AppComponent implements OnInit {
 
   constructor(
     private app: AppCluster,
+    private router:Router,
     private storage: StorageService,
     private authService: AuthenticationService,
     private categoryService: CategoryService,
@@ -104,7 +106,6 @@ export class AppComponent implements OnInit {
 
   ngOnInit(): void {
     this.app.loadJsFile('assets/js/main.js');
-    console.log('I am called');
     //get product categories
     var categories = this.storage.getSession(Store.CATEGORY);
     if (categories == null) this.getProductCategories();
@@ -121,5 +122,13 @@ export class AppComponent implements OnInit {
           this.getCounts();
         else this.getSellerCounts();
     }
+
+    this.router.events.subscribe((event) => {
+      if (window.innerWidth < 800) {
+        document.getElementById('sidebar').style.display = 'none';
+        document.getElementById('overlay').style.display = 'none';
+        this.app.enableScrolling();
+      }
+     });
   }
 }
