@@ -4,11 +4,11 @@
 
 export const environment = {
   production: false,
-  endPoint: 'https://lenosv2.azurewebsites.net',
+  endPoint: 'http://localhost:8081',
   allowedRoutes: [
     '/business/login',
     '/business/signup',
-    '/business/verify-account',
+    '/business/verify-account'
   ],
   pageSize: 12,
   appURL: '',
