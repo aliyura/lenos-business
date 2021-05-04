@@ -71,6 +71,9 @@
                                 <select class="tf-lenos" name="size" (change)="form.validate($event)">
                                     <option readonly="" selected="" disabled="" value="">Select a Unit</option>
                                     <option value="piece">Piece</option>
+                                    <option value="set">Set</option>
+                                    <option value="yard">Yard</option>
+                                    <option value="inch">Inch</option>
                                     <option value="packet">Packet</option>
                                     <option value="dozen">Dozen</option>
                                     <option value="g">Gram</option>
@@ -256,7 +259,10 @@
                                     <option readonly="" selected="" disabled="" value="">Select Delivery Time </option>
 
                                     <option value="1">1 Day</option>
+                                    <option value="2">2 Days</option>
                                     <option value="3">3 Days</option>
+                                    <option value="4">4 Days</option>
+                                    <option value="5">5 Days</option>
                                     <option value="6">6 Days</option>
                                     <option value="8">8 Days</option>
                                     <option value="12">12 Days</option>
@@ -283,7 +289,8 @@
                                     <option readonly="" selected="" disabled="" value="">Select Payment Option</option>
                                     <option value="ANY">ANY</option>
                                     <option value="COD">Cash on Delivery Only</option>
-                                    <option value="ONLINE">Online Payment Only</option>
+                                    <option value="BANK">Online Payment Only</option>
+                                    <option value="LVCARD">Lenos Voucher Card Only</option>
                                 </select>
                             </div>
                             <div class="clearfix"> </div>

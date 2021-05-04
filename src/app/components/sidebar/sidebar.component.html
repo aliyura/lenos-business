@@ -1,9 +1,7 @@
 <ng-container *ngIf="authenticatedUser.accountType==appAccountType.ADMIN">
 	<div class="sidebar" id="sidebar">
-		<div class="overlay lenos-overlay" id="overlay" (click)="closeDrawer()">
-
-			<div class="navbar-collapse">
-				<nav class="drawer">
+		<div class="navbar-collapse">
+			<nav class="drawer">
 					<span class="fa fa-times close-trigger" (click)="closeDrawer()"></span>
 					<ul class="nav" id="side-menu">
 						<li>
@@ -114,17 +112,15 @@
 							<!-- //nav-second-level -->
 						</li>
 					</ul>
-					<!-- //sidebar-collapse -->
-				</nav>
-			</div>
+			</nav>
 		</div>
 	</div>
+
 </ng-container>
 <ng-container *ngIf="authenticatedUser.accountType==appAccountType.BUSINESS">
 	<div class="sidebar" id="sidebar">
-		<div class="overlay lenos-overlay" id="overlay" (click)="closeDrawer()">
-			<div class="navbar-collapse">
-				<nav class="drawer">
+		<div class="navbar-collapse">
+			<nav class="drawer">
 					<span class="fa fa-times close-trigger" (click)="closeDrawer()"></span>
 					<ul class="nav" id="side-menu">
 						<li>
@@ -203,9 +199,7 @@
 							<!-- //nav-second-level -->
 						</li>
 					</ul>
-					<!-- //sidebar-collapse -->
-				</nav>
-			</div>
+			</nav>
 		</div>
 	</div>
 </ng-container>

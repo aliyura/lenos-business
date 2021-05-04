@@ -1,6 +1,6 @@
 export enum PaymentOption {
   COD = 'COD',
-  ONLINE = 'ONLINE',
+  BANK = 'BANK',
   LVCARD = 'LVCARD',
   ANY = 'ANY',
 }

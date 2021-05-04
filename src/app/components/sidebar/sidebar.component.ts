@@ -65,7 +65,6 @@ export class SidebarComponent implements OnInit {
   closeDrawer() {
     if (window.innerWidth < 800) {
       document.getElementById('sidebar').style.display = 'none';
-      document.getElementById('overlay').style.display = 'none';
       this.app.enableScrolling();
     }
   }
