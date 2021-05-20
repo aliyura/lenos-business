@@ -21,6 +21,8 @@ export class Product {
   reviews: number;
   stock: string;
   images: any;
+  source: string;
+  sizes: string;
   thumbnail: any;
   remark: string;
 }
