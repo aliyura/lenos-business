@@ -3,9 +3,9 @@ import { catchError, map } from 'rxjs/operators';
 import { ApiResponse } from 'src/app/models/api-response.model';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { throwError } from 'rxjs/internal/observable/throwError';
 import { AppService } from './app.service';
 import { ProgressDialogService } from './progress-dialog.service';
+import { throwError } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',

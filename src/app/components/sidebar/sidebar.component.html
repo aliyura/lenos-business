@@ -192,7 +192,8 @@
 							</ul>
 							<ul class="nav nav-second-level collapse" *ngIf="isAuthenticated">
 								<li>
-									<a [routerLink]="['/profile']">Profile</a>
+									<a [routerLink]="['/shop']">Manage Shop</a>
+									<a [routerLink]="['/profile']">My Profile</a>
 									<a [routerLink]="['#']" (click)="logout();">Logout</a>
 								</li>
 							</ul>

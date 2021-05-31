@@ -1,3 +1,4 @@
+import { ManageShopComponent } from './pages/manage-shop/manage-shop.component';
 import { VerifyAccountComponent } from './pages/verify-account/verify-account.component';
 import { StatusComponent } from './pages/status/status.component';
 import { ReviewsComponent } from './pages/reviews/reviews.component';
@@ -45,6 +46,10 @@ const routes: Routes = [
   {
     path: 'profile',
     component: ProfileComponent,
+  },
+  {
+    path: 'shop',
+    component: ManageShopComponent,
   },
   {
     path: 'product/categories',

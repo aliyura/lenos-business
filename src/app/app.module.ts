@@ -69,6 +69,8 @@ import { OrdersComponent } from './pages/orders/orders.component';
 import { OrderDetailsComponent } from './pages/order-details/order-details.component';
 import { ReviewsComponent } from './pages/reviews/reviews.component';
 import { StatusComponent } from './pages/status/status.component';
+import { ManageShopComponent } from './pages/manage-shop/manage-shop.component';
+import { AddShopComponent } from './components/dialogs/add-shop/add-shop.component';
 
 
 export function tokenGetter() {
@@ -102,6 +104,8 @@ export function tokenGetter() {
     ReviewsComponent,
     StatusComponent,
     LoaderComponent,
+    ManageShopComponent,
+    AddShopComponent,
   ],
   imports: [
     TagInputModule,

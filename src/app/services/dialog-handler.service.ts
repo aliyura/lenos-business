@@ -1,3 +1,4 @@
+import { AddShopComponent } from './../components/dialogs/add-shop/add-shop.component';
 import { AddLocationModalDialog } from './../components/dialogs/add-location/add-location.component';
 import { Injectable } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
@@ -55,6 +56,15 @@ export class DialogHandlerService {
       },
     });
   }
+  requestAddShopDialog(title, callback) {
+    this.dialog.open(AddShopComponent, {
+      width: this.modalSize + 'px',
+      data: {
+        title: title,
+        callback: callback,
+      },
+    });
+  }
   requestEditCategoryDialog(existingCategory, title, callback) {
     this.dialog.open(AddCategoryModalDialog, {
       width: this.modalSize + 'px',
@@ -102,7 +112,7 @@ export class DialogHandlerService {
       },
     });
   }
-  requestEditLocationDialog(existingLocation:Location, title, callback) {
+  requestEditLocationDialog(existingLocation: Location, title, callback) {
     this.dialog.open(AddLocationModalDialog, {
       width: this.modalSize + 'px',
       data: {

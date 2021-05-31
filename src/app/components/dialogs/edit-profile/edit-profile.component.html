@@ -103,6 +103,15 @@
                             <option value="Lagos">Lagos</option>
                         </select>
                     </div>
+                </div>
+                <div class="sign-u col-md-6">
+                    <div class="sign-up1">
+                        <h4>RC Number <strong class="star">*</strong> :</h4>
+                    </div>
+                    <div class="sign-up2">
+                        <input type="tel" [value]="authenticatedUser.rcNumber!=null?authenticatedUser.rcNumber:''" class="tf-lenos" name="rcNumber"
+                            maxlength="11" required="true" (keyup)="form.validate($event)">
+                    </div>
                     <div class="clearfix"> </div>
                 </div>
                 <div class="sign-u col-md-12">
@@ -110,7 +119,8 @@
                         <h4>Shop Address <strong class="star">*</strong> :</h4>
                     </div>
                     <div class="sign-up2 textarea-large">
-                        <textarea class="tf-lenos"  nam="address" name="address" required="true" (keyup)="form.validate($event)">{{authenticatedUser.address}}</textarea>
+                        <textarea class="tf-lenos" nam="address" name="address" required="true"
+                            (keyup)="form.validate($event)">{{authenticatedUser.address}}</textarea>
                     </div>
                 </div>
             </div>
