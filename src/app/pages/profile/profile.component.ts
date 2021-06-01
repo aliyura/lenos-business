@@ -1,3 +1,6 @@
+import { Store } from 'src/app/enum/store.enum';
+import { StorageService } from 'src/app/services/storage.service';
+import { ApiResponse } from 'src/app/models/api-response.model';
 import { Component, OnInit } from '@angular/core';
 import { User } from 'src/app/models/user.model';
 import { AuthenticationService } from 'src/app/services/authentication.service';
@@ -10,10 +13,13 @@ import { NotificationService } from 'src/app/services/notification.service';
   styleUrls: ['./profile.component.css'],
 })
 export class ProfileComponent implements OnInit {
+  currentUser: User;
+
   constructor(
     private authService: AuthenticationService,
     private dialogHandler: DialogHandlerService,
-    private notification: NotificationService
+    private notification: NotificationService,
+    private storageService: StorageService
   ) {}
 
   get isAuthenticated() {
@@ -27,11 +33,27 @@ export class ProfileComponent implements OnInit {
     this.authService.logout();
   }
 
+  getUser() {
+    var user = this.storageService.get(Store.USER);
+    if (user != null) {
+      this.currentUser = JSON.parse(user) as User;
+    }
+  }
   editProfile() {
-    this.dialogHandler.requestEditProfileDialog('Edit Profile', (response) => {
-      console.log(response);
-    });
+    this.dialogHandler.requestEditProfileDialog(
+      'Edit Profile',
+      (response: ApiResponse) => {
+        if (response.success) {
+          console.log(response);
+          this.getUser();
+        } else {
+          this.notification.notifyError('Failed to update profile');
+        }
+      }
+    );
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.currentUser = this.authenticatedUser;
+  }
 }

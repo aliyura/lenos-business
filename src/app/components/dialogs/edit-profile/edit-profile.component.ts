@@ -78,7 +78,7 @@ export class EditProfileModalDialog implements OnInit {
             (response: ApiResponse) => {
               if (response.success) {
                 this.storage.save(Store.USER, JSON.stringify(response.payload));
-                this.callback(response.success);
+                this.callback(response);
               } else {
                 this.notification.notifyError(response.message);
               }

@@ -1,15 +1,9 @@
 import { AppCluster } from './../../app.shared.cluster';
 import { Component, OnInit } from '@angular/core';
-import { CategoryType } from 'src/app/enum/category-type.enum';
-import { NotificationType } from 'src/app/enum/notification-type.enum';
 import { Store } from 'src/app/enum/store.enum';
-import { ApiResponse } from 'src/app/models/api-response.model';
 import { User } from 'src/app/models/user.model';
 import { AuthenticationService } from 'src/app/services/authentication.service';
-import { CategoryService } from 'src/app/services/category.service';
-import { NotificationService } from 'src/app/services/notification.service';
 import { StorageService } from 'src/app/services/storage.service';
-import { List } from 'src/app/types/list.type';
 
 @Component({
   selector: 'app-header',

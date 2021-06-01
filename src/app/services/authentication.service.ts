@@ -38,34 +38,37 @@ export class AuthenticationService {
   get isAuthenticated() {
     return !this.jwtHelper.isTokenExpired(this.store.get(Store.TOKEN));
   }
-  
+
   get getBearerToken() {
     var bearer = this.store.get(Store.TOKEN);
     return bearer;
   }
-  logout(){
-    this.store.remove(Store.TOKEN)
-    this.store.remove(Store.USER)
-     location.href='/login'
+  logout() {
+    this.store.remove(Store.TOKEN);
+    this.store.remove(Store.USER);
+    location.href = '/login';
   }
 
-  public signUp(user:User) {
-    this.progressDialog.show("Please Wait..");
-    return this.http.post(this.app.endPoint+ '/api/user/signup', user, this.app.httpHeader).pipe(
-      map((response: ApiResponse) => {
-        this.progressDialog.hide()
-        return response;
-      }),
-      catchError((error) => {
-        this.progressDialog.hide();
-        let errorMessage = error.message !== undefined ? error.message : error.statusText;
-        console.log(errorMessage)
-        return throwError("Something Went Wrong");
-
-      }))
+  public signUp(user: User) {
+    this.progressDialog.show('Please Wait..');
+    return this.http
+      .post(this.app.endPoint + '/api/user/signup', user, this.app.httpHeader)
+      .pipe(
+        map((response: ApiResponse) => {
+          this.progressDialog.hide();
+          return response;
+        }),
+        catchError((error) => {
+          this.progressDialog.hide();
+          let errorMessage =
+            error.message !== undefined ? error.message : error.statusText;
+          console.log(errorMessage);
+          return throwError('Something Went Wrong');
+        })
+      );
   }
-  public updateProfile(user:User) {
-    this.progressDialog.show("Please Wait..");
+  public updateProfile(user: User) {
+    this.progressDialog.show('Please Wait..');
     return this.http
       .put(
         this.app.endPoint + '/api/user/profile/update',
@@ -87,97 +90,182 @@ export class AuthenticationService {
       );
   }
 
-  public signIn(userRequest:UserRequest) {
+  public signIn(userRequest: UserRequest) {
     this.progressDialog.show();
-    return this.http.post(this.app.endPoint+ '/api/user/signin', userRequest, this.app.httpHeader).pipe(
-      map((response: ApiResponse) => {
-        this.progressDialog.hide()
-        return response;
-      }),
-      catchError((error) => {
-        this.progressDialog.hide();
-        let errorMessage = error.message !== undefined ? error.message : error.statusText;
-        console.log(errorMessage)
-        return throwError("Something Went Wrong");
-
-      }))
+    return this.http
+      .post(
+        this.app.endPoint + '/api/user/signin',
+        userRequest,
+        this.app.httpHeader
+      )
+      .pipe(
+        map((response: ApiResponse) => {
+          this.progressDialog.hide();
+          return response;
+        }),
+        catchError((error) => {
+          this.progressDialog.hide();
+          let errorMessage =
+            error.message !== undefined ? error.message : error.statusText;
+          console.log(errorMessage);
+          return throwError('Something Went Wrong');
+        })
+      );
   }
 
-  public verifyAccount(request:UserVerificationRequest) {
-    this.progressDialog.show("Verifying..");
-    return this.http.post(this.app.endPoint+ '/api/user/verify', request, this.app.httpHeader).pipe(
-      map((response: ApiResponse) => {
-        this.progressDialog.hide()
-        return response;
-      }),
-      catchError((error) => {
-        this.progressDialog.hide();
-        let errorMessage = error.message !== undefined ? error.message : error.statusText;
-        console.log(errorMessage)
-        return throwError("Something Went Wrong");
-
-      }))
+  public verifyAccount(request: UserVerificationRequest) {
+    this.progressDialog.show('Verifying..');
+    return this.http
+      .post(
+        this.app.endPoint + '/api/user/verify',
+        request,
+        this.app.httpHeader
+      )
+      .pipe(
+        map((response: ApiResponse) => {
+          this.progressDialog.hide();
+          return response;
+        }),
+        catchError((error) => {
+          this.progressDialog.hide();
+          let errorMessage =
+            error.message !== undefined ? error.message : error.statusText;
+          console.log(errorMessage);
+          return throwError('Something Went Wrong');
+        })
+      );
   }
-  public updateUserStatus(status:Status, userId:number) {
-    return this.http.put(this.app.endPoint+ '/api/user/status/update/'+userId+'?status='+status, {}, this.app.httpAutherizedHeader).pipe(
-      map((response: ApiResponse) => {
-        return response;
-      }),
-      catchError((error) => {
-        let errorMessage = error.message !== undefined ? error.message : error.statusText;
-        console.log(errorMessage)
-        return throwError("Something Went Wrong");
-      }))
+  public updateUserStatus(status: Status, userId: number) {
+    return this.http
+      .put(
+        this.app.endPoint +
+          '/api/user/status/update/' +
+          userId +
+          '?status=' +
+          status,
+        {},
+        this.app.httpAutherizedHeader
+      )
+      .pipe(
+        map((response: ApiResponse) => {
+          return response;
+        }),
+        catchError((error) => {
+          let errorMessage =
+            error.message !== undefined ? error.message : error.statusText;
+          console.log(errorMessage);
+          return throwError('Something Went Wrong');
+        })
+      );
   }
-  public deleteUserById(userId:number){
-    return this.http.post(this.app.endPoint+ '/api/user/delete/'+userId, {}, this.app.httpAutherizedHeader).pipe(
-      map((response: ApiResponse) => {
-        return response;
-      }),
-      catchError((error) => {
-        let errorMessage = error.message !== undefined ? error.message : error.statusText;
-        console.log(errorMessage)
-        return throwError("Something Went Wrong");
-      }))
-  }
-
-  public sendOTP(request:UserRequest) {
-    this.progressDialog.show("Please Wait..");
-    return this.http.post(this.app.endPoint+ '/api/user/generate/otp', request, this.app.httpHeader).pipe(
-      map((response: ApiResponse) => {
-        this.progressDialog.hide()
-        return response;
-      }),
-      catchError((error) => {
-        this.progressDialog.hide();
-        let errorMessage = error.message !== undefined ? error.message : error.statusText;
-        console.log(errorMessage)
-        return throwError("Something Went Wrong");
-
-      }))
-  }
-
-  public getUsersByAccountType(page:number,type:AccountType) {
-    return this.http.get(this.app.endPoint+ '/api/get_users_by_account_type?type='+type+'&size='+environment.pageSize+'&page='+page, this.app.httpAutherizedHeader).pipe(
-      map((response: ApiResponse) => {
-        return response;
-      }),
-      catchError((error) => {
-        let errorMessage = error.message !== undefined ? error.message : error.statusText;
-        console.log(errorMessage);
-        return throwError("Something Went Wrong");
-      }))
-  }
-  public getUsersByRole(page:number,role:UserRole) {
-    return this.http.get(this.app.endPoint+ '/api/get_users_by_role?role='+role+'&size='+environment.pageSize+'&page='+page, this.app.httpAutherizedHeader).pipe(
-      map((response: ApiResponse) => {
-        return response;
-      }),
-      catchError((error) => {
-        let errorMessage = error.message !== undefined ? error.message : error.statusText;
-        console.log(errorMessage);
-        return throwError("Something Went Wrong");
-      }))
+  public deleteUserById(userId: number) {
+    return this.http
+      .post(
+        this.app.endPoint + '/api/user/delete/' + userId,
+        {},
+        this.app.httpAutherizedHeader
+      )
+      .pipe(
+        map((response: ApiResponse) => {
+          return response;
+        }),
+        catchError((error) => {
+          let errorMessage =
+            error.message !== undefined ? error.message : error.statusText;
+          console.log(errorMessage);
+          return throwError('Something Went Wrong');
+        })
+      );
   }
 
+  public sendOTP(request: UserRequest) {
+    this.progressDialog.show('Please Wait..');
+    return this.http
+      .post(
+        this.app.endPoint + '/api/user/generate/otp',
+        request,
+        this.app.httpHeader
+      )
+      .pipe(
+        map((response: ApiResponse) => {
+          this.progressDialog.hide();
+          return response;
+        }),
+        catchError((error) => {
+          this.progressDialog.hide();
+          let errorMessage =
+            error.message !== undefined ? error.message : error.statusText;
+          console.log(errorMessage);
+          return throwError('Something Went Wrong');
+        })
+      );
+  }
+
+  public getUsersByAccountType(page: number, type: AccountType) {
+    return this.http
+      .get(
+        this.app.endPoint +
+          '/api/get_users_by_account_type?type=' +
+          type +
+          '&size=' +
+          environment.pageSize +
+          '&page=' +
+          page,
+        this.app.httpAutherizedHeader
+      )
+      .pipe(
+        map((response: ApiResponse) => {
+          return response;
+        }),
+        catchError((error) => {
+          let errorMessage =
+            error.message !== undefined ? error.message : error.statusText;
+          console.log(errorMessage);
+          return throwError('Something Went Wrong');
+        })
+      );
+  }
+  public getUsersByRole(page: number, role: UserRole) {
+    return this.http
+      .get(
+        this.app.endPoint +
+          '/api/get_users_by_role?role=' +
+          role +
+          '&size=' +
+          environment.pageSize +
+          '&page=' +
+          page,
+        this.app.httpAutherizedHeader
+      )
+      .pipe(
+        map((response: ApiResponse) => {
+          return response;
+        }),
+        catchError((error) => {
+          let errorMessage =
+            error.message !== undefined ? error.message : error.statusText;
+          console.log(errorMessage);
+          return throwError('Something Went Wrong');
+        })
+      );
+  }
+
+  public getUserByUiid(uiid: string) {
+    return this.http
+      .get(
+        this.app.endPoint + '/api/get_user_by_uiid/' + uiid,
+        this.app.httpAutherizedHeader
+      )
+      .pipe(
+        map((response: ApiResponse) => {
+          return response;
+        }),
+        catchError((error) => {
+          let errorMessage =
+            error.message !== undefined ? error.message : error.statusText;
+          console.log(errorMessage);
+          return throwError('Something Went Wrong');
+        })
+      );
+  }
 }
