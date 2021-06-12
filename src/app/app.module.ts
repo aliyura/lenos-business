@@ -160,6 +160,7 @@ export function tokenGetter() {
   providers: [
     Title,
     AsyncPipe,
+    ExcerptPipe,
     AppCluster,
     JwtHelperService,
     {

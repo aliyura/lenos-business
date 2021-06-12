@@ -22,9 +22,6 @@
                                     <th>Thumbnail</th>
                                     <th>Name</th>
                                     <th>Category Name</th>
-                                    <th>subCategoryName</th>
-                                    <th>Payment Option</th>
-                                    <th>brand</th>
                                     <th>Price</th>
                                     <th>Created Date</th>
                                     <th>#</th>
@@ -39,17 +36,36 @@
                                                 src="https://lenosfilestorage.blob.core.windows.net/lenos-storage-container/{{product.thumbnail}}" />
                                         </td>
                                         <td [routerLink]="['/product/preview',product!.id]">
-                                            {{product!.name}}</td>
+                                            {{product!.name | slice:0:20}}..</td>
                                         <td>{{product!.categoryName}}</td>
-                                        <td>{{product!.subCategoryName}}</td>
-                                        <td>{{product!.paymentOption}}</td>
-                                        <td>{{product!.brand}}</td>
                                         <td>{{product!.price}}</td>
                                         <td>{{product!.createdDate}}</td>
                                         <td>
                                             <div class="controls row">
-                                                <div class="col-md-4">
-                                                    <ng-container *ngIf="product.vendorId!=authenticatedUser.id">
+
+                                                <div class="col-md-4" *ngIf="product.status!='PV'">
+                                                    <select
+                                                        class="btn btn-lenos btn-dynamic btn-round {{product.status}}"
+                                                        (change)="changeProductStatus($event,product)">
+                                                        <ng-container *ngIf="product.status=='AC'">
+                                                            <option value="OS">
+                                                                Out of Stock</option>
+                                                            <option selected value="AC">
+                                                                Available
+                                                            </option>
+                                                        </ng-container>
+                                                        <ng-container *ngIf="product.status=='OS'">
+                                                            <option value="OS" selected>
+                                                                Out of Stock</option>
+                                                            <option value="AC">
+                                                                Available
+                                                            </option>
+                                                        </ng-container>
+
+                                                    </select>
+                                                </div>
+                                                <div class="col-md-4" *ngIf="product.vendorId!=authenticatedUser.id">
+                                                    <ng-container>
                                                         <label class="switch" *ngIf="product!.status=='AC'">
                                                             <input type="checkbox" checked="true"
                                                                 (change)="activate($event,product)">
@@ -61,6 +77,7 @@
                                                         </label>
                                                     </ng-container>
                                                 </div>
+
                                                 <div class="col-md-4">
                                                     <button type="button" class="btn btn-round"
                                                         (click)="deleteProduct(product)">
@@ -68,11 +85,12 @@
                                                     </button>
                                                 </div>
                                                 <div class="col-md-4">
-                                                    <button type="button" [routerLink]="['product/edit',product.id]"
+                                                    <button type="button" [routerLink]="['/product/edit',product.id]"
                                                         class="btn btn-round">
                                                         <i class="fa fa-pencil" style="font-size: 20px;"></i>
                                                     </button>
                                                 </div>
+
                                             </div>
                                         </td>
                                     </ng-container>

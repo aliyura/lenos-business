@@ -66,35 +66,41 @@ export class CreateProductComponent implements OnInit {
       response['categoryId'].ok &&
       response['subCategoryId'].ok &&
       response['deliveryDays'].ok &&
-      response['paymentOption'].ok &&
+      response['stock'].ok &&
       response['price'].ok
     ) {
-      if (!parseInt(this.product.price.toString())) {
-        this.notification.notifyWarning('Only numbers allowed for Price input');
-      } else if (this.product.thumbnail == null) {
-        this.notification.notifyWarning('Product thumbnail required');
-      } else if (this.product.images == null) {
-        this.notification.notifyWarning('Product images required');
-      } else {
-        this.productService.uploadProduct(this.product).subscribe(
-          (response: ApiResponse) => {
-            if (response.success) {
-              this.notification.notifySuccess('Uploaded Successfully');
-              this.notification.showSuccess(
-                'Uploaded Successfully',
-                'product.add',
-                'Upload Another'
-              );
-            } else {
-              console.log(response.message);
-              this.notification.notifyError(response.message);
-            }
-          },
-          (err) => {
-            console.log(err)
-            this.notification.notifyError('Unable to upload the Product');
+      if (this.app.validDigits(this.product.price)) {
+        if (this.app.validDigits(this.product.stock)) {
+          if (this.product.thumbnail == null) {
+            this.notification.notifyWarning('Product thumbnail required');
+          } else if (this.product.images == null) {
+            this.notification.notifyWarning('Product images required');
+          } else {
+            this.productService.uploadProduct(this.product).subscribe(
+              (response: ApiResponse) => {
+                if (response.success) {
+                  this.notification.notifySuccess('Uploaded Successfully');
+                  this.notification.showSuccess(
+                    'Uploaded Successfully',
+                    'product.add',
+                    'Upload Another'
+                  );
+                } else {
+                  console.log(response.message);
+                  this.notification.notifyError(response.message);
+                }
+              },
+              (err) => {
+                console.log(err);
+                this.notification.notifyError('Unable to upload the Product');
+              }
+            );
           }
-        );
+        } else {
+          this.notification.notifyError('Only Number Excepted in Maximum Qunatity Input');
+        }
+      } else {
+        this.notification.notifyError('Only Number Excepted in Price Input');
       }
     }
   }

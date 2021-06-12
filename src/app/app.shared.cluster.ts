@@ -8,6 +8,11 @@ export class AppCluster {
     return regexp.test(email);
   }
 
+  validDigits(number) {
+    var regexp = new RegExp(/[0-9]/g);
+    return regexp.test(number);
+  }
+
   validMobile(number) {
     var regexp = new RegExp(/^[+]*[(]{0,1}[0-9]{1,3}[)]{0,1}[-\s\./0-9]*$/g);
     return regexp.test(number);
@@ -55,6 +60,45 @@ export class AppCluster {
     return today;
   }
 
+  decodeDuration(duration: number, type: string) {
+    var factor = [1, 7, 30, 360];
+    switch (type) {
+      case 'D':
+        return factor[0] * duration;
+      case 'W':
+        return factor[1] * duration;
+      case 'M':
+        return factor[2] * duration;
+      case 'Y':
+        return factor[3] * duration;
+      default:
+        return duration;
+    }
+  }
+  decodeStatus(status) {
+    switch (status) {
+      case 'AC':
+        return 'Available';
+      case 'PV':
+        return 'Pending Review';
+      case 'NA':
+        return 'Not Available';
+      case 'IA':
+        return 'Closed';
+      case 'RE':
+        return 'Rejected';
+      case 'PA':
+        return 'Pending Approval';
+      case 'PC':
+        return 'Payment Confirmed';
+      case 'AP':
+        return 'Approved';
+      case 'OS':
+        return 'Out of Stock';
+      default:
+        return status;
+    }
+  }
   toTimeAgo(date) {
     var d = Date.parse(date);
     var seconds = Math.floor((new Date().getTime() - d) / 1000);

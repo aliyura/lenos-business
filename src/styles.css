@@ -9,6 +9,34 @@ body {
   font-weight: normal;
   overflow-x: hidden;
 }
+.WP,
+.CA,
+.OS,
+.PA,
+.PS {
+  background: goldenrod !important;
+  font-weight: bolder;
+  color: white;
+}
+.AC,
+.CO {
+  background: green !important;
+  font-weight: bolder;
+  color: white;
+}
+.DE,
+.IA,
+.RE {
+  background: red !important;
+  font-weight: bolder;
+  color: white;
+}
+.PE,
+.PC {
+  background: #a62589 !important;
+  font-weight: bolder;
+  color: white;
+}
 .green-snackbar {
   color: #155724;
   background-color: #7ac58c;

@@ -1,13 +1,16 @@
+import { NotificationService } from './../../services/notification.service';
+import { ApiResponse } from './../../models/api-response.model';
+import { AppCluster } from 'src/app/app.shared.cluster';
 import { AccountType } from './../../enum/account-type.enum';
 import { AuthenticationService } from 'src/app/services/authentication.service';
 import { Component, OnInit } from '@angular/core';
 import { Status } from 'src/app/enum/status.enum';
-import { ApiResponse } from 'src/app/models/api-response.model';
 import { Product } from 'src/app/models/product.model';
 import { User } from 'src/app/models/user.model';
 import { DialogHandlerService } from 'src/app/services/dialog-handler.service';
 import { ProductService } from 'src/app/services/product.service';
 import { List } from 'src/app/types/list.type';
+import { TileStyler } from '@angular/material/grid-list/tile-styler';
 
 @Component({
   selector: 'app-products',
@@ -19,16 +22,18 @@ export class ProductsComponent implements OnInit {
   currentPage: number = 0;
   totalPages: number = 0;
   appAccountType = AccountType;
-  isLoading:boolean =true
+  isLoading: boolean = true;
 
   constructor(
+    public app:AppCluster,
     private authService: AuthenticationService,
     private dialogHandler: DialogHandlerService,
-    private productService: ProductService
+    private productService: ProductService,
+    private notificationService: NotificationService
   ) {}
 
   private getProducts(page: number) {
-    this.isLoading=true
+    this.isLoading = true;
     this.productService.getAllProducts(page).subscribe(
       (response: ApiResponse) => {
         this.isLoading = false;
@@ -38,13 +43,13 @@ export class ProductsComponent implements OnInit {
         }
       },
       (err) => {
-         this.isLoading = false;
+        this.isLoading = false;
         console.log(err);
       }
     );
   }
   private getProductsBySeller(sellerId: number, page: number) {
-     this.isLoading = true;
+    this.isLoading = true;
     this.productService.getAllProductsBySeller(sellerId, page).subscribe(
       (response: ApiResponse) => {
         this.isLoading = false;
@@ -60,6 +65,16 @@ export class ProductsComponent implements OnInit {
     );
   }
 
+  changeProductStatus(e, product) {
+    var newStatus = e.target.value;
+    this.productService.updateProductStatus(newStatus, product.id).subscribe((response: ApiResponse) => {
+      if (response.success) {
+        this.notificationService.notifySuccess("Request Successfull")
+      } else {
+        this.notificationService.notifyError("Request Failed")
+      }
+    }, (err) => this.notificationService.notifyError(err));
+  }
   error(e) {
     e.target.src = '/assets/images/notfound.png';
   }

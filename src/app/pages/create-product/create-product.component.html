@@ -281,17 +281,10 @@
                         </div>
                         <div class="sign-u col-md-6">
                             <div class="sign-up1">
-                                <h4>Payment Option<strong class="star">*</strong> :</h4>
+                                <h4>Maximum Quantity<strong class="star">*</strong> :</h4>
                             </div>
                             <div class="sign-up2">
-                                <select class="tf-lenos" name="paymentOption" maxlength="11" required="true"
-                                    (change)="form.validate($event)">
-                                    <option readonly="" selected="" disabled="" value="">Select Payment Option</option>
-                                    <option value="ANY">ANY</option>
-                                    <option value="COD">Cash on Delivery Only</option>
-                                    <option value="BANK">Online Payment Only</option>
-                                    <option value="LVCARD">Lenos Voucher Card Only</option>
-                                </select>
+                                <input type="number" class="tf-lenos" name="stock" required="true" (keyup)="form.validate($event)">
                             </div>
                             <div class="clearfix"> </div>
                         </div>
