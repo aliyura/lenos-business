@@ -38,13 +38,12 @@ export class SignupComponent implements OnInit {
   public loadLocations() {
     try {
       var locations = this.storage.getSession(Store.LOCATIONS);
-      console.log(locations);
       if (locations != null) {
         this.locations = JSON.parse(locations);
       } else {
-        this.app.monitor(() => {
-          this.loadLocations();
-         },1000)
+        setTimeout(() => {
+           this.loadLocations();
+        }, 300);
       }
     } catch (ex) {
       console.log(ex);
