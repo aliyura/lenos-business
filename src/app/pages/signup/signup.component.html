@@ -67,7 +67,7 @@
                     </div>
                     <div class="sign-up2">
                         <select class="tf-lenos" name="city" (change)="form.validate($event)" required="true">
-                            <option disabled value="" selected>-- Choose State --</option>
+                            <option value="" selected>-- Choose State --</option>
                             <option *ngFor="let loc of locations" [value]="loc.description">{{loc.description}}</option>
                         </select>
                     </div>

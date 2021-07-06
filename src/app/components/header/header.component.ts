@@ -47,11 +47,9 @@ export class HeaderComponent implements OnInit {
     var display = document.getElementById('sidebar').style.display;
     if (display.toLowerCase() == 'block') {
       document.getElementById('sidebar').style.display = 'none';
-      document.getElementById('overlay').style.display = 'none';
       this.app.enableScrolling();
     } else {
       document.getElementById('sidebar').style.display = 'block';
-      document.getElementById('overlay').style.display = 'block';
       this.app.disableScrolling();
     }
      if (window.innerWidth < 800)
@@ -61,12 +59,5 @@ export class HeaderComponent implements OnInit {
   }
   ngOnInit(): void {
     this.loadCategories();
-  }
-  ngAfterViewInit() {
-    if (window.innerWidth < 800) {
-      document.getElementById('sidebar').style.display = 'none';
-      document.getElementById('overlay').style.display = 'none';
-      this.app.enableScrolling();
-    }
   }
 }

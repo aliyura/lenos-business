@@ -6,8 +6,14 @@
             <div class="login-top left">
                 <h3>Order Details»</h3>
             </div>
+            
             <ng-container *ngIf="isOderLoading">
+
+            <div class="tables">
+                <div class="bs-example widget-shadow" data-example-id="hoverable-table">
                 <app-loader></app-loader>
+                </div>
+            </div>
             </ng-container>
             <ng-container class="container" *ngIf="order!=null && !isOderLoading">
                 <div class="content row">
@@ -97,32 +103,40 @@
                         <h3>Products »</h3>
                     </div>
                     <ng-container *ngIf="isOrderDetailsLoading">
+
+            <div class="tables">
+                <div class="bs-example widget-shadow" data-example-id="hoverable-table">
                         <app-loader></app-loader>
+                        </div>
+                        </div>
                     </ng-container>
                     <ng-container *ngIf="orderDetails!=null && !isOrderDetailsLoading">
 
                         <div class="card row" *ngFor="let ordeDetail of orderDetails">
+                        
                             <div class="product-image">
-                                <img class="img img-responsive" src="assets/images/notfound.png" />
+                                <a href="https://lenos.com.ng/product-details/{{ordeDetail.product.id}}">
+                                <img class="img img-responsive" src="https://lenosfilestorage.blob.core.windows.net/lenos-storage-container/{{ordeDetail.product.thumbnail}}" onerror="error(this)" />
+                                </a>
                             </div>
                             <div class="product-data row">
                                 <div class="col-md-4">
                                     <h4>Product Name</h4>
-                                    <p>{{ordeDetail!.productName}}</p>
+                                    <p>{{ordeDetail.product.name}}</p>
                                     <h4>Quantity</h4>
-                                    <p>{{ordeDetail.quantity}}</p>
+                                    <p>{{ordeDetail.details.quantity}}</p>
                                 </div>
                                 <div class="col-md-4">
                                     <h4>Seller Name</h4>
-                                    <p>{{ordeDetail!.sellerName!=null?ordeDetail!.sellerName:'Unknown'}}</p>
+                                    <p>{{ordeDetail.details.sellerName}}</p>
                                     <h4>Seller Contact</h4>
-                                    <p>{{ordeDetail!.sellerContact!=null? ordeDetail!.sellerContact:'Not Defined'}}</p>
+                                    <p>{{ordeDetail.details.sellerContact}}</p>
                                 </div>
                                 <div class="col-md-4">
                                     <h4>Size</h4>
-                                    <p>{{ordeDetail!.price}}</p>
+                                    <p>{{app.toMoney(ordeDetail.product.price)}}</p>
                                     <h4>Color</h4>
-                                    <p>{{ordeDetail!.color}}</p>
+                                    <p>{{ordeDetail.product.color}}</p>
                                 </div>
                             </div>
                         </div>

@@ -123,12 +123,5 @@ export class AppComponent implements OnInit {
         else this.getSellerCounts();
     }
 
-    this.router.events.subscribe((event) => {
-      if (window.innerWidth < 800) {
-        document.getElementById('sidebar').style.display = 'none';
-        document.getElementById('overlay').style.display = 'none';
-        this.app.enableScrolling();
-      }
-     });
   }
 }

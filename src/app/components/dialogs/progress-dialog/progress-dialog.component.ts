@@ -14,11 +14,7 @@ export class ProgressDialogComponent implements OnInit {
     this.content = data.content
    }
 
- ngAfterViewInit(): void {
-   var container = document.getElementById('mat-dialog-1');
-   container.setAttribute('class', '');
-   console.log(container);
- }
+
   ngOnInit(): void {
   
   }

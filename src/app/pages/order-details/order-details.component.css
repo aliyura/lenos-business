@@ -82,3 +82,14 @@ h4 {
   padding: 15px;
   margin-top: 0;
 }
+
+@media(max-width:800px){
+  .product-data .col-md-4{
+    margin-bottom: 1em;
+    border-bottom: 1px solid #777;
+
+  }
+  .product-data .col-md-4 p{
+    margin-bottom: 15px;
+  } 
+}

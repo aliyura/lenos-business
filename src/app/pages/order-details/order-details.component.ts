@@ -23,19 +23,24 @@ export class OrderDetailsComponent implements OnInit {
   isOrderDetailsLoading: boolean = true;
 
   constructor(
-    public app:AppCluster,
+    public app: AppCluster,
     private route: ActivatedRoute,
     private dialogHandler: DialogHandlerService,
     private orderService: OrderService
   ) {}
 
+  error(e) {
+    e.target.src = '/assets/images/notfound.png';
+  }
+
   private getOrder(orderId: number) {
-    this.isOderLoading=true
+    this.isOderLoading = true;
     this.orderService.getOrderByOrderId(orderId).subscribe(
       (response: ApiResponse) => {
         this.isOderLoading = false;
         if (response.success) {
           this.order = response.payload;
+          console.log(this.order);
         }
       },
       (err) => {
@@ -45,13 +50,14 @@ export class OrderDetailsComponent implements OnInit {
     );
   }
   private getOrderDetails(orderId: number) {
+    console.log('Loading details....');
     this.isOrderDetailsLoading = true;
     this.orderService.getOrderDetailsByOrderId(orderId).subscribe(
       (response: ApiResponse) => {
         this.isOrderDetailsLoading = false;
+        console.log(response);
         if (response.success) {
           this.orderDetails = response.payload;
-          console.log(this.orderDetails);
         }
       },
       (err) => {
@@ -95,7 +101,7 @@ export class OrderDetailsComponent implements OnInit {
       }
     );
   }
-  
+
   ngOnInit(): void {
     var id = this.route.snapshot.paramMap.get('id');
     this.getOrder(parseInt(id));

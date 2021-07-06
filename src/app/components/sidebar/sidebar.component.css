@@ -39,6 +39,9 @@
   .close-trigger {
       display: block;
   }
+  .sidebar{
+    display: none;
+  }
 }
 @media (max-width: 768px) {
   .drawer {
