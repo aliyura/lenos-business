@@ -19,7 +19,7 @@ export class OrdersComponent implements OnInit {
   currentPage: number = 0;
   totalPages: number = 0;
   appAccountType = AccountType;
-  statusActions: Array<string> = ['IA', 'PV', 'PC', 'DP', 'PP', 'DV'];
+  statusActions: Array<string> = ['IA', 'PV', 'PC','OC', 'DP', 'PP', 'DV'];
   isLoading: boolean = true;
 
   constructor(

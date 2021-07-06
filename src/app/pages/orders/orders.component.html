@@ -30,7 +30,7 @@
                             <tbody>
                                 <tr *ngFor="let order of orders">
                                     <th scope="row">{{order!.id}}</th>
-                                    <td><a [routerLink]="['/product/order/details',order!.id]" class="link">{{order!.transactionId}}</a></td>
+                                    <td><a [routerLink]="['/product/order/details',order!.id]" class="link">{{order!.transactionId.substr(0,12)}}...</a></td>
                                     <td>{{order!.paymentReferenceId!=null?order!.paymentReferenceId:'No Payment'}}</td>
                                     <td>{{order!.paymentOption}}</td>
                                     <td>{{order!.totalAmount}}</td>
@@ -54,6 +54,9 @@
                                                     value="{{status}}">
                                                     Payment Confirmed
                                                 </option>
+                                                <option *ngIf="order.status==status && status=='OC'" selected value="{{status}}">
+                                                    Order Confirmed
+                                                </option>
                                                 <option *ngIf="order.status==status && status=='DP'" selected
                                                     value="{{status}}">
                                                     Delivery Progress
@@ -70,6 +73,8 @@
                                                 </option>
                                                 <option value="{{status}}" *ngIf="status=='PP'">Pending Payment</option>
                                                 <option value="{{status}}" *ngIf="status=='PC'">Payment Confirmed
+                                                </option>
+                                                <option value="{{status}}" *ngIf="status=='OC'">Order Confirmed
                                                 </option>
                                                 <option value="{{status}}" *ngIf="status=='DP'">Delivery Progress
                                                 </option>
