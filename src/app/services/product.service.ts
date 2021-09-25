@@ -17,7 +17,7 @@ export class ProductService {
     private progressDialog: ProgressDialogService,
     private http: HttpClient,
     private app: AppService
-  ) {}
+  ) { }
 
   public uploadProduct(product: Product) {
     var form = new FormData();
@@ -56,14 +56,47 @@ export class ProductService {
       );
   }
 
-  public getAllProducts(page: number) {
+  public updateProduct(product: Product) {
+    var form = new FormData();
+    if (product.thumbnail != null)
+      form.append('thumbnail', product.thumbnail[0]);
+
+    if (product.images != null)
+      for (var i = 0; i < product.images.length; i++)
+        form.append('images', product.images[i]);
+
+    delete product.images;
+    delete product.thumbnail;
+    form.append('data', JSON.stringify(product));
+
+    console.log(product);
+
+    this.progressDialog.show('Please Wait..');
+    return this.http
+      .post(
+        this.app.endPoint + '/api/product/edit',
+        form,
+        this.app.httpAutherizedMediaHeader
+      )
+      .pipe(
+        map((response: ApiResponse) => {
+          this.progressDialog.hide();
+          return response;
+        }),
+        catchError((error) => {
+          this.progressDialog.hide();
+          let errorMessage =
+            error.message !== undefined ? error.message : error.statusText;
+          console.log(errorMessage);
+          return throwError('Something Went Wrong');
+        })
+      );
+  }
+
+  public getProduct(productId) {
     return this.http
       .get(
-        this.app.endPoint +
-          '/api/product/get_all?page=' +
-          page +
-          '&size=' +
-          environment.pageSize,
+        this.app.endPoint + '/api/product/get_by_id/' + productId,
         this.app.httpAutherizedHeader
       )
       .pipe(
@@ -78,16 +111,40 @@ export class ProductService {
         })
       );
   }
+
+  public getAllProducts(page: number) {
+    return this.http
+      .get(
+        this.app.endPoint +
+        '/api/product/get_all?page=' +
+        page +
+        '&size=' +
+        environment.pageSize,
+        this.app.httpAutherizedHeader
+      )
+      .pipe(
+        map((response: ApiResponse) => {
+          return response;
+        }),
+        catchError((error) => {
+          let errorMessage =
+            error.message !== undefined ? error.message : error.statusText;
+          console.log(errorMessage);
+          return throwError('Something Went Wrong');
+        })
+      );
+  }
+
   public getAllProductsBySeller(sellerId: number, page: number) {
     return this.http
       .get(
         this.app.endPoint +
-          '/api/product/get_all_by_seller/' +
-          sellerId +
-          '?page=' +
-          page +
-          '&size=' +
-          environment.pageSize,
+        '/api/product/get_all_by_seller/' +
+        sellerId +
+        '?page=' +
+        page +
+        '&size=' +
+        environment.pageSize,
         this.app.httpAutherizedHeader
       )
       .pipe(
@@ -106,10 +163,10 @@ export class ProductService {
     return this.http
       .put(
         this.app.endPoint +
-          '/api/product/status/update/' +
-          productId +
-          '?status=' +
-          status,
+        '/api/product/status/update/' +
+        productId +
+        '?status=' +
+        status,
         {},
         this.app.httpAutherizedHeader
       )

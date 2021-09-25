@@ -25,12 +25,11 @@ export class CreateProductComponent implements OnInit {
   subCategories: List<SubCategory>;
   form: FormValidator;
   product: Product;
-  locations:List<Location>
+  locations: List<Location>
 
   constructor(
     private app: AppCluster,
-    private router: Router,
-    private storage:StorageService,
+    private storage: StorageService,
     private productService: ProductService,
     private categoryService: CategoryService,
     private notification: NotificationService
@@ -55,12 +54,11 @@ export class CreateProductComponent implements OnInit {
   }
 
   public uploadProduct() {
+    var edited = this.product == null ? false : true;
     this.form.revalidate();
     let response = this.form.response;
     this.product = this.form.data;
     delete this.product['null'];
-
-    console.log(this.product);
     if (
       response['name'].ok &&
       response['categoryId'].ok &&
@@ -71,17 +69,43 @@ export class CreateProductComponent implements OnInit {
     ) {
       if (this.app.validDigits(this.product.price)) {
         if (this.app.validDigits(this.product.stock)) {
-          if (this.product.thumbnail == null) {
-            this.notification.notifyWarning('Product thumbnail required');
-          } else if (this.product.images == null) {
-            this.notification.notifyWarning('Product images required');
-          } else {
-            this.productService.uploadProduct(this.product).subscribe(
+
+
+          if (!edited) {
+            if (this.product.thumbnail == null) {
+              this.notification.notifyWarning('Product thumbnail required');
+            } else if (this.product.images == null) {
+              this.notification.notifyWarning('Product images required');
+            }
+            else {
+              this.productService.uploadProduct(this.product).subscribe(
+                (response: ApiResponse) => {
+                  if (response.success) {
+                    this.notification.notifySuccess('Uploaded Successfully');
+                    this.notification.showSuccess(
+                      'Uploaded Successfully',
+                      'product.add',
+                      'Upload Another'
+                    );
+                  } else {
+                    console.log(response.message);
+                    this.notification.notifyError(response.message);
+                  }
+                },
+                (err) => {
+                  console.log(err);
+                  this.notification.notifyError('Unable to upload the Product');
+                }
+              );
+            }
+          }
+          else {
+            this.productService.updateProduct(this.product).subscribe(
               (response: ApiResponse) => {
                 if (response.success) {
                   this.notification.notifySuccess('Uploaded Successfully');
                   this.notification.showSuccess(
-                    'Uploaded Successfully',
+                    'Saved Successfully',
                     'product.add',
                     'Upload Another'
                   );
@@ -132,6 +156,10 @@ export class CreateProductComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    var productId = this.app.getURLParameter(window.location.href);
+    this.productService.getProduct(productId).subscribe((response: ApiResponse) => {
+      this.product = response.payload as Product;
+    });
     this.loadLocations();
     this.getAllCategories();
   }

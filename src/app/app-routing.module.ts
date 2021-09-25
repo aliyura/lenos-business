@@ -42,14 +42,17 @@ const routes: Routes = [
   {
     path: 'verify-account',
     component: VerifyAccountComponent,
+    canActivate: [AuthGuard],
   },
   {
     path: 'profile',
     component: ProfileComponent,
+    canActivate: [AuthGuard],
   },
   {
     path: 'shop',
     component: ManageShopComponent,
+    canActivate: [AuthGuard],
   },
   {
     path: 'product/categories',

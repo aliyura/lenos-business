@@ -10,11 +10,11 @@ import { StorageService } from './storage.service';
 export class AppService {
 
   endPoint = environment.endPoint
-  
+
   constructor(
     private store:StorageService
   ) {}
-  
+
   get httpAutherizedHeader(){
      var httpOptions = {
       headers: new HttpHeaders({
@@ -23,7 +23,7 @@ export class AppService {
       })
     }
     return httpOptions;
-  } 
+  }
   get httpAutherizedMediaHeader(){
     var httpOptions = {
      headers: new HttpHeaders({
@@ -32,8 +32,8 @@ export class AppService {
      })
    }
    return httpOptions;
- } 
- 
+ }
+
   get httpHeader(){
     var httpOptions = {
      headers: new HttpHeaders({
@@ -41,6 +41,6 @@ export class AppService {
      })
    }
    return httpOptions;
- }   
+ }
 
 }
