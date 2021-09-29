@@ -26,6 +26,7 @@ export class CreateProductComponent implements OnInit {
   form: FormValidator;
   product: Product;
   locations: List<Location>
+  editing: Boolean = false;
 
   constructor(
     private app: AppCluster,
@@ -54,7 +55,7 @@ export class CreateProductComponent implements OnInit {
   }
 
   public uploadProduct() {
-    var edited = this.product == null ? false : true;
+    this.editing = this.product == null ? false : true;
     this.form.revalidate();
     let response = this.form.response;
     this.product = this.form.data;
@@ -71,7 +72,27 @@ export class CreateProductComponent implements OnInit {
         if (this.app.validDigits(this.product.stock)) {
 
 
-          if (!edited) {
+          if (this.editing) {
+            this.productService.updateProduct(this.product).subscribe(
+              (response: ApiResponse) => {
+                if (response.success) {
+                  this.notification.notifySuccess('Uploaded Successfully');
+                  this.notification.showSuccess(
+                    'Saved Successfully',
+                    'product.add',
+                    'Upload Another'
+                  );
+                } else {
+                  console.log(response.message);
+                  this.notification.notifyError(response.message);
+                }
+              },
+              (err) => {
+                console.log(err);
+                this.notification.notifyError('Unable to upload the Product');
+              }
+            );
+          } else {
             if (this.product.thumbnail == null) {
               this.notification.notifyWarning('Product thumbnail required');
             } else if (this.product.images == null) {
@@ -99,27 +120,7 @@ export class CreateProductComponent implements OnInit {
               );
             }
           }
-          else {
-            this.productService.updateProduct(this.product).subscribe(
-              (response: ApiResponse) => {
-                if (response.success) {
-                  this.notification.notifySuccess('Uploaded Successfully');
-                  this.notification.showSuccess(
-                    'Saved Successfully',
-                    'product.add',
-                    'Upload Another'
-                  );
-                } else {
-                  console.log(response.message);
-                  this.notification.notifyError(response.message);
-                }
-              },
-              (err) => {
-                console.log(err);
-                this.notification.notifyError('Unable to upload the Product');
-              }
-            );
-          }
+
         } else {
           this.notification.notifyError('Only Number Excepted in Maximum Qunatity Input');
         }
