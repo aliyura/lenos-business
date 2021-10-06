@@ -1,6 +1,6 @@
 export const environment = {
   production: true,
-  endPoint: 'https://server.lenos.com.ng',
+  endPoint: 'https://lenoscloud.com',
   allowedRoutes: [
     '/business/login',
     '/business/signup',
