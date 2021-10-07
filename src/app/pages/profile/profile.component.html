@@ -5,7 +5,7 @@
         <div class="main-page">
             <div class="widget-shadow" *ngIf="isAuthenticated">
                 <div class="profile-top">
-                    <img class="logo" src="{{currentUser.dp!=null?'https://lenosfilestorage.blob.core.windows.net/lenos-storage-container/'+currentUser.dp:'assets/images/avatar.png'}}" alt="">
+                    <img class="logo" src="{{currentUser.dp!=null?'https://lenos.s3.amazonaws.com/pictures/'+currentUser.dp:'assets/images/avatar.png'}}" alt="">
                     <h4>{{currentUser.name}}</h4>
                     <h5>{{currentUser.rcNumber!=null?currentUser.rcNumber:'No CAC registration'|uppercase}}
                     </h5>

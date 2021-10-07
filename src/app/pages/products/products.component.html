@@ -33,7 +33,7 @@
                                         <th scope="row">1</th>
                                         <td [routerLink]="['/product/preview',product!.id]">
                                             <img class="img img-responsive product-image" (error)="error($event);"
-                                                src="https://lenosfilestorage.blob.core.windows.net/lenos-storage-container/{{product.thumbnail}}" />
+                                                src="https://lenos.s3.amazonaws.com/pictures/{{product.thumbnail}}" />
                                         </td>
                                         <td [routerLink]="['/product/preview',product!.id]">
                                             {{product!.name | slice:0:20}}..</td>
