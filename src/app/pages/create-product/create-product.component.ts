@@ -71,7 +71,6 @@ export class CreateProductComponent implements OnInit {
       if (this.app.validDigits(this.product.price)) {
         if (this.app.validDigits(this.product.stock)) {
 
-
           if (this.editing) {
             this.productService.updateProduct(this.product).subscribe(
               (response: ApiResponse) => {
