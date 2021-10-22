@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  endPoint: 'https://lenoscloud.com',
+  endPoint: 'http://localhost:8081',
   storageURL:'https://lenos.s3.amazonaws.com/pictures/',
   tokenBaseEndpoint: "http://localhost:8081/oauth/token",
   googleClientId:"976377509430-tpou8clvmkhfr2fqsrrnof9qce51nonb.apps.googleusercontent.com",
