@@ -5,6 +5,13 @@
 export const environment = {
   production: false,
   endPoint: 'https://lenoscloud.com',
+  storageURL:'https://lenos.s3.amazonaws.com/pictures/',
+  tokenBaseEndpoint: "http://localhost:8081/oauth/token",
+  googleClientId:"976377509430-tpou8clvmkhfr2fqsrrnof9qce51nonb.apps.googleusercontent.com",
+  facebookAppId:"319321306084195",
+  clientId: "web-client",
+  clientSecret: "password",
+  grantType: "password",
   allowedRoutes: [
     '/business/login',
     '/business/signup',

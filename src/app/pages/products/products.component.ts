@@ -11,6 +11,7 @@ import { DialogHandlerService } from 'src/app/services/dialog-handler.service';
 import { ProductService } from 'src/app/services/product.service';
 import { List } from 'src/app/types/list.type';
 import { TileStyler } from '@angular/material/grid-list/tile-styler';
+import { LoginToken } from 'src/app/models/login-token';
 
 @Component({
   selector: 'app-products',
@@ -148,7 +149,7 @@ export class ProductsComponent implements OnInit {
     return this.authService.isAuthenticated;
   }
   get authenticatedUser() {
-    return this.authService.authenticatedUser as User;
+    return this.authService.authenticatedUser as LoginToken;
   }
 
   ngOnInit(): void {

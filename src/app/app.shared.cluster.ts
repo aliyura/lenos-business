@@ -1,5 +1,7 @@
 import { throwError } from 'rxjs';
+import { Injectable } from "@angular/core";
 
+@Injectable()
 export class AppCluster {
   validEmail(email) {
     var regexp = new RegExp(

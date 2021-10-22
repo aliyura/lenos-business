@@ -16,7 +16,7 @@ export class AuthGuardService implements CanActivate {
     if (currentUser != null) {
       var accountType = currentUser.accountType;
       if (!this.authService.isAuthenticated) {
-        this.router.navigate(['login']);
+        this.router.navigate(['/login']);
         return false;
       }
       if (
@@ -25,11 +25,11 @@ export class AuthGuardService implements CanActivate {
       )
         return true;
       else {
-        this.router.navigate(['login']);
+        this.router.navigate(['/login']);
         return false;
       }
     } else {
-      this.router.navigate(['login']);
+      this.router.navigate(['/login']);
       return false;
     }
   }

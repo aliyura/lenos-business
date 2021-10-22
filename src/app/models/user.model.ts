@@ -1,7 +1,7 @@
 export class User {
     public id:number;
     public role:string;
-    public uiid:string;
+    public uuid:string;
     public name:string;
     public email:string;
     public gender:string;
@@ -13,9 +13,11 @@ export class User {
     public confirmPassword:string;
     public rcNumber:string;
     public status:string;
-    public address: string;
-    public dp: string;
+    public address:string;
     public country:string;
+    public dp:string;
+    public thirdPartyToken:string;
+    public authProvider:string;
     public city:string;
     public location:string;
     public lastLoginDate:string;

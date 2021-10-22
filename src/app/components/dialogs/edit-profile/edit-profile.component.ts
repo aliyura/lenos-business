@@ -4,6 +4,7 @@ import { AppCluster } from 'src/app/app.shared.cluster';
 import { Store } from 'src/app/enum/store.enum';
 import { ApiResponse } from 'src/app/models/api-response.model';
 import { Category } from 'src/app/models/category.model';
+import { LoginToken } from 'src/app/models/login-token';
 import { User } from 'src/app/models/user.model';
 import { AuthenticationService } from 'src/app/services/authentication.service';
 import { CategoryService } from 'src/app/services/category.service';
@@ -42,12 +43,12 @@ export class EditProfileModalDialog implements OnInit {
     return this.authService.isAuthenticated;
   }
   get authenticatedUser(){
-    return this.authService.authenticatedUser as User;
+    return this.authService.authenticatedUser as LoginToken;
   }
   logout(){
-    this.authService.logout(); 
+    this.authService.logout();
   }
-  
+
   updateProfile() {
       this.form.revalidate();
       let response = this.form.response;
@@ -60,7 +61,7 @@ export class EditProfileModalDialog implements OnInit {
         response['city'].ok &&
         response['address'].ok
        ) {
-        
+
         if (!this.app.validEmail(this.user.email)) {
           this.notification.notifyWarning('Invalid Email Address');
         } else if (!this.app.validMobile(this.user.mobile)) {
@@ -73,7 +74,7 @@ export class EditProfileModalDialog implements OnInit {
               this.user.mobile = this.user.mobile.replace(/^0/, '+234');
             else this.user.mobile = '+234' + this.user.mobile;
           }
-         
+
           this.authService.updateProfile(this.user).subscribe(
             (response: ApiResponse) => {
               if (response.success) {
@@ -89,7 +90,7 @@ export class EditProfileModalDialog implements OnInit {
             }
           );
         }
-      }    
+      }
   }
 
   ngOnInit(): void {}

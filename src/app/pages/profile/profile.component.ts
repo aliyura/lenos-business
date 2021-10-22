@@ -6,6 +6,7 @@ import { User } from 'src/app/models/user.model';
 import { AuthenticationService } from 'src/app/services/authentication.service';
 import { DialogHandlerService } from 'src/app/services/dialog-handler.service';
 import { NotificationService } from 'src/app/services/notification.service';
+import { LoginToken } from 'src/app/models/login-token';
 
 @Component({
   selector: 'app-profile',
@@ -13,7 +14,7 @@ import { NotificationService } from 'src/app/services/notification.service';
   styleUrls: ['./profile.component.css'],
 })
 export class ProfileComponent implements OnInit {
-  currentUser: User;
+  currentUser: LoginToken;
 
   constructor(
     private authService: AuthenticationService,
@@ -26,7 +27,7 @@ export class ProfileComponent implements OnInit {
     return this.authService.isAuthenticated;
   }
   get authenticatedUser() {
-    return this.authService.authenticatedUser as User;
+    return this.authService.authenticatedUser as LoginToken;
   }
 
   logout() {
@@ -36,7 +37,7 @@ export class ProfileComponent implements OnInit {
   getUser() {
     var user = this.storageService.get(Store.USER);
     if (user != null) {
-      this.currentUser = JSON.parse(user) as User;
+      this.currentUser = JSON.parse(user) as LoginToken;
     }
   }
   editProfile() {

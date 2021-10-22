@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
 import { AddCategoryModalDialog } from './add-category.component';
 
@@ -6,7 +6,7 @@ describe('AddCategoryComponent', () => {
   let component: AddCategoryModalDialog;
   let fixture: ComponentFixture<AddCategoryModalDialog>;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [ AddCategoryModalDialog ]
     })

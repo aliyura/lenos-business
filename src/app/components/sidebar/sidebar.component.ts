@@ -9,6 +9,7 @@ import { AuthenticationService } from 'src/app/services/authentication.service';
 import { DialogHandlerService } from 'src/app/services/dialog-handler.service';
 import { NotificationService } from 'src/app/services/notification.service';
 import { Store } from 'src/app/enum/store.enum';
+import { LoginToken } from 'src/app/models/login-token';
 
 @Component({
   selector: 'app-sidebar',
@@ -31,10 +32,10 @@ export class SidebarComponent implements OnInit {
     return this.authService.isAuthenticated;
   }
   get authenticatedUser() {
-    return this.authService.authenticatedUser as User;
+    return this.authService.authenticatedUser as LoginToken;
   }
   logout() {
-    
+
     this.authService.logout();
   }
 

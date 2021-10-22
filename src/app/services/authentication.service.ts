@@ -9,10 +9,13 @@ import { Status } from '../enum/status.enum';
 import { Store } from '../enum/store.enum';
 import { UserRole } from '../enum/user-role.enum';
 import { ApiResponse } from '../models/api-response.model';
+import { Login } from '../models/login';
+import { LoginToken } from '../models/login-token';
 import { UserRequest } from '../models/user-request.model';
 import { UserVerificationRequest } from '../models/user-verification-request.model';
 import { User } from '../models/user.model';
 import { AppService } from './app.service';
+import { NotificationService } from './notification.service';
 import { ProgressDialogService } from './progress-dialog.service';
 import { StorageService } from './storage.service';
 
@@ -20,23 +23,32 @@ import { StorageService } from './storage.service';
   providedIn: 'root',
 })
 export class AuthenticationService {
+
+
+  clientId = environment.clientId;
+  clientSecret = environment.clientSecret;
+  tokenEndpoint = environment.tokenBaseEndpoint;
+
+
+
   constructor(
     private app: AppService,
     private http: HttpClient,
     public jwtHelper: JwtHelperService,
     private store: StorageService,
+    private notificationService: NotificationService,
     private progressDialog: ProgressDialogService
-  ) {}
+  ) { }
 
   get authenticatedUser() {
-    var appUser: User;
+    var appUser: LoginToken;
     var user = this.store.get(Store.USER);
-    if (user != null) appUser = JSON.parse(user) as User;
+    if (user != null) appUser = JSON.parse(user) as LoginToken;
     return appUser;
   }
 
   get isAuthenticated() {
-    return !this.jwtHelper.isTokenExpired(this.store.get(Store.TOKEN));
+    return !!this.store.get(Store.TOKEN);
   }
 
   get getBearerToken() {
@@ -90,27 +102,57 @@ export class AuthenticationService {
       );
   }
 
-  public signIn(userRequest: UserRequest) {
-    this.progressDialog.show();
-    return this.http
-      .post(
-        this.app.endPoint + '/api/user/signin',
-        userRequest,
-        this.app.httpHeader
-      )
+  signIn(login: Login) {
+    console.log(login)
+    this.progressDialog.show("")
+    let params = new URLSearchParams();
+    params.append('grant_type', login.grant_type);
+    params.append('username', login.username);
+    params.append('password', login.password);
+    if (login.oauth_token != null)
+      params.append('oauth_token', login.oauth_token)
+
+    const basicAuth = 'Basic ' + btoa(this.clientId + ':' + this.clientSecret);
+    console.log(basicAuth);
+
+    let headers = new HttpHeaders(
+      {
+        'Content-type': 'application/x-www-form-urlencoded',
+        'Authorization': basicAuth
+      });
+
+    return this.http.post(this.tokenEndpoint, params.toString(), { headers: headers })
       .pipe(
-        map((response: ApiResponse) => {
+        map((token: LoginToken) => {
           this.progressDialog.hide();
-          return response;
+          return token;
         }),
         catchError((error) => {
+          console.log(error)
           this.progressDialog.hide();
-          let errorMessage =
-            error.message !== undefined ? error.message : error.statusText;
+          let errorMessage = error.error.error_description;
           console.log(errorMessage);
-          return throwError('Something Went Wrong');
+          console.log(error.status);
+          console.log(error.statusText);
+          var message = error.statusText;
+
+          if (parseInt(error.status) <= 0) {
+            message = "Connection Failed";
+          }
+          else if (parseInt(error.status) == 401) {
+            message = "Invalid Username or Password!";
+          }
+          else if (parseInt(error.status) == 400) {
+            message = errorMessage;
+          }
+          else {
+            message = "Login Failed, Please retry!";
+          }
+          this.notificationService.notifyError(message);
+          return throwError(message);
         })
       );
+
   }
 
   public verifyAccount(request: UserVerificationRequest) {
@@ -139,10 +181,10 @@ export class AuthenticationService {
     return this.http
       .put(
         this.app.endPoint +
-          '/api/user/status/update/' +
-          userId +
-          '?status=' +
-          status,
+        '/api/user/status/update/' +
+        userId +
+        '?status=' +
+        status,
         {},
         this.app.httpAutherizedHeader
       )
@@ -205,12 +247,12 @@ export class AuthenticationService {
     return this.http
       .get(
         this.app.endPoint +
-          '/api/get_users_by_account_type?type=' +
-          type +
-          '&size=' +
-          environment.pageSize +
-          '&page=' +
-          page,
+        '/api/get_users_by_account_type?type=' +
+        type +
+        '&size=' +
+        environment.pageSize +
+        '&page=' +
+        page,
         this.app.httpAutherizedHeader
       )
       .pipe(
@@ -229,12 +271,12 @@ export class AuthenticationService {
     return this.http
       .get(
         this.app.endPoint +
-          '/api/get_users_by_role?role=' +
-          role +
-          '&size=' +
-          environment.pageSize +
-          '&page=' +
-          page,
+        '/api/get_users_by_role?role=' +
+        role +
+        '&size=' +
+        environment.pageSize +
+        '&page=' +
+        page,
         this.app.httpAutherizedHeader
       )
       .pipe(

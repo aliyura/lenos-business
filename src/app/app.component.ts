@@ -12,6 +12,7 @@ import { CategoryService } from './services/category.service';
 import { CounterService } from './services/counter.service';
 import { StorageService } from './services/storage.service';
 import { User } from './models/user.model';
+import { LoginToken } from './models/login-token';
 
 @Component({
   selector: 'app-root',
@@ -101,7 +102,7 @@ export class AppComponent implements OnInit {
     return this.authService.isAuthenticated;
   }
   get authenticatedUser() {
-    return this.authService.authenticatedUser as User;
+    return this.authService.authenticatedUser as LoginToken;
   }
 
   ngOnInit(): void {

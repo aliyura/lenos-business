@@ -8,6 +8,7 @@ import { List } from 'src/app/types/list.type';
 import { DialogHandlerService } from 'src/app/services/dialog-handler.service';
 import { ApiResponse } from 'src/app/models/api-response.model';
 import { User } from 'src/app/models/user.model';
+import { LoginToken } from 'src/app/models/login-token';
 
 @Component({
   selector: 'app-orders',
@@ -110,7 +111,7 @@ export class OrdersComponent implements OnInit {
     return this.authService.isAuthenticated;
   }
   get authenticatedUser() {
-    return this.authService.authenticatedUser as User;
+    return this.authService.authenticatedUser as LoginToken;
   }
 
   ngOnInit(): void {

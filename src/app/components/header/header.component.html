@@ -43,13 +43,6 @@
                             </div>
                         </li>
                         <li><a href="#">
-                                <div class="user_img">
-                                    <!-- <img src="assets/images/logo.png" alt=""> -->
-                                </div>
-                                <div class="notification_desc">
-                                    <p>Your last Login</p>
-                                    <p><span>{{authenticatedUser!.lastLoginDate}}</span></p>
-                                </div>
                                 <div class="clearfix"></div>
                             </a></li>
                         <li>
@@ -72,7 +65,7 @@
                             <span class="prfil-img"><img src="{{authenticatedUser.dp!=null?'https://lenos.s3.amazonaws.com/pictures/'+authenticatedUser.dp:'assets/images/avatar.png'}}" class="avatar" alt=""> </span>
                             <div class="user-name" *ngIf="isAuthenticated">
                                 <p>{{authenticatedUser.name| titlecase | slice:0:13 }}..</p>
-                                <span>{{authenticatedUser.city}},{{authenticatedUser.country}}</span>
+                                <span>{{authenticatedUser.email}}</span>
                             </div>
                             <div class="user-name" *ngIf="!isAuthenticated">
                                 <p>Untitled User</p>

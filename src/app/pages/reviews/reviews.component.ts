@@ -9,6 +9,7 @@ import { AccountType } from 'src/app/enum/account-type.enum';
 import { DialogHandlerService } from 'src/app/services/dialog-handler.service';
 import { User } from 'src/app/models/user.model';
 import { NotificationService } from 'src/app/services/notification.service';
+import { LoginToken } from 'src/app/models/login-token';
 
 @Component({
   selector: 'app-reviews',
@@ -79,7 +80,7 @@ export class ReviewsComponent implements OnInit {
       newReview.productId = reviewData.review.productId;
       newReview.userId = this.authService.authenticatedUser.id
       newReview.review = "@" + reviewData.user.name + " " + value;
-    
+
       this.reviewService.replyReview(newReview).subscribe(
         (response: ApiResponse) => {
           if (response.success) {
@@ -96,7 +97,7 @@ export class ReviewsComponent implements OnInit {
         (err) => console.log(err)
       );
     } else {
-      
+
     }
 
   }
@@ -153,7 +154,7 @@ export class ReviewsComponent implements OnInit {
     return this.authService.isAuthenticated;
   }
   get authenticatedUser() {
-    return this.authService.authenticatedUser as User;
+    return this.authService.authenticatedUser as LoginToken;
   }
 
   ngOnInit(): void {

@@ -11,6 +11,7 @@ import { CounterResponse } from 'src/app/models/counter-response.model';
 import { ApiResponse } from 'src/app/models/api-response.model';
 import { NotificationService } from 'src/app/services/notification.service';
 import { User } from 'src/app/models/user.model';
+import { LoginToken } from 'src/app/models/login-token';
 
 @Component({
   selector: 'app-locations',
@@ -21,7 +22,7 @@ export class LocationsComponent implements OnInit {
   locations: List<Location>;
   appAccountType = AccountType;
   isLoading: boolean = true;
-  
+
   constructor(
     private authService: AuthenticationService,
     private dialogHandler: DialogHandlerService,
@@ -86,7 +87,7 @@ export class LocationsComponent implements OnInit {
     return this.authService.isAuthenticated;
   }
   get authenticatedUser() {
-    return this.authService.authenticatedUser as User;
+    return this.authService.authenticatedUser as LoginToken;
   }
 
   ngOnInit(): void {

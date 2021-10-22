@@ -4,6 +4,7 @@ import { Store } from 'src/app/enum/store.enum';
 import { User } from 'src/app/models/user.model';
 import { AuthenticationService } from 'src/app/services/authentication.service';
 import { StorageService } from 'src/app/services/storage.service';
+import { LoginToken } from 'src/app/models/login-token';
 
 @Component({
   selector: 'app-header',
@@ -38,7 +39,8 @@ export class HeaderComponent implements OnInit {
     return this.authService.isAuthenticated;
   }
   get authenticatedUser() {
-    return this.authService.authenticatedUser as User;
+    var  user= this.authService.authenticatedUser as LoginToken;
+    return user;
   }
   logout() {
     this.authService.logout();

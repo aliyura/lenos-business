@@ -19,7 +19,7 @@ export class AppService {
      var httpOptions = {
       headers: new HttpHeaders({
         'Content-Type': "application/json",
-        'Authorization': this.store.get(Store.TOKEN),
+        'Authorization': "Bearer "+this.store.get(Store.TOKEN),
       })
     }
     return httpOptions;
