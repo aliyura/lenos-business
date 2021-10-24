@@ -55,24 +55,34 @@ export class CreateProductComponent implements OnInit {
   }
 
   public uploadProduct() {
-    this.editing = this.product == null ? false : true;
     this.form.revalidate();
     let response = this.form.response;
-    this.product = this.form.data;
-    delete this.product['null'];
+    let currentProduct = this.form.data as Product;
+    delete currentProduct['null'];
+
     if (
       response['name'].ok &&
       response['categoryId'].ok &&
       response['subCategoryId'].ok &&
       response['deliveryDays'].ok &&
+      response['location'].ok &&
       response['stock'].ok &&
       response['price'].ok
     ) {
-      if (this.app.validDigits(this.product.price)) {
-        if (this.app.validDigits(this.product.stock)) {
+      if (this.app.validDigits(currentProduct.price)) {
+        if (this.app.validDigits(currentProduct.stock)) {
 
           if (this.editing) {
-            this.productService.updateProduct(this.product).subscribe(
+
+            //set required images if not set
+            currentProduct.id = this.product.id;
+            if (currentProduct.thumbnail == null)
+              currentProduct.thumbnail = this.product.thumbnail
+
+            if (currentProduct.images == null)
+              currentProduct.images = this.product.images
+
+            this.productService.updateProduct(currentProduct).subscribe(
               (response: ApiResponse) => {
                 if (response.success) {
                   this.notification.notifySuccess('Uploaded Successfully');
@@ -91,14 +101,15 @@ export class CreateProductComponent implements OnInit {
                 this.notification.notifyError('Unable to upload the Product');
               }
             );
+
           } else {
-            if (this.product.thumbnail == null) {
+            if (currentProduct.thumbnail == null) {
               this.notification.notifyWarning('Product thumbnail required');
-            } else if (this.product.images == null) {
+            } else if (currentProduct.images == null) {
               this.notification.notifyWarning('Product images required');
             }
             else {
-              this.productService.uploadProduct(this.product).subscribe(
+              this.productService.uploadProduct(currentProduct).subscribe(
                 (response: ApiResponse) => {
                   if (response.success) {
                     this.notification.notifySuccess('Uploaded Successfully');
@@ -158,7 +169,12 @@ export class CreateProductComponent implements OnInit {
   ngOnInit(): void {
     var productId = this.app.getURLParameter(window.location.href);
     this.productService.getProduct(productId).subscribe((response: ApiResponse) => {
-      this.product = response.payload as Product;
+      if (response.success) {
+        if (response.payload != null) {
+          this.product = response.payload as Product;
+          this.editing = true;
+        }
+      }
     });
     this.loadLocations();
     this.getAllCategories();

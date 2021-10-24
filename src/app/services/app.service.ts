@@ -27,8 +27,7 @@ export class AppService {
   get httpAutherizedMediaHeader(){
     var httpOptions = {
      headers: new HttpHeaders({
-      // 'Content-Type': "multipart/form-data",
-       'Authorization': this.store.get(Store.TOKEN),
+       'Authorization': "Bearer "+this.store.get(Store.TOKEN),
      })
    }
    return httpOptions;

@@ -53,6 +53,7 @@ export class AuthenticationService {
 
   get getBearerToken() {
     var bearer = this.store.get(Store.TOKEN);
+    console.log(bearer);
     return bearer;
   }
   logout() {
