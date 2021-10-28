@@ -19,8 +19,8 @@ export class CategoryService {
     private http: HttpClient,
     private progressDialog: ProgressDialogService
   ) {}
-  
-  public addCategory(category:Category){ 
+
+  public addCategory(category:Category){
     var form = new FormData();
     if(category.image!=null)
       form.append('image',category.image[0]);
@@ -28,8 +28,6 @@ export class CategoryService {
     delete category.image;
     form.append("category",JSON.stringify(category));
 
-    console.log(category)
-    
     if(this.app.httpAutherizedMediaHeader.headers.get)
     this.progressDialog.show("Please Wait..");
     return this.http.post(this.app.endPoint+ '/api/category/add', form, this.app.httpAutherizedMediaHeader).pipe(
@@ -43,7 +41,31 @@ export class CategoryService {
         console.log(errorMessage)
         return throwError("Something Went Wrong");
       }))
-        
+  }
+
+
+  public updateCategory(category:Category){
+    var form = new FormData();
+    if(category.image!=null)
+      form.append('image',category.image[0]);
+
+    delete category.image;
+    form.append("category",JSON.stringify(category));
+
+    if(this.app.httpAutherizedMediaHeader.headers.get)
+    this.progressDialog.show("Please Wait..");
+    return this.http.post(this.app.endPoint+ '/api/category/update', form, this.app.httpAutherizedMediaHeader).pipe(
+      map((response: ApiResponse) => {
+        this.progressDialog.hide()
+        return response;
+      }),
+      catchError((error) => {
+        this.progressDialog.hide();
+        let errorMessage = error.message !== undefined ? error.message : error.statusText;
+        console.log(errorMessage)
+        return throwError("Something Went Wrong");
+      }))
+
   }
 
   public addSubCategory(subCategory:SubCategory){
@@ -61,6 +83,23 @@ export class CategoryService {
         return throwError("Something Went Wrong");
       }))
   }
+
+  public updateSubCategory(subCategory:SubCategory){
+    console.log(subCategory);
+    this.progressDialog.show("Please Wait..");
+    return this.http.post(this.app.endPoint+ '/api/subcategory/update', subCategory, this.app.httpAutherizedHeader).pipe(
+      map((response: ApiResponse) => {
+        this.progressDialog.hide()
+        return response;
+      }),
+      catchError((error) => {
+        this.progressDialog.hide();
+        let errorMessage = error.message !== undefined ? error.message : error.statusText;
+        console.log(errorMessage)
+        return throwError("Something Went Wrong");
+      }))
+  }
+
 
 
 

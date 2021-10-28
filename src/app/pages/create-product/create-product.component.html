@@ -380,7 +380,7 @@
           <div class="row">
             <div class="sign-u col-md-12">
               <div class="sign-up1">
-                <h4>Thumbnail <strong class="star">*</strong> :</h4>
+                <h4>Thumbnail <strong class="star" *ngIf="!editing">*</strong> :</h4>
               </div>
               <div class="sign-up2 textarea-large">
                 <input type="file" class="tf-lenos" accept="image/x-png,image/gif,image/jpeg" name="thumbnail"
@@ -391,7 +391,7 @@
           <div class="row">
             <div class="sign-u col-md-12">
               <div class="sign-up1">
-                <h4>Product Images <strong class="star">*</strong> :</h4>
+                <h4>Product Images <strong class="star" *ngIf="!editing">*</strong> :</h4>
               </div>
               <div class="sign-up2 textarea-large">
                 <input type="file" class="tf-lenos" accept="image/x-png,image/gif,image/jpeg" name="images[]"

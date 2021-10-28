@@ -79,7 +79,8 @@
                     <ul class="dropdown-menu drp-mnu">
                         <li> <a (click)="logout();" ><i class="fa fa-sign-out"></i> Logout</a> </li>
                         <li> <a [routerLink]="['/profile']"><i class="fa fa-user"></i> My Profile</a> </li>
-                        <li> <a [routerLink]="['/shop']"><i class="fa fa-certificate"></i> Manage Shop</a> </li>
+                        <li *ngIf="authenticatedUser.accountType!='ADMIN'"> <a [routerLink]="['/shop']"><i class="fa fa-certificate"></i> Manage Shop</a> </li>
+                        <li *ngIf="authenticatedUser.accountType=='ADMIN'"> <a (click)="clearCatch();"><i class="fa fa-times"></i> Clear Caches</a> </li>
                     </ul>
                 </li>
             </ul>

@@ -5,6 +5,9 @@ import { User } from 'src/app/models/user.model';
 import { AuthenticationService } from 'src/app/services/authentication.service';
 import { StorageService } from 'src/app/services/storage.service';
 import { LoginToken } from 'src/app/models/login-token';
+import { SettingsService } from 'src/app/services/settings.service';
+import { ApiResponse } from 'src/app/models/api-response.model';
+import { NotificationService } from 'src/app/services/notification.service';
 
 @Component({
   selector: 'app-header',
@@ -17,8 +20,10 @@ export class HeaderComponent implements OnInit {
   constructor(
     private app: AppCluster,
     private storage: StorageService,
+    private settingSevice: SettingsService,
+    private notificationService: NotificationService,
     private authService: AuthenticationService
-  ) {}
+  ) { }
   public loadCategories() {
     try {
       var categories = this.storage.getSession(Store.CATEGORY);
@@ -39,7 +44,7 @@ export class HeaderComponent implements OnInit {
     return this.authService.isAuthenticated;
   }
   get authenticatedUser() {
-    var  user= this.authService.authenticatedUser as LoginToken;
+    var user = this.authService.authenticatedUser as LoginToken;
     return user;
   }
   logout() {
@@ -54,12 +59,25 @@ export class HeaderComponent implements OnInit {
       document.getElementById('sidebar').style.display = 'block';
       this.app.disableScrolling();
     }
-     if (window.innerWidth < 800)
-       document.getElementById('page-wrapper').style.marginLeft = '0';
-     else
-       document.getElementById('page-wrapper').style.marginLeft = '300px';
+    if (window.innerWidth < 800)
+      document.getElementById('page-wrapper').style.marginLeft = '0';
+    else
+      document.getElementById('page-wrapper').style.marginLeft = '300px';
+  }
+
+  clearCatch() {
+    this.settingSevice.resetMemory().subscribe(
+      (response: ApiResponse) => {
+        if (response.success)
+          this.notificationService.notifySuccess("Catch cleared successfully");
+        else
+          this.notificationService.notifyError(response.message)
+      },
+      (err) => console.log(err)
+    );
   }
   ngOnInit(): void {
     this.loadCategories();
+    console.log(this.authenticatedUser);
   }
 }
