@@ -78,6 +78,5 @@ export class HeaderComponent implements OnInit {
   }
   ngOnInit(): void {
     this.loadCategories();
-    console.log(this.authenticatedUser);
   }
 }

@@ -26,12 +26,12 @@ export class ProductsComponent implements OnInit {
   isLoading: boolean = true;
 
   constructor(
-    public app:AppCluster,
+    public app: AppCluster,
     private authService: AuthenticationService,
     private dialogHandler: DialogHandlerService,
     private productService: ProductService,
     private notificationService: NotificationService
-  ) {}
+  ) { }
 
   private getProducts(page: number) {
     this.isLoading = true;
@@ -120,30 +120,13 @@ export class ProductsComponent implements OnInit {
     );
   }
 
-  changePage(self, page) {
-    self.currentPage = page;
+  changePage(self, index) {
+    self.currentPage = index;
     if (self.authenticatedUser.accountType == AccountType.ADMIN)
       self.getProducts(self.currentPage);
     else self.getProductsBySeller(self.authenticatedUser.id, self.currentPage);
   }
-  nextPage(self) {
-    if (self.currentPage < self.totalPages) {
-      self.currentPage = self.currentPage + 1;
-      if (self.authenticatedUser.accountType == AccountType.ADMIN)
-        self.getProducts(self.currentPage);
-      else
-        self.getProductsBySeller(self.authenticatedUser.id, self.currentPage);
-    }
-  }
-  previousPage(self) {
-    if (self.currentPage > 0) {
-      self.currentPage = self.currentPage - 1;
-      if (self.authenticatedUser.accountType == AccountType.ADMIN)
-        self.getProducts(self.currentPage);
-      else
-        self.getProductsBySeller(self.authenticatedUser.id, self.currentPage);
-    }
-  }
+
 
   get isAuthenticated() {
     return this.authService.isAuthenticated;

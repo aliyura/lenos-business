@@ -91,22 +91,11 @@ export class OrdersComponent implements OnInit {
     );
   }
 
-  changePage(self, page) {
-    self.currentPage = page;
+  changePage(self,index) {
+    self.currentPage = index;
     self.getOrders(self.currentPage);
   }
-  nextPage(self) {
-    if (self.currentPage < self.totalPages) {
-      self.currentPage = self.currentPage + 1;
-      self.getOrders(self.currentPage);
-    }
-  }
-  previousPage(self) {
-    if (self.currentPage > 0) {
-      self.currentPage = self.currentPage - 1;
-      self.getOrders(self.currentPage);
-    }
-  }
+
   get isAuthenticated() {
     return this.authService.isAuthenticated;
   }

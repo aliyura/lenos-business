@@ -26,16 +26,18 @@ export class BusinessesComponent implements OnInit {
   private getUsers(page: number) {
     this.isLoading = true;
     this.currentPage = page;
+    console.log(page)
     this.authService
       .getUsersByAccountType(page, AccountType.BUSINESS)
       .subscribe(
         (response: ApiResponse) => {
           this.isLoading = false;
+          console.log(response);
           if (response.success) {
+            console.log('yes');
             this.users = response.payload['content'];
             this.totalPages = response.payload['totalPages'];
           }
-          console.log(this.users);
         },
         (err) => {
           this.isLoading = false;
@@ -76,23 +78,11 @@ export class BusinessesComponent implements OnInit {
     );
   }
 
-  changePage(self, page) {
-    self.currentPage = page;
+  changePage(self,index) {
+    self.currentPage = index;
     self.getUsers(self.currentPage);
   }
-  nextPage(self) {
-    if (self.currentPage <self.totalPages) {
-      self.currentPage = self.currentPage + 1;
-      self.getUsers(self.currentPage);
-    }
-  }
-  previousPage(self) {
-    if (self.currentPage > 0) {
-      self.currentPage = self.currentPage - 1;
-      self.getUsers(self.currentPage);
-    }
-  }
-  
+
   ngOnInit(): void {
     this.getUsers(0);
   }

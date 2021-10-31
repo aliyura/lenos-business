@@ -76,21 +76,9 @@ export class BuyersComponent implements OnInit {
     );
   }
 
-  changePage(self, page) {
-    self.currentPage = page;
+  changePage(self, index) {
+    self.currentPage = index;
     self.getUsers(self.currentPage);
-  }
-  nextPage(self) {
-    if (self.currentPage <self.totalPages) {
-      self.currentPage = self.currentPage + 1;
-      self.getUsers(self.currentPage);
-    }
-  }
-  previousPage(self) {
-    if (self.currentPage > 0) {
-      self.currentPage = self.currentPage - 1;
-      self.getUsers(self.currentPage);
-    }
   }
 
   ngOnInit(): void {

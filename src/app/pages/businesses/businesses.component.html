@@ -50,9 +50,6 @@
                                 </tr>
                             </tbody>
                         </table>
-                        <app-pagination [self]="this" [next]="nextPage" [prev]="previousPage" [change]="changePage"
-                            [currentPage]="this.currentPage" [totalPages]="this.totalPages">
-                        </app-pagination>
                     </ng-container>
                     <ng-container *ngIf="users==null && !isLoading">
                         <div class="errorWrapper">
@@ -61,6 +58,9 @@
                     </ng-container>
                 </div>
             </div>
+            <app-pagination *ngIf="users!=null" [change]="changePage" [self]="this"
+            [currentPage]="this.currentPage" [totalPages]="this.totalPages">
+        </app-pagination>
         </div>
     </div>
 </div>

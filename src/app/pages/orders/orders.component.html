@@ -91,7 +91,7 @@
                                 </tr>
                             </tbody>
                         </table>
-                       
+
                     </ng-container>
                     <ng-container *ngIf="orders==null && !isLoading">
                         <div class="errorWrapper">
@@ -100,8 +100,7 @@
                     </ng-container>
                 </div>
             </div>
-            <app-pagination *ngIf="authenticatedUser.accountType==appAccountType.ADMIN" [self]="this" [next]="nextPage"
-                [prev]="previousPage" [change]="changePage" [currentPage]="this.currentPage" [totalPages]="this.totalPages">
+            <app-pagination *ngIf="authenticatedUser.accountType==appAccountType.ADMIN" [change]="changePage" [currentPage]="this.currentPage" [totalPages]="this.totalPages" [self]="this">
             </app-pagination>
         </div>
     </div>

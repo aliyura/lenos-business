@@ -1,4 +1,5 @@
-.pagination > .active > a, .pagination > .active > span, .pagination > .active > a:hover, .pagination > .active > span:hover, .pagination > .active > a:focus, .pagination > .active > span:focus{
-    background: #d83737;
-    border-color: #d83737;
+.pagination-option{
+  width: 100px;
+  padding: 5px;
+  float: right;
 }
