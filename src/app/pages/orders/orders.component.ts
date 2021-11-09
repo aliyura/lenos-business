@@ -81,6 +81,7 @@ export class OrdersComponent implements OnInit {
 
   changeOrderStatus(e, order: Order) {
     var status = e.target.value;
+    order.status=status;
     this.orderService.updateOrderStatus(status, order.id).subscribe(
       (response: ApiResponse) => {
         if (!response.success) this.getOrders(this.currentPage);
