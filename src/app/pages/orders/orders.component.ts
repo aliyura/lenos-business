@@ -9,6 +9,9 @@ import { DialogHandlerService } from 'src/app/services/dialog-handler.service';
 import { ApiResponse } from 'src/app/models/api-response.model';
 import { User } from 'src/app/models/user.model';
 import { LoginToken } from 'src/app/models/login-token';
+import { AppCluster } from 'src/app/app.shared.cluster';
+import { LocationService } from 'src/app/services/location.service';
+import { Location } from 'src/app/models/location.model';
 
 @Component({
   selector: 'app-orders',
@@ -20,14 +23,17 @@ export class OrdersComponent implements OnInit {
   currentPage: number = 0;
   totalPages: number = 0;
   appAccountType = AccountType;
-  statusActions: Array<string> = ['IA', 'PV', 'PC','OC', 'DP', 'PP', 'DV',"RJ"];
+  statusActions: Array<string> = ['IA', 'PV', 'PC', 'OC', 'DP', 'PP', 'DV', "RJ"];
   isLoading: boolean = true;
+  location: Location = null;
 
   constructor(
+    private app: AppCluster,
     private authService: AuthenticationService,
     private dialogHandler: DialogHandlerService,
-    private orderService: OrderService
-  ) {}
+    private orderService: OrderService,
+    private locationService: LocationService
+  ) { }
 
   private getOrders(page: number) {
     this.isLoading = true;
@@ -46,17 +52,49 @@ export class OrdersComponent implements OnInit {
       }
     );
   }
+
+  private getOrdersByCity(page: number, city) {
+    this.isLoading = true;
+    this.currentPage = page;
+    this.orderService.getOrdersByCity(page, city).subscribe(
+      (response: ApiResponse) => {
+        this.isLoading = false;
+        if (response.success) {
+          this.orders = response.payload['content'];
+          this.totalPages = response.payload['totalPages'];
+        }
+      },
+      (err) => {
+        this.isLoading = false;
+        console.log(err);
+      }
+    );
+  }
   private getOrdersBySeller(selerId: number) {
     this.isLoading = true;
     this.orderService.getOrdersBySellerId(selerId).subscribe(
       (response: ApiResponse) => {
-         this.isLoading = false;
+        this.isLoading = false;
         if (response.success) {
           this.orders = response.payload;
         }
       },
       (err) => {
-         this.isLoading = false;
+        this.isLoading = false;
+        console.log(err);
+      }
+    );
+  }
+  private getLocationByCityCode(cityCode) {
+    this.locationService.getLocationByCode(cityCode).subscribe(
+      (response: ApiResponse) => {
+        this.isLoading = false;
+        if (response.success) {
+          this.location = response.payload;
+        }
+      },
+      (err) => {
+        this.isLoading = false;
         console.log(err);
       }
     );
@@ -81,7 +119,7 @@ export class OrdersComponent implements OnInit {
 
   changeOrderStatus(e, order: Order) {
     var status = e.target.value;
-    order.status=status;
+    order.status = status;
     this.orderService.updateOrderStatus(status, order.id).subscribe(
       (response: ApiResponse) => {
         if (!response.success) this.getOrders(this.currentPage);
@@ -92,9 +130,15 @@ export class OrdersComponent implements OnInit {
     );
   }
 
-  changePage(self,index) {
+  changePage(self, index) {
     self.currentPage = index;
-    self.getOrders(self.currentPage);
+    var cityCode = self.app.getURLParameter(location.href);
+    if (cityCode != null && typeof cityCode !== undefined) {
+      self.getOrdersByCity(self.currentPage, cityCode);
+      self.getLocationByCityCode(cityCode);
+    } else {
+      self.getOrders(self.currentPage);
+    }
   }
 
   get isAuthenticated() {
@@ -105,12 +149,17 @@ export class OrdersComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    if (this.authenticatedUser.accountType == AccountType.ADMIN) {
-      this.getOrders(0);
-      console.log('no');
+
+    var cityCode = this.app.getURLParameter(location.href);
+    if (cityCode != null && typeof cityCode !== undefined) {
+      this.getOrdersByCity(0, cityCode);
+      this.getLocationByCityCode(cityCode);
     } else {
-      console.log('yes');
-      this.getOrdersBySeller(this.authenticatedUser.id);
+      if (this.authenticatedUser.accountType === AccountType.ADMIN) {
+        this.getOrders(0);
+      } else {
+        this.getOrdersBySeller(this.authenticatedUser.id);
+      }
     }
   }
 }

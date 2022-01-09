@@ -12,7 +12,7 @@ import { throwError } from 'rxjs';
 })
 export class LocationService {
   constructor(
-    private progressDialog:ProgressDialogService,
+    private progressDialog: ProgressDialogService,
     private app: AppService, private http: HttpClient) { }
 
   public addLocation(location: Location) {
@@ -39,6 +39,22 @@ export class LocationService {
   public getLocations() {
     return this.http
       .get(this.app.endPoint + '/api/locations', this.app.httpHeader)
+      .pipe(
+        map((response: ApiResponse) => {
+          return response;
+        }),
+        catchError((error) => {
+          let errorMessage =
+            error.message !== undefined ? error.message : error.statusText;
+          console.log(errorMessage);
+          return throwError('Something Went Wrong');
+        })
+      );
+  }
+
+  public getLocationByCode(cityCode) {
+    return this.http
+      .get(this.app.endPoint + '/api/location/get_by_code/' + cityCode, this.app.httpAutherizedMediaHeader)
       .pipe(
         map((response: ApiResponse) => {
           return response;

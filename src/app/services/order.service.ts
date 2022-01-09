@@ -16,16 +16,16 @@ export class OrderService {
     private app: AppService,
     private http: HttpClient,
     private progressDialog: ProgressDialogService
-  ) {}
+  ) { }
 
   public getOrders(page: number) {
     return this.http
       .get(
         this.app.endPoint +
-          '/api/orders?page=' +
-          page +
-          '&size=' +
-          environment.pageSize,
+        '/api/orders?page=' +
+        page +
+        '&size=' +
+        environment.pageSize,
         this.app.httpAutherizedHeader
       )
       .pipe(
@@ -41,10 +41,52 @@ export class OrderService {
       );
   }
 
-  public getOrdersBySellerId(sellerId:number) {
-    return this.http.get(this.app.endPoint +'/api/orders/get_by_seller/'+sellerId,
+  public getOrdersByCity(page: number, city) {
+    return this.http
+      .get(
+        this.app.endPoint +
+        '/api/orders/get_by_city/' + city + '?page=' +
+        page +
+        '&size=' +
+        environment.pageSize,
         this.app.httpAutherizedHeader
       )
+      .pipe(
+        map((response: ApiResponse) => {
+          return response;
+        }),
+        catchError((error) => {
+          let errorMessage =
+            error.message !== undefined ? error.message : error.statusText;
+          console.log(errorMessage);
+          return throwError('Something Went Wrong');
+        })
+      );
+  }
+
+  public getCityOrdersAnalytic() {
+    return this.http
+      .get(
+        this.app.endPoint +
+        '/api/orders/get_cities_analytics',
+        this.app.httpAutherizedHeader
+      )
+      .pipe(
+        map((response: ApiResponse) => {
+          return response;
+        }),
+        catchError((error) => {
+          let errorMessage =
+            error.message !== undefined ? error.message : error.statusText;
+          console.log(errorMessage);
+          return throwError('Something Went Wrong');
+        })
+      );
+  }
+  public getOrdersBySellerId(sellerId: number) {
+    return this.http.get(this.app.endPoint + '/api/orders/get_by_seller/' + sellerId,
+      this.app.httpAutherizedHeader
+    )
       .pipe(
         map((response: ApiResponse) => {
           return response;
@@ -120,10 +162,10 @@ export class OrderService {
     return this.http
       .put(
         this.app.endPoint +
-          '/api/order/status/update/' +
-          orderId +
-          '?status=' +
-          status,
+        '/api/order/status/update/' +
+        orderId +
+        '?status=' +
+        status,
         {},
         this.app.httpAutherizedHeader
       )

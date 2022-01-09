@@ -12,7 +12,7 @@
 									class="nav-badge-btm">{{counts!=null?counts!.buyers:0}}</span></a>
 						</li>
 						<li>
-							<a (click)="closeDrawer()" [routerLink]="['/businesses']"><i class="fa fa-users nav_icon"></i>businesss <span
+							<a (click)="closeDrawer()" [routerLink]="['/businesses']"><i class="fa fa-users nav_icon"></i>Businesses <span
 									class="nav-badge-btm">{{counts!=null?counts!.sellers:0}}</span></a>
 						</li>
 
@@ -22,7 +22,10 @@
 									class="fa arrow"></span></a>
 							<ul class="nav nav-second-level collapse">
 								<li>
-									<a (click)="closeDrawer()" [routerLink]="['/product/orders']">All Oders</a>
+									<a (click)="closeDrawer()" [routerLink]="['/product/orders']">All Orders</a>
+								</li>
+                <li>
+									<a (click)="closeDrawer()" [routerLink]="['/order/cities']">All Orders By City</a>
 								</li>
 							</ul>
 						</li>
@@ -145,10 +148,10 @@
 									class="fa arrow"></span></a>
 							<ul class="nav nav-second-level collapse">
 								<li>
-									<a  (click)="closeDrawer()" [routerLink]="['/product/orders']">New Oders</a>
+									<a  (click)="closeDrawer()" [routerLink]="['/product/orders']">New Orders</a>
 								</li>
 								<li>
-									<a (click)="closeDrawer()" [routerLink]="['/product/orders']">All Oders</a>
+									<a (click)="closeDrawer()" [routerLink]="['/product/orders']">All Orders</a>
 								</li>
 							</ul>
 						</li>

@@ -19,6 +19,7 @@ import { SubCategoriesComponent } from './pages/sub-categories/sub-categories.co
 import { CreateProductComponent } from './pages/create-product/create-product.component';
 import { ProfileComponent } from './pages/profile/profile.component';
 import { ProductsComponent } from './pages/products/products.component';
+import { CitiesComponent } from './pages/cities/cities.component';
 
 const routes: Routes = [
   {
@@ -90,6 +91,11 @@ const routes: Routes = [
     canActivate: [AuthGuard],
   },
   {
+    path: 'product/orders/:city',
+    component: OrdersComponent,
+    canActivate: [AuthGuard],
+  },
+  {
     path: 'reviews',
     component: ReviewsComponent,
     canActivate: [AuthGuard],
@@ -119,6 +125,12 @@ const routes: Routes = [
     component: LocationsComponent,
     canActivate: [AuthGuard],
   },
+  {
+    path: 'order/cities',
+    component: CitiesComponent,
+    canActivate: [AuthGuard],
+  },
+
 ];
 
 @NgModule({

@@ -57,6 +57,7 @@ body a:hover {
 }
 .native {
   background-color: #d83737 !important;
+  color: #fff !important;
 }
 .native:hover,
 .native:focus {

@@ -71,6 +71,7 @@ import { ReviewsComponent } from './pages/reviews/reviews.component';
 import { StatusComponent } from './pages/status/status.component';
 import { ManageShopComponent } from './pages/manage-shop/manage-shop.component';
 import { AddShopComponent } from './components/dialogs/add-shop/add-shop.component';
+import { CitiesComponent } from './pages/cities/cities.component';
 
 
 export function tokenGetter() {
@@ -106,6 +107,7 @@ export function tokenGetter() {
     LoaderComponent,
     ManageShopComponent,
     AddShopComponent,
+    CitiesComponent,
   ],
   imports: [
     TagInputModule,
