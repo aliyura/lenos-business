@@ -1,8 +1,9 @@
 export const environment = {
   production: true,
-  endPoint: 'https://lenoscloud.com',
-  tokenBaseEndpoint: "https://lenoscloud.com/oauth/token",
-  storageURL:'https://lenos.s3.amazonaws.com/pictures/',
+  appHost: 'https://business.sauki.com.ng',
+  endPoint: 'https://service.phopis.com/sauki',
+  tokenBaseEndpoint: 'https://service.phopis.com/sauki/oauth/token',
+  storageURL:'https://sauki.s3.amazonaws.com/pictures/',
   googleClientId:"976377509430-tpou8clvmkhfr2fqsrrnof9qce51nonb.apps.googleusercontent.com",
   facebookAppId:"319321306084195",
   clientId: "web-client",

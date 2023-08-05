@@ -12,7 +12,7 @@
                         <h4>Business Name <strong class="star">*</strong> :</h4>
                     </div>
                     <div class="sign-up2">
-                        <input type="text" [value]="authenticatedUser.name" class="tf-lenos" name="name" required="true"
+                        <input type="text" [value]="authenticatedUser.name" class="tf-sauki" name="name" required="true"
                             (keyup)="form.validate($event)">
                     </div>
                     <div class="clearfix"> </div>
@@ -22,7 +22,7 @@
                         <h4>Email Address <strong class="star">*</strong> :</h4>
                     </div>
                     <div class="sign-up2">
-                        <input type="email" [value]="authenticatedUser.email" class="tf-lenos" name="email"
+                        <input type="email" [value]="authenticatedUser.email" class="tf-sauki" name="email"
                             required="true" (keyup)="form.validate($event)">
                     </div>
                     <div class="clearfix"> </div>
@@ -35,7 +35,7 @@
                         <h4>Country <strong class="star">*</strong> :</h4>
                     </div>
                     <div class="sign-up2">
-                        <input type="text" class="tf-lenos" name="country" value="Nigeria" disabled="true"
+                        <input type="text" class="tf-sauki" name="country" value="Nigeria" disabled="true"
                             readonly="true" required="true" (keyup)="form.validate($event)">
                     </div>
                     <div class="clearfix"> </div>
@@ -45,7 +45,7 @@
                         <h4>Mobile Number <strong class="star">*</strong> :</h4>
                     </div>
                     <div class="sign-up2">
-                        <input type="tel" [value]="authenticatedUser.mobile" class="tf-lenos" name="mobile"
+                        <input type="tel" [value]="authenticatedUser.mobile" class="tf-sauki" name="mobile"
                             maxlength="11" required="true" (keyup)="form.validate($event)">
                     </div>
                     <div class="clearfix"> </div>
@@ -58,7 +58,7 @@
                         <h4>City <strong class="star">*</strong> :</h4>
                     </div>
                     <div class="sign-up2">
-                        <select class="tf-lenos" required="true" name="city" (change)="form.validate($event)">
+                        <select class="tf-sauki" required="true" name="city" (change)="form.validate($event)">
                             <option selected>{{authenticatedUser.city}}</option>
                             <option value="Kano">Kano</option>
                             <option value="Abuja">Abuja</option>
@@ -109,7 +109,7 @@
                         <h4>RC Number <strong class="star">*</strong> :</h4>
                     </div>
                     <div class="sign-up2">
-                        <input type="tel" [value]="authenticatedUser.rcNumber!=null?authenticatedUser.rcNumber:''" class="tf-lenos" name="rcNumber"
+                        <input type="tel" [value]="authenticatedUser.rcNumber!=null?authenticatedUser.rcNumber:''" class="tf-sauki" name="rcNumber"
                             maxlength="11" required="true" (keyup)="form.validate($event)">
                     </div>
                     <div class="clearfix"> </div>
@@ -119,7 +119,7 @@
                         <h4>Shop Address <strong class="star">*</strong> :</h4>
                     </div>
                     <div class="sign-up2 textarea-large">
-                        <textarea class="tf-lenos" nam="address" name="address" required="true"
+                        <textarea class="tf-sauki" nam="address" name="address" required="true"
                             (keyup)="form.validate($event)">{{authenticatedUser.address}}</textarea>
                     </div>
                 </div>
@@ -128,7 +128,7 @@
         </form>
         <div class="group-button dialog-buttons" mat-dialog-actions>
             <div class="sub_home text-right">
-                <button type="button" mat-button (click)="updateProfile()" class="btn btn-lenos btn-round">Save</button>
+                <button type="button" mat-button (click)="updateProfile()" class="btn btn-sauki btn-round">Save</button>
                 <div class="clearfix"> </div>
             </div>
         </div>

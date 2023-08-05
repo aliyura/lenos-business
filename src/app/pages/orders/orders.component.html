@@ -44,7 +44,7 @@
                                     <td>{{order!.alternativeNumber}}</td>
                                     <td>{{order!.createdDate}}</td>
                                     <td *ngIf="authenticatedUser.accountType==appAccountType.ADMIN">
-                                        <select class="btn btn-lenos btn-dynamic btn-round {{order.status}}"
+                                        <select class="btn btn-sauki btn-dynamic btn-round {{order.status}}"
                                             (change)="changeOrderStatus($event,order)">
                                             <ng-container *ngFor="let status of statusActions">
                                                 <option *ngIf="order.status==status && status=='PV'" selected
@@ -88,7 +88,7 @@
 
                                             </ng-container>
                                         </select>
-                                        <button type="button" class="btn btn-lenos btn-dynamic btn-round"
+                                        <button type="button" class="btn btn-sauki btn-dynamic btn-round"
                                             (click)="deleteOrder(order)">
                                             <i class="fa fa-times" style="font-size: 20px;"></i>
                                         </button>

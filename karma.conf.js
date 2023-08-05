@@ -25,7 +25,7 @@ module.exports = function (config) {
       suppressAll: true // removes the duplicated traces
     },
     coverageReporter: {
-      dir: require('path').join(__dirname, './coverage/lenos-admin'),
+      dir: require('path').join(__dirname, './coverage/sauki-admin'),
       subdir: '.',
       reporters: [
         { type: 'html' },

@@ -20,7 +20,7 @@ import { LoginToken } from './models/login-token';
   styleUrls: ['./app.component.css'],
 })
 export class AppComponent implements OnInit {
-  title = 'Lenos Nigeria';
+  title = 'Sauki Nigeria';
 
   constructor(
     private app: AppCluster,

@@ -89,7 +89,7 @@ export class LoginComponent implements OnInit {
 
   ngOnInit(): void {
     this.titleService.setTitle(
-      'Login to your Business account on -Lenos Nigeria'
+      'Login to your Business account on -Sauki Nigeria'
     );
     this.getUser();
   }

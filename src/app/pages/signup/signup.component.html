@@ -12,7 +12,7 @@
                         <h4> RC Number<strong class="star">*</strong> :</h4>
                     </div>
                     <div class="sign-up2">
-                        <input type="text" class="tf-lenos" maxlength="12" name="rcNumber" required="true"
+                        <input type="text" class="tf-sauki" maxlength="12" name="rcNumber" required="true"
                             (keyup)="form.validate($event)">
                     </div>
                     <div class="clearfix"> </div>
@@ -22,7 +22,7 @@
                         <h4>Business Name <strong class="star">*</strong> :</h4>
                     </div>
                     <div class="sign-up2">
-                        <input type="text" class="tf-lenos" name="name" required="true" (keyup)="form.validate($event)">
+                        <input type="text" class="tf-sauki" name="name" required="true" (keyup)="form.validate($event)">
                     </div>
                     <div class="clearfix"> </div>
                 </div>
@@ -34,7 +34,7 @@
                         <h4>Email Address <strong class="star">*</strong> :</h4>
                     </div>
                     <div class="sign-up2">
-                        <input type="email" class="tf-lenos" name="email" required="true"
+                        <input type="email" class="tf-sauki" name="email" required="true"
                             (keyup)="form.validate($event)">
                     </div>
                     <div class="clearfix"> </div>
@@ -44,7 +44,7 @@
                         <h4>Mobile Number <strong class="star">*</strong> :</h4>
                     </div>
                     <div class="sign-up2">
-                        <input type="tel" class="tf-lenos" name="mobile" maxlength="14" required="true"
+                        <input type="tel" class="tf-sauki" name="mobile" maxlength="14" required="true"
                             (keyup)="form.validate($event)">
                     </div>
                     <div class="clearfix"> </div>
@@ -56,7 +56,7 @@
                         <h4>Country <strong class="star">*</strong> :</h4>
                     </div>
                     <div class="sign-up2">
-                        <input type="text" class="tf-lenos" name="country" value="Nigeria" disabled="true"
+                        <input type="text" class="tf-sauki" name="country" value="Nigeria" disabled="true"
                             readonly="true" required="true" (keyup)="form.validate($event)">
                     </div>
                     <div class="clearfix"> </div>
@@ -66,7 +66,7 @@
                         <h4>City <strong class="star">*</strong> :</h4>
                     </div>
                     <div class="sign-up2">
-                        <select class="tf-lenos" name="city" (change)="form.validate($event)" required="true">
+                        <select class="tf-sauki" name="city" (change)="form.validate($event)" required="true">
                             <option value="" selected>-- Choose State --</option>
                             <option *ngFor="let loc of locations" [value]="loc.description">{{loc.description}}</option>
                         </select>
@@ -80,7 +80,7 @@
                         <h4>Shop Address <strong class="star">*</strong> :</h4>
                     </div>
                     <div class="sign-up2 textarea-large">
-                        <textarea class="tf-lenos" nam="address" name="address" required="true"
+                        <textarea class="tf-sauki" nam="address" name="address" required="true"
                             (keyup)="form.validate($event)"></textarea>
                     </div>
                 </div>
@@ -93,7 +93,7 @@
                         <h4>Password <strong class="star">*</strong> :</h4>
                     </div>
                     <div class="sign-up2">
-                        <input type="password" class="tf-lenos" name="password" required="true"
+                        <input type="password" class="tf-sauki" name="password" required="true"
                             (keyup)="form.validate($event)">
                     </div>
                     <div class="clearfix"> </div>
@@ -103,14 +103,14 @@
                         <h4>Confirm Password <strong class="star">*</strong> :</h4>
                     </div>
                     <div class="sign-up2">
-                        <input type="password" class="tf-lenos" name="confirmPassword" required="true"
+                        <input type="password" class="tf-sauki" name="confirmPassword" required="true"
                             (keyup)="form.validate($event)">
                     </div>
                 </div>
 
                 <div class="clearfix"> </div>
                 <div class="sub_home text-right">
-                    <button type="button" class="btn btn-lenos" (click)="signUp()">Submit</button>
+                    <button type="button" class="btn btn-sauki" (click)="signUp()">Submit</button>
                     <div class="clearfix"> </div>
                 </div>
             </div>

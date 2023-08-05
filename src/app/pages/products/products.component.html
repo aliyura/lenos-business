@@ -3,7 +3,7 @@
 <div class="main-content">
     <div id="page-wrapper">
         <div class="main-page">
-            <button type="button" [routerLink]="['/product/add']" class="btn btn-lenos btn-dynamic btn-round">
+            <button type="button" [routerLink]="['/product/add']" class="btn btn-sauki btn-dynamic btn-round">
                 <i class="fa fa-plus" style="font-size: 20px;"></i> Add New Product
             </button>
             <div class="login-top left">
@@ -33,7 +33,7 @@
                                         <th scope="row">1</th>
                                         <td [routerLink]="['/product/preview',product!.id]">
                                             <img class="img img-responsive product-image" (error)="error($event);"
-                                                src="https://lenos.s3.amazonaws.com/pictures/{{product.thumbnail}}" />
+                                                src="https://sauki.s3.amazonaws.com/pictures/{{product.thumbnail}}" />
                                         </td>
                                         <td [routerLink]="['/product/preview',product!.id]">
                                             {{product!.name | slice:0:20}}..</td>
@@ -45,7 +45,7 @@
 
                                                 <div class="col-md-4" *ngIf="product.status!='PV'">
                                                     <select
-                                                        class="btn btn-lenos btn-dynamic btn-round {{product.status}}"
+                                                        class="btn btn-sauki btn-dynamic btn-round {{product.status}}"
                                                         (change)="changeProductStatus($event,product)">
                                                         <ng-container *ngIf="product.status=='AC'">
                                                             <option value="OS">

@@ -11,7 +11,7 @@
                     <h4> Name<strong class="star">*</strong> :</h4>
                 </div>
                 <div class="sign-up2">
-                    <input type="text" [value]="existingCategory!.name" class="tf-lenos" name="name" required="true"
+                    <input type="text" [value]="existingCategory!.name" class="tf-sauki" name="name" required="true"
                         (keyup)="form.validate($event)">
                 </div>
                 <div class="clearfix"> </div>
@@ -21,7 +21,7 @@
                     <h4>Type <strong class="star">*</strong> :</h4>
                 </div>
                 <div class="sign-up2">
-                    <select class="tf-lenos" name="type" required="true" (keyup)="form.validate($event)">
+                    <select class="tf-sauki" name="type" required="true" (keyup)="form.validate($event)">
                         <option *ngIf="existingCategory!.type!=null">{{existingCategory!.type}}</option>
                         <option>PRODUCT</option>
                         <option>BUSINESS</option>
@@ -37,7 +37,7 @@
                     <h4>Image<strong class="star">*</strong> :</h4>
                 </div>
                 <div class="sign-up2">
-                    <input type="file" class="tf-lenos" name="image" required="true" (change)="form.validate($event)">
+                    <input type="file" class="tf-sauki" name="image" required="true" (change)="form.validate($event)">
                 </div>
                 <div class="clearfix"> </div>
             </div>
@@ -46,7 +46,7 @@
                     <h4>Icon <strong class="star">*</strong> :</h4>
                 </div>
                 <div class="sign-up2">
-                    <input type="text" [value]="existingCategory!.icon" class="tf-lenos" name="icon"  required="true"
+                    <input type="text" [value]="existingCategory!.icon" class="tf-sauki" name="icon"  required="true"
                         (keyup)="form.validate($event)">
                 </div>
                 <div class="clearfix"> </div>
@@ -56,7 +56,7 @@
 </div>
 <div class="group-button dialog-buttons" mat-dialog-actions>
         <div class="sub_home text-right">
-            <button type="button" mat-button (click)="this.addCategory()" class="btn btn-lenos btn-round">Save</button>
+            <button type="button" mat-button (click)="this.addCategory()" class="btn btn-sauki btn-round">Save</button>
             <div class="clearfix"> </div>
         </div>
 </div>

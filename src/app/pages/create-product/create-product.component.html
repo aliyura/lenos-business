@@ -15,7 +15,7 @@
                 <h4>Title<strong class="star">*</strong> :</h4>
               </div>
               <div class="sign-up2">
-                <input type="text" class="tf-lenos" name="name" [value]="this.product!=null?this.product.name:''"
+                <input type="text" class="tf-sauki" name="name" [value]="this.product!=null?this.product.name:''"
                   required="true" (keyup)="form.validate($event)">
               </div>
               <div class="clearfix"> </div>
@@ -25,7 +25,7 @@
                 <h4>Brand :</h4>
               </div>
               <div class="sign-up2">
-                <input type="text" class="tf-lenos" name="brand" [value]="this.product!=null?this.product.brand:''"
+                <input type="text" class="tf-sauki" name="brand" [value]="this.product!=null?this.product.brand:''"
                   (keyup)="form.validate($event)">
               </div>
               <div class="clearfix"> </div>
@@ -37,7 +37,7 @@
                 <h4>Category <strong class="star">*</strong> :</h4>
               </div>
               <div class="sign-up2">
-                <select class="tf-lenos" name="categoryId" required="true"
+                <select class="tf-sauki" name="categoryId" required="true"
                   (change)="form.validate($event);onCategorySelected($event);">
                   <option readonly="" selected="" disabled="" value="">Select Category</option>
                   <option *ngIf="this.product!=null" [value]="this.product.categoryId" selected>
@@ -53,7 +53,7 @@
                 <h4>Sub Category<strong class="star">*</strong> :</h4>
               </div>
               <div class="sign-up2">
-                <select class="tf-lenos" name="subCategoryId" required="true" (change)="form.validate($event)">
+                <select class="tf-sauki" name="subCategoryId" required="true" (change)="form.validate($event)">
                   <option readonly="" selected="" disabled="" value="">Select SubCategory</option>
                   <option *ngIf="this.product!=null" [value]="this.product.subCategoryId" selected>
                     {{this.product.subCategoryName}}</option>
@@ -71,7 +71,7 @@
                 <h4>Unit Size :</h4>
               </div>
               <div class="sign-up2">
-                <select class="tf-lenos" name="size" (change)="form.validate($event)">
+                <select class="tf-sauki" name="size" (change)="form.validate($event)">
                   <option readonly="" selected="" disabled="" value="">Select a Unit</option>
                   <option *ngIf="this.product!=null" [value]="this.product.size" selected>{{this.product.size}}</option>
                   <option value="piece">Piece</option>
@@ -95,7 +95,7 @@
                 <h4>Available Colors:</h4>
               </div>
               <div class="sign-up2">
-                <input type="text" class="tf-lenos" name="color" placeholder="e.g Red, Blue, Green" [value]="this.product!=null?this.product.color:''" (change)="form.validate($event)"/>
+                <input type="text" class="tf-sauki" name="color" placeholder="e.g Red, Blue, Green" [value]="this.product!=null?this.product.color:''" (change)="form.validate($event)"/>
               </div>
               <div class="clearfix"> </div>
             </div>
@@ -107,7 +107,7 @@
                 <h4>Delivery Time <strong class="star">*</strong> :</h4>
               </div>
               <div class="sign-up2">
-                <select class="tf-lenos" name="deliveryDays" required="true" (change)="form.validate($event)">
+                <select class="tf-sauki" name="deliveryDays" required="true" (change)="form.validate($event)">
                   <option readonly="" selected="" disabled="" value="">Select Delivery Time </option>
                   <option *ngIf="this.product!=null" [value]="this.product.deliveryDays" selected>
                     {{this.product.deliveryDays}}</option>
@@ -138,7 +138,7 @@
                 <h4>Maximum Quantity<strong class="star">*</strong> :</h4>
               </div>
               <div class="sign-up2">
-                <input type="number" class="tf-lenos" name="stock" [value]="this.product!=null?this.product.stock:''"
+                <input type="number" class="tf-sauki" name="stock" [value]="this.product!=null?this.product.stock:''"
                   required="true" (keyup)="form.validate($event)">
               </div>
               <div class="clearfix"> </div>
@@ -151,7 +151,7 @@
                 <h4>Price <strong class="star">*</strong> :</h4>
               </div>
               <div class="sign-up2">
-                <input type="number" class="tf-lenos" [value]="this.product!=null?this.product.price:''" name="price"
+                <input type="number" class="tf-sauki" [value]="this.product!=null?this.product.price:''" name="price"
                   required="true" (keyup)="form.validate($event)">
               </div>
               <div class="clearfix"> </div>
@@ -161,7 +161,7 @@
                 <h4>Product Location <strong class="star">*</strong> :</h4>
               </div>
               <div class="sign-up2">
-                <select class="tf-lenos" name="location" required="true" (change)="form.validate($event)">
+                <select class="tf-sauki" name="location" required="true" (change)="form.validate($event)">
                   <option readonly="" selected="" disabled="" value="">Select Current Product Location
                   </option>
                   <option *ngIf="this.product!=null" [value]="this.product.location" selected>{{this.product.location}}
@@ -181,7 +181,7 @@
                 <h4>Product Source:</h4>
               </div>
               <div class="sign-up2">
-                <input type="text" class="tf-lenos" [value]="this.product!=null?this.product.source:''" name="source"
+                <input type="text" class="tf-sauki" [value]="this.product!=null?this.product.source:''" name="source"
                   (keyup)="form.validate($event)">
               </div>
               <div class="clearfix"> </div>
@@ -191,7 +191,7 @@
                 <h4>Product Sizes:</h4>
               </div>
               <div class="sign-up2">
-                <input type="text" class="tf-lenos" placeholder="e.g XL, XXL, SM" [value]="this.product!=null?this.product.sizes:''" name="sizes"
+                <input type="text" class="tf-sauki" placeholder="e.g XL, XXL, SM" [value]="this.product!=null?this.product.sizes:''" name="sizes"
                   (keyup)="form.validate($event)">
               </div>
               <div class="clearfix"> </div>
@@ -204,7 +204,7 @@
                 <h4>Feature :</h4>
               </div>
               <div class="sign-up2 textarea-large">
-                <textarea class="tf-lenos" nam="features" name="features"
+                <textarea class="tf-sauki" nam="features" name="features"
                   [value]="this.product!=null?this.product.features:''" (keyup)="form.validate($event)"></textarea>
               </div>
             </div>
@@ -215,7 +215,7 @@
                 <h4>Description :</h4>
               </div>
               <div class="sign-up2 textarea-large">
-                <textarea class="tf-lenos" nam="description" [value]="this.product!=null?this.product.description:''"
+                <textarea class="tf-sauki" nam="description" [value]="this.product!=null?this.product.description:''"
                   name="description" (keyup)="form.validate($event)"></textarea>
               </div>
             </div>
@@ -226,7 +226,7 @@
                 <h4>Full Description :</h4>
               </div>
               <div class="sign-up2 textarea-large">
-                <textarea class="tf-lenos" nam="fullDescription"
+                <textarea class="tf-sauki" nam="fullDescription"
                   [value]="this.product!=null?this.product.fullDescription :''" name="fullDescription"
                   (keyup)="form.validate($event)"></textarea>
               </div>
@@ -239,7 +239,7 @@
                 <h4>Thumbnail <strong class="star" *ngIf="!editing">*</strong> :</h4>
               </div>
               <div class="sign-up2 textarea-large">
-                <input type="file" class="tf-lenos" accept="image/x-png,image/gif,image/jpeg" name="thumbnail"
+                <input type="file" class="tf-sauki" accept="image/x-png,image/gif,image/jpeg" name="thumbnail"
                   required="true" (change)="form.validate($event)">
               </div>
             </div>
@@ -250,7 +250,7 @@
                 <h4>Product Images <strong class="star" *ngIf="!editing">*</strong> :</h4>
               </div>
               <div class="sign-up2 textarea-large">
-                <input type="file" class="tf-lenos" accept="image/x-png,image/gif,image/jpeg" name="images[]"
+                <input type="file" class="tf-sauki" accept="image/x-png,image/gif,image/jpeg" name="images[]"
                   multiple="true" required="true" (change)="form.validate($event)">
               </div>
             </div>
@@ -259,7 +259,7 @@
           <div class="mt-5">
             <div class="clearfix"> </div>
             <div class="sub_home text-right">
-              <button type="button" class="btn btn-lenos" (click)="uploadProduct();">{{editing?'Save Changes':'Upload
+              <button type="button" class="btn btn-sauki" (click)="uploadProduct();">{{editing?'Save Changes':'Upload
                 Product'}}</button>
               <div class="clearfix"> </div>
             </div>

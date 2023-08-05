@@ -82,7 +82,7 @@ export class SignupComponent implements OnInit {
 
         this.user.accountType = AccountType.BUSINESS;
         this.user.role = UserRole.SELLER;
-     
+
         this.authService.signUp(this.user).subscribe(
           (response: ApiResponse) => {
             if (response.success) {
@@ -104,7 +104,7 @@ export class SignupComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.titleService.setTitle('Create Business on Lenos Nigeria, Start Selling & Building Customers for your Business Around Nigeria');
+    this.titleService.setTitle('Create Business on Sauki Nigeria, Start Selling & Building Customers for your Business Around Nigeria');
     this.loadLocations();
   }
 }

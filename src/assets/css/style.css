@@ -56,26 +56,26 @@ body a:hover {
   position: relative;
 }
 .native {
-  background-color: #d83737 !important;
+  background-color: #2879fe !important;
   color: #fff !important;
 }
 .native:hover,
 .native:focus {
-  background-color: #d83737 !important;
+  background-color: #2879fe !important;
   opacity: 0.8;
 }
 .link {
-  color: #d83737;
+  color: #2879fe;
   cursor: pointer;
 }
 .fill {
   width: 100% !important;
 }
 .star {
-  color: #d83737 !important;
+  color: #2879fe !important;
   font-weight: bold;
 }
-.tf-lenos {
+.tf-sauki {
   outline: none;
   border: 1px solid #d0d0d0;
   font-size: 16px;
@@ -87,15 +87,15 @@ body a:hover {
   margin-top: 1em;
   margin-bottom: 0;
 }
-.tf-lenos:focus {
-  border-color: #d83737;
+.tf-sauki:focus {
+  border-color: #2879fe;
 }
-.btn-lenos {
+.btn-sauki {
   border: none;
   outline: none;
   cursor: pointer;
   color: #fff;
-  background: #333333;
+  background: #2879fe;
   width: 23%;
   min-height: 45px;
   padding: 0.5em 1em;
@@ -109,8 +109,8 @@ body a:hover {
 .btn-round {
   border-radius: 50px;
 }
-.btn-lenos:hover {
-  background-color: #d83737;
+.btn-sauki:hover {
+  background-color: #2879fe;
 }
 .sticky-header {
   position: fixed;
@@ -155,7 +155,7 @@ button#showLeftPush {
   outline: none;
 }
 button#showLeftPush:hover {
-  color: #333333;
+  color: #2879fe;
 }
 /*--push-menu-css--*/
 .cbp-spmenu {
@@ -166,7 +166,7 @@ button#showLeftPush:hover {
   height: 100%;
   top: 78px;
   z-index: 1000;
-  background-color: #333333;
+  background-color: #2879fe;
   padding: 2em 0;
 }
 .cbp-spmenu-left {
@@ -264,7 +264,7 @@ span.nav-badge-btm {
 .dropdown-menu > li > a:hover,
 .dropdown-menu > li > a:focus {
   background: none;
-  color: #d83737;
+  color: #2879fe;
 }
 .chart-nav span.nav-badge-btm {
   right: 5%;
@@ -283,7 +283,7 @@ ul.dropdown-menu {
 /*--//side-menu--*/
 /* ----Logo----*/
 .logo {
-  background: #333333;
+  background: #2879fe;
   text-align: center;
   float: left;
 }
@@ -321,23 +321,23 @@ ul.dropdown-menu {
   margin: 0;
   z-index: 10;
   font-size: 0.9em;
-  color: #333333;
+  color: #2879fe;
   padding: 0.5em 1em;
   border: 2px solid rgb(241 241 241);
   -webkit-appearance: none; /* for box shadows to show on iOS */
   font-family: "Roboto Condensed", sans-serif;
 }
 .sb-search-input::-webkit-input-placeholder {
-  color: #333333;
+  color: #2879fe;
 }
 .sb-search-input:-moz-placeholder {
-  color: #333333;
+  color: #2879fe;
 }
 .sb-search-input::-moz-placeholder {
-  color: #333333;
+  color: #2879fe;
 }
 .sb-search-input:-ms-input-placeholder {
-  color: #333333;
+  color: #2879fe;
 }
 .input__label {
   -webkit-font-smoothing: antialiased;
@@ -579,7 +579,7 @@ i.fa.fa-tasks {
   font-size: 1em;
 }
 .notification_bottom a:hover {
-  color: #333333;
+  color: #2879fe;
 }
 .notification_bottom h3 a {
   color: #717171;
@@ -740,7 +740,7 @@ i.icon_6 {
   background: #5cb85c;
 }
 .progress-striped .light-blue {
-  background: #333333;
+  background: #2879fe;
 }
 .progress-striped .red {
   background: #d9534f;
@@ -749,7 +749,7 @@ i.icon_6 {
   background: #428bca;
 }
 .progress-striped .orange {
-  background: #d83737;
+  background: #2879fe;
 }
 .progress-striped .bar {
   background-image: -webkit-gradient(
@@ -903,7 +903,7 @@ ul.dropdown-menu {
   position: absolute;
   top: 34%;
   right: 8%;
-  color: #333333;
+  color: #2879fe;
   font-size: 1.6em;
 }
 .profile_details ul li ul.dropdown-menu.drp-mnu {
@@ -949,7 +949,7 @@ ul.dropdown-menu.drp-mnu li {
   line-height: 1.6em;
 }
 .footer p a {
-  color: #d83737;
+  color: #2879fe;
 }
 .footer p a:hover {
   text-decoration: underline;
@@ -968,7 +968,7 @@ ul.dropdown-menu.drp-mnu li {
 .stats-left {
   float: left;
   width: 70%;
-  background-color: #333333;
+  background-color: #2879fe;
   text-align: center;
   padding: 1em;
 }
@@ -979,7 +979,7 @@ ul.dropdown-menu.drp-mnu li {
   background-color: rgba(88, 88, 88, 0.88);
 }
 .states-last .stats-left {
-  background-color: #d83737;
+  background-color: #2879fe;
 }
 .states-last .stats-right {
   background-color: #8bc34a;
@@ -989,7 +989,7 @@ ul.dropdown-menu.drp-mnu li {
   width: 30%;
   text-align: center;
   padding: 1.54em 1em;
-  background-color: #d83737;
+  background-color: #2879fe;
 }
 .stats-left h5 {
   color: #fff;
@@ -1067,7 +1067,7 @@ h4.title {
   font-weight: 500;
 }
 .stats-table h5 {
-  color: #333333;
+  color: #2879fe;
   font-size: 0.9em;
 }
 .stats-table h5.down {
@@ -1186,7 +1186,7 @@ h4.title {
 /*-- media --*/
 h3.title1 {
   font-size: 2em;
-  color: #d83737;
+  color: #2879fe;
   margin-bottom: 0.8em;
 }
 .bs-example5 {
@@ -1206,7 +1206,7 @@ h3.title1 {
   margin: 2em 0 0 0;
 }
 .demolayout {
-  background: #d83737;
+  background: #2879fe;
   width: 60px;
   overflow: hidden;
 }
@@ -1323,7 +1323,7 @@ h3.m_1 {
 .grid_5 h5,
 h3.hdg {
   margin-bottom: 0.6em;
-  color: #333333;
+  color: #2879fe;
 }
 .pagination > .active > a,
 .pagination > .active > span,
@@ -1664,7 +1664,7 @@ button.note-color-btn {
   margin-left: 0.5em;
 }
 .validation-grids .btn-primary {
-  background: #333333 !important;
+  background: #2879fe !important;
   color: #fff;
   border: none;
   font-size: 0.9em;
@@ -1738,7 +1738,7 @@ button.note-color-btn {
   line-height: 1.8em;
 }
 .login-top h4 a {
-  color: #d83737;
+  color: #2879fe;
 }
 .login-top h4 a:hover {
   color: #555;
@@ -1795,22 +1795,22 @@ select {
   display: block;
 }
 .forgot a:hover {
-  color: #d83737;
+  color: #2879fe;
 }
 .login-page .btn,
-.login-page .btn-lenos {
+.login-page .btn-sauki {
   border: none;
   outline: none;
   cursor: pointer;
   color: #fff;
-  background: #333333;
+  background: #2879fe;
   width: 100%;
   padding: 0.5em 1em;
   font-size: 1em;
   margin-top: 2em;
 }
-.login-page.btn-lenos:hover {
-  background: #333333;
+.login-page.btn-sauki:hover {
+  background: #2879fe;
 }
 .login-page-bottom {
   text-align: center;
@@ -1897,7 +1897,7 @@ p.creating {
 .signup-page h5,
 .signup-page h6 {
   margin: 0 0 1em;
-  color: #333333;
+  color: #2879fe;
   font-size: 1.1em;
 }
 .signup-page h6 {
@@ -1990,10 +1990,10 @@ h4.modal-title {
   margin: 0;
 }
 .modal-grids button.btn.btn-primary {
-  background-color: #d83737;
+  background-color: #2879fe;
   font-size: 1em;
   color: #fff;
-  border-color: #d83737;
+  border-color: #2879fe;
   outline: none;
   border-radius: 3px;
 }
@@ -2014,7 +2014,7 @@ h4.modal-title {
 }
 .scrollspy-example h4 {
   font-size: 1.2em;
-  color: #d83737;
+  color: #2879fe;
   margin-bottom: 0.5em;
 }
 .scrollspy-example p {
@@ -2119,7 +2119,7 @@ h4.modal-title {
 }
 .inbox-page .dropdown-menu > li > a:hover,
 .inbox-page .dropdown-menu > li > a:focus {
-  color: #d83737;
+  color: #2879fe;
 }
 .mail-icon {
   margin-right: 7px;
@@ -2163,7 +2163,7 @@ h4.modal-title {
   transform: rotate(-45deg);
   height: 0.4rem;
   width: 0.8rem;
-  border-color: #333333;
+  border-color: #2879fe;
   border-top-style: none;
   border-right-style: none;
   border-width: 2px;
@@ -2198,7 +2198,7 @@ h4.modal-title {
   background: none;
   font-size: 1em;
   margin-top: 0.5em;
-  color: #333333;
+  color: #2879fe;
   outline: none;
   font-weight: 600;
 }
@@ -2289,7 +2289,7 @@ h4.modal-title {
 .compose-right .alert.alert-info {
   padding: 10px 20px;
   font-size: 0.9em;
-  color: #333333;
+  color: #2879fe;
   background-color: rgba(212, 213, 243, 0.98);
   border-color: rgba(151, 153, 230, 0.41);
   border-radius: inherit;
@@ -2323,8 +2323,8 @@ h4.modal-title {
 }
 .compose-right .btn {
   font-size: 0.9em;
-  background-color: #333333;
-  border: 1px solid #333333;
+  background-color: #2879fe;
+  border: 1px solid #2879fe;
   color: #fff;
   padding: 0.4em 1em;
   margin-top: 1em;
@@ -2337,7 +2337,7 @@ h4.modal-title {
   width: 32%;
 }
 .profile-top {
-  background-color: #333333;
+  background-color: #2879fe;
   text-align: center;
   padding: 1.5em;
 }
@@ -2375,8 +2375,8 @@ h4.title3 {
   width: 85%;
 }
 .row-middle .profile-right {
-  border-top: 1px dotted #333333;
-  border-bottom: 1px dotted #333333;
+  border-top: 1px dotted #2879fe;
+  border-bottom: 1px dotted #2879fe;
   padding: 1em 0;
 }
 .profile-row .profile-icon {
@@ -2416,7 +2416,7 @@ i.fa.fa-facebook.profile-icon {
 }
 .profile-btm ul li h4 {
   font-size: 1.3em;
-  color: #333333;
+  color: #2879fe;
   font-weight: 900;
 }
 .profile-btm ul li h5 {
@@ -2582,7 +2582,7 @@ i.fa.fa-facebook.profile-icon {
 }
 .header-top li p.cen {
   background: #ffffff;
-  color: #333333;
+  color: #2879fe;
   border-radius: 0 3px 3px 0;
 }
 .whe {
@@ -2613,7 +2613,7 @@ i.fa.fa-facebook.profile-icon {
   border-right: none;
 }
 .header-head h4 {
-  color: #333333;
+  color: #2879fe;
   font-size: 1.1em;
   margin-bottom: 1em;
 }
@@ -2669,7 +2669,7 @@ i.fa.fa-facebook.profile-icon {
   text-align: center;
 }
 .widget_1_box .bg-info {
-  background-color: #333333;
+  background-color: #2879fe;
 }
 .widget_1_box .bg-success {
   background-color: #7d7d7d;
@@ -2696,7 +2696,7 @@ i.fa.fa-facebook.profile-icon {
   background: #eb621f;
 }
 .widget_1_box .progress-striped .orange {
-  background: #333333;
+  background: #2879fe;
 }
 .widget_1_box .progress-striped .bar {
   background-image: -webkit-gradient(
