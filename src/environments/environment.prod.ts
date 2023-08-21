@@ -1,9 +1,9 @@
 export const environment = {
   production: true,
-  appHost: 'https://business.sauki.com.ng',
+  appHost: 'https://business.sauki.ng',
   endPoint: 'https://service.phopis.com/sauki',
   tokenBaseEndpoint: 'https://service.phopis.com/sauki/oauth/token',
-  storageURL:'https://sauki.s3.amazonaws.com/pictures/',
+  storageURL:'https://sauki-storage.s3.amazonaws.com/pictures',
   googleClientId:"976377509430-tpou8clvmkhfr2fqsrrnof9qce51nonb.apps.googleusercontent.com",
   facebookAppId:"319321306084195",
   clientId: "web-client",

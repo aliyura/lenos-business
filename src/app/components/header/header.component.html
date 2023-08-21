@@ -62,7 +62,7 @@
                 <li class="dropdown profile_details_drop">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
                         <div class="profile_img">
-                            <span class="prfil-img"><img src="{{authenticatedUser.dp!=null?'https://sauki.s3.amazonaws.com/pictures/'+authenticatedUser.dp:'assets/images/avatar.png'}}" class="avatar" alt=""> </span>
+                            <span class="prfil-img"><img src="{{authenticatedUser.dp!=null?'https://sauki-storage.s3.amazonaws.com/pictures/'+authenticatedUser.dp:'assets/images/avatar.png'}}" class="avatar" alt=""> </span>
                             <div class="user-name" *ngIf="isAuthenticated">
                                 <p>{{authenticatedUser.name| titlecase | slice:0:13 }}..</p>
                                 <span>{{authenticatedUser.email}}</span>

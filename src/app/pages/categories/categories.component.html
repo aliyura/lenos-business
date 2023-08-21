@@ -22,7 +22,6 @@
                                     <th>#</th>
                                     <th>Name</th>
                                     <th>Type</th>
-                                    <th>Icon</th>
                                     <th>Sub Categories</th>
                                     <th>Created Date</th>
                                     <th>#</th>
@@ -35,8 +34,6 @@
                                         <td [routerLink]="['/product/sub-categories',categoryData.category!.id]">
                                             {{categoryData.category!.name}}</td>
                                         <td>{{categoryData.category!.type}}</td>
-                                        <td>{{categoryData.category.icon!=null?categoryData.category!.icon:"Not
-                                            Avaialble"}}</td>
                                         <td>{{categoryData!.subCategories!!=null?categoryData!.subCategories!.length:'0'}}
                                         </td>
                                         <td>{{categoryData.category!.createdDate}}</td>

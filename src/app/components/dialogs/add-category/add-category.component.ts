@@ -44,7 +44,7 @@ export class AddCategoryModalDialog implements OnInit {
     let response = this.form.response;
     this.category = this.form.data;
 
-    if (response['name'].ok && response['type'].ok && response['icon'].ok) {
+    if (response['name'].ok && response['type'].ok) {
 
       //if editing not new...
       if(this.existingCategory!=null)

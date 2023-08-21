@@ -6,7 +6,7 @@
 <div mat-dialog-content>
     <form name="form" enctype="multipart/form-data">
         <div class="row">
-            <div class="sign-u col-md-6">
+            <div class="sign-u col-md-12">
                 <div class="sign-up1">
                     <h4> Name<strong class="star">*</strong> :</h4>
                 </div>
@@ -29,28 +29,15 @@
                 </div>
                 <div class="clearfix"> </div>
             </div>
-        </div>
-
-        <div class="row">
             <div class="sign-u col-md-6">
-                <div class="sign-up1">
-                    <h4>Image<strong class="star">*</strong> :</h4>
-                </div>
-                <div class="sign-up2">
-                    <input type="file" class="tf-sauki" name="image" required="true" (change)="form.validate($event)">
-                </div>
-                <div class="clearfix"> </div>
-            </div>
-            <div class="sign-u col-md-6">
-                <div class="sign-up1">
-                    <h4>Icon <strong class="star">*</strong> :</h4>
-                </div>
-                <div class="sign-up2">
-                    <input type="text" [value]="existingCategory!.icon" class="tf-sauki" name="icon"  required="true"
-                        (keyup)="form.validate($event)">
-                </div>
-                <div class="clearfix"> </div>
-            </div>
+              <div class="sign-up1">
+                  <h4>Image<strong class="star">*</strong> :</h4>
+              </div>
+              <div class="sign-up2">
+                  <input type="file" class="tf-sauki" name="image" required="true" (change)="form.validate($event)">
+              </div>
+              <div class="clearfix"> </div>
+          </div>
         </div>
     </form>
 </div>
